@@ -1,0 +1,323 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3020AE821EB7B8340075D849 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3020AE811EB7B8340075D849 /* AppDelegate.swift */; };
+		3020AE841EB7B8340075D849 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3020AE831EB7B8340075D849 /* ViewController.swift */; };
+		3020AE871EB7B8340075D849 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3020AE851EB7B8340075D849 /* Main.storyboard */; };
+		3020AE8A1EB7B8340075D849 /* Women4Women.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3020AE881EB7B8340075D849 /* Women4Women.xcdatamodeld */; };
+		3020AE8C1EB7B8340075D849 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3020AE8B1EB7B8340075D849 /* Assets.xcassets */; };
+		3020AE8F1EB7B8340075D849 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3020AE8D1EB7B8340075D849 /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3020AE7E1EB7B8340075D849 /* Women4Women.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Women4Women.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3020AE811EB7B8340075D849 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3020AE831EB7B8340075D849 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3020AE861EB7B8340075D849 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3020AE891EB7B8340075D849 /* Women4Women.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Women4Women.xcdatamodel; sourceTree = "<group>"; };
+		3020AE8B1EB7B8340075D849 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3020AE8E1EB7B8340075D849 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3020AE901EB7B8340075D849 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3020AE7B1EB7B8340075D849 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3020AE751EB7B8340075D849 = {
+			isa = PBXGroup;
+			children = (
+				3020AE801EB7B8340075D849 /* Women4Women */,
+				3020AE7F1EB7B8340075D849 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3020AE7F1EB7B8340075D849 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3020AE7E1EB7B8340075D849 /* Women4Women.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3020AE801EB7B8340075D849 /* Women4Women */ = {
+			isa = PBXGroup;
+			children = (
+				3020AE811EB7B8340075D849 /* AppDelegate.swift */,
+				3020AE831EB7B8340075D849 /* ViewController.swift */,
+				3020AE851EB7B8340075D849 /* Main.storyboard */,
+				3020AE8B1EB7B8340075D849 /* Assets.xcassets */,
+				3020AE8D1EB7B8340075D849 /* LaunchScreen.storyboard */,
+				3020AE901EB7B8340075D849 /* Info.plist */,
+				3020AE881EB7B8340075D849 /* Women4Women.xcdatamodeld */,
+			);
+			path = Women4Women;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3020AE7D1EB7B8340075D849 /* Women4Women */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3020AE931EB7B8340075D849 /* Build configuration list for PBXNativeTarget "Women4Women" */;
+			buildPhases = (
+				3020AE7A1EB7B8340075D849 /* Sources */,
+				3020AE7B1EB7B8340075D849 /* Frameworks */,
+				3020AE7C1EB7B8340075D849 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Women4Women;
+			productName = Women4Women;
+			productReference = 3020AE7E1EB7B8340075D849 /* Women4Women.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3020AE761EB7B8340075D849 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = cs194w;
+				TargetAttributes = {
+					3020AE7D1EB7B8340075D849 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 3020AE791EB7B8340075D849 /* Build configuration list for PBXProject "Women4Women" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3020AE751EB7B8340075D849;
+			productRefGroup = 3020AE7F1EB7B8340075D849 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3020AE7D1EB7B8340075D849 /* Women4Women */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3020AE7C1EB7B8340075D849 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3020AE8F1EB7B8340075D849 /* LaunchScreen.storyboard in Resources */,
+				3020AE8C1EB7B8340075D849 /* Assets.xcassets in Resources */,
+				3020AE871EB7B8340075D849 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3020AE7A1EB7B8340075D849 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3020AE8A1EB7B8340075D849 /* Women4Women.xcdatamodeld in Sources */,
+				3020AE841EB7B8340075D849 /* ViewController.swift in Sources */,
+				3020AE821EB7B8340075D849 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3020AE851EB7B8340075D849 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3020AE861EB7B8340075D849 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3020AE8D1EB7B8340075D849 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3020AE8E1EB7B8340075D849 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3020AE911EB7B8340075D849 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3020AE921EB7B8340075D849 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3020AE941EB7B8340075D849 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Women4Women/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.cs194w.Women4Women;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		3020AE951EB7B8340075D849 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Women4Women/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.cs194w.Women4Women;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3020AE791EB7B8340075D849 /* Build configuration list for PBXProject "Women4Women" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3020AE911EB7B8340075D849 /* Debug */,
+				3020AE921EB7B8340075D849 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3020AE931EB7B8340075D849 /* Build configuration list for PBXNativeTarget "Women4Women" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3020AE941EB7B8340075D849 /* Debug */,
+				3020AE951EB7B8340075D849 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3020AE881EB7B8340075D849 /* Women4Women.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3020AE891EB7B8340075D849 /* Women4Women.xcdatamodel */,
+			);
+			currentVersion = 3020AE891EB7B8340075D849 /* Women4Women.xcdatamodel */;
+			path = Women4Women.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 3020AE761EB7B8340075D849 /* Project object */;
+}
