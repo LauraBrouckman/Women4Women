@@ -1,5 +1,5 @@
 //
-//  MainMapViewController.swift
+//  ContainerViewController.swift
 //  Women4Women
 //
 //  Created by Elizabeth Brouckman on 5/6/17.
@@ -7,23 +7,30 @@
 //
 
 import UIKit
+import SlideMenuControllerSwift
 
-class MainMapViewController: UIViewController {
-
+class ContainerViewController: SlideMenuController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.leftViewController = self.storyboard?.instantiateViewController(withIdentifier: "Left")
+        self.mainViewController = self.storyboard?.instantiateViewController(withIdentifier: "Main")
         // Do any additional setup after loading the view.
     }
+    
+//    override func awakeFromNib() {
+//        if let controller = self.storyboard?.instantiateViewController(withIdentifier: "Main") {
+//            self.mainViewController = controller
+//        }
+//        if let controller = self.storyboard?.instantiateViewController(withIdentifier: "Left") {
+//            self.leftViewController = controller
+//        }
+//        super.awakeFromNib()
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    @IBAction func openSettingsDrawer(_ sender: UIButton) {
-        self.slideMenuController()?.openLeft()
     }
     
 

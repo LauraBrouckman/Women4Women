@@ -27,6 +27,7 @@
 		307D443B1EBE9384007929D3 /* EditNightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307D443A1EBE9384007929D3 /* EditNightViewController.swift */; };
 		307D443D1EBE93AC007929D3 /* LoginRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307D443C1EBE93AC007929D3 /* LoginRegisterViewController.swift */; };
 		3093D8CB1EBEAD740035732D /* SlideMenuControllerSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3093D8C91EBEAD740035732D /* SlideMenuControllerSwift.framework */; };
+		3093D8CD1EBEAF040035732D /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3093D8CC1EBEAF040035732D /* ContainerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		307D443A1EBE9384007929D3 /* EditNightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditNightViewController.swift; sourceTree = "<group>"; };
 		307D443C1EBE93AC007929D3 /* LoginRegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRegisterViewController.swift; sourceTree = "<group>"; };
 		3093D8C91EBEAD740035732D /* SlideMenuControllerSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SlideMenuControllerSwift.framework; path = "../../../Library/Developer/Xcode/DerivedData/Women4Women-dzixkfetucpsnyabfjaxwmjjhrve/Build/Products/Debug-iphonesimulator/SlideMenuControllerSwift/SlideMenuControllerSwift.framework"; sourceTree = "<group>"; };
+		3093D8CC1EBEAF040035732D /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		B315B48242589C96E63C32D0 /* Pods-Women4Women.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Women4Women.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Women4Women/Pods-Women4Women.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,6 +104,7 @@
 				3020AE811EB7B8340075D849 /* AppDelegate.swift */,
 				3020AE831EB7B8340075D849 /* ViewController.swift */,
 				3020AE851EB7B8340075D849 /* Main.storyboard */,
+				3093D8CC1EBEAF040035732D /* ContainerViewController.swift */,
 				307D443C1EBE93AC007929D3 /* LoginRegisterViewController.swift */,
 				307D443A1EBE9384007929D3 /* EditNightViewController.swift */,
 				307D44381EBE935E007929D3 /* ContactsTableViewController.swift */,
@@ -276,6 +279,7 @@
 				3020AE8A1EB7B8340075D849 /* Women4Women.xcdatamodeld in Sources */,
 				3020AE841EB7B8340075D849 /* ViewController.swift in Sources */,
 				3020AE821EB7B8340075D849 /* AppDelegate.swift in Sources */,
+				3093D8CD1EBEAF040035732D /* ContainerViewController.swift in Sources */,
 				307D443B1EBE9384007929D3 /* EditNightViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
