@@ -13,6 +13,19 @@
 		3020AE8A1EB7B8340075D849 /* Women4Women.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3020AE881EB7B8340075D849 /* Women4Women.xcdatamodeld */; };
 		3020AE8C1EB7B8340075D849 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3020AE8B1EB7B8340075D849 /* Assets.xcassets */; };
 		3020AE8F1EB7B8340075D849 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3020AE8D1EB7B8340075D849 /* LaunchScreen.storyboard */; };
+		3020AE971EB7BABB0075D849 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3020AE961EB7BABB0075D849 /* logo.png */; };
+		3020AE991EB7BC480075D849 /* logo_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 3020AE981EB7BC480075D849 /* logo_white.png */; };
+		3020AE9B1EBE834C0075D849 /* Menu-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 3020AE9A1EBE834C0075D849 /* Menu-50.png */; };
+		3020AE9F1EBE86430075D849 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3020AE9E1EBE86430075D849 /* MapKit.framework */; };
+		3020AEA11EBE887E0075D849 /* Search-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 3020AEA01EBE887E0075D849 /* Search-50.png */; };
+		3020AEA31EBE8CD70075D849 /* default-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 3020AEA21EBE8CD70075D849 /* default-user.png */; };
+		3020AEA51EBE8D9F0075D849 /* message_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3020AEA41EBE8D9F0075D849 /* message_icon.png */; };
+		307D44331EBE910F007929D3 /* down_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 307D44321EBE910F007929D3 /* down_icon.png */; };
+		307D44351EBE931A007929D3 /* MainMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307D44341EBE931A007929D3 /* MainMapViewController.swift */; };
+		307D44371EBE933A007929D3 /* ChooseTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307D44361EBE933A007929D3 /* ChooseTimeViewController.swift */; };
+		307D44391EBE935E007929D3 /* ContactsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307D44381EBE935E007929D3 /* ContactsTableViewController.swift */; };
+		307D443B1EBE9384007929D3 /* EditNightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307D443A1EBE9384007929D3 /* EditNightViewController.swift */; };
+		307D443D1EBE93AC007929D3 /* LoginRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307D443C1EBE93AC007929D3 /* LoginRegisterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +37,19 @@
 		3020AE8B1EB7B8340075D849 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3020AE8E1EB7B8340075D849 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3020AE901EB7B8340075D849 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3020AE961EB7BABB0075D849 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		3020AE981EB7BC480075D849 /* logo_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_white.png; path = ../logo_white.png; sourceTree = "<group>"; };
+		3020AE9A1EBE834C0075D849 /* Menu-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Menu-50.png"; sourceTree = "<group>"; };
+		3020AE9E1EBE86430075D849 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		3020AEA01EBE887E0075D849 /* Search-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Search-50.png"; sourceTree = "<group>"; };
+		3020AEA21EBE8CD70075D849 /* default-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-user.png"; sourceTree = "<group>"; };
+		3020AEA41EBE8D9F0075D849 /* message_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = message_icon.png; sourceTree = "<group>"; };
+		307D44321EBE910F007929D3 /* down_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down_icon.png; sourceTree = "<group>"; };
+		307D44341EBE931A007929D3 /* MainMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMapViewController.swift; sourceTree = "<group>"; };
+		307D44361EBE933A007929D3 /* ChooseTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseTimeViewController.swift; sourceTree = "<group>"; };
+		307D44381EBE935E007929D3 /* ContactsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsTableViewController.swift; sourceTree = "<group>"; };
+		307D443A1EBE9384007929D3 /* EditNightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditNightViewController.swift; sourceTree = "<group>"; };
+		307D443C1EBE93AC007929D3 /* LoginRegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRegisterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3020AE9F1EBE86430075D849 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +69,7 @@
 			children = (
 				3020AE801EB7B8340075D849 /* Women4Women */,
 				3020AE7F1EB7B8340075D849 /* Products */,
+				3020AE9D1EBE86430075D849 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,12 +87,40 @@
 				3020AE811EB7B8340075D849 /* AppDelegate.swift */,
 				3020AE831EB7B8340075D849 /* ViewController.swift */,
 				3020AE851EB7B8340075D849 /* Main.storyboard */,
+				307D443C1EBE93AC007929D3 /* LoginRegisterViewController.swift */,
+				307D443A1EBE9384007929D3 /* EditNightViewController.swift */,
+				307D44381EBE935E007929D3 /* ContactsTableViewController.swift */,
+				307D44361EBE933A007929D3 /* ChooseTimeViewController.swift */,
+				307D44341EBE931A007929D3 /* MainMapViewController.swift */,
 				3020AE8B1EB7B8340075D849 /* Assets.xcassets */,
 				3020AE8D1EB7B8340075D849 /* LaunchScreen.storyboard */,
 				3020AE901EB7B8340075D849 /* Info.plist */,
 				3020AE881EB7B8340075D849 /* Women4Women.xcdatamodeld */,
+				3020AE9C1EBE83520075D849 /* icons */,
 			);
 			path = Women4Women;
+			sourceTree = "<group>";
+		};
+		3020AE9C1EBE83520075D849 /* icons */ = {
+			isa = PBXGroup;
+			children = (
+				3020AEA21EBE8CD70075D849 /* default-user.png */,
+				3020AEA41EBE8D9F0075D849 /* message_icon.png */,
+				3020AEA01EBE887E0075D849 /* Search-50.png */,
+				3020AE961EB7BABB0075D849 /* logo.png */,
+				307D44321EBE910F007929D3 /* down_icon.png */,
+				3020AE981EB7BC480075D849 /* logo_white.png */,
+				3020AE9A1EBE834C0075D849 /* Menu-50.png */,
+			);
+			name = icons;
+			sourceTree = "<group>";
+		};
+		3020AE9D1EBE86430075D849 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3020AE9E1EBE86430075D849 /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,9 +182,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3020AE971EB7BABB0075D849 /* logo.png in Resources */,
+				3020AEA11EBE887E0075D849 /* Search-50.png in Resources */,
+				307D44331EBE910F007929D3 /* down_icon.png in Resources */,
+				3020AEA51EBE8D9F0075D849 /* message_icon.png in Resources */,
 				3020AE8F1EB7B8340075D849 /* LaunchScreen.storyboard in Resources */,
 				3020AE8C1EB7B8340075D849 /* Assets.xcassets in Resources */,
+				3020AEA31EBE8CD70075D849 /* default-user.png in Resources */,
+				3020AE991EB7BC480075D849 /* logo_white.png in Resources */,
 				3020AE871EB7B8340075D849 /* Main.storyboard in Resources */,
+				3020AE9B1EBE834C0075D849 /* Menu-50.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,9 +202,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				307D44351EBE931A007929D3 /* MainMapViewController.swift in Sources */,
+				307D44371EBE933A007929D3 /* ChooseTimeViewController.swift in Sources */,
+				307D44391EBE935E007929D3 /* ContactsTableViewController.swift in Sources */,
+				307D443D1EBE93AC007929D3 /* LoginRegisterViewController.swift in Sources */,
 				3020AE8A1EB7B8340075D849 /* Women4Women.xcdatamodeld in Sources */,
 				3020AE841EB7B8340075D849 /* ViewController.swift in Sources */,
 				3020AE821EB7B8340075D849 /* AppDelegate.swift in Sources */,
+				307D443B1EBE9384007929D3 /* EditNightViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +371,7 @@
 				3020AE951EB7B8340075D849 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
