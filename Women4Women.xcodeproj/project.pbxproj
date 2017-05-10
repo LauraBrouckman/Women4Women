@@ -24,6 +24,7 @@
 		307C90171EC161160020E535 /* AccordionMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307C90151EC161160020E535 /* AccordionMenu.swift */; };
 		307C90181EC161160020E535 /* Parent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307C90161EC161160020E535 /* Parent.swift */; };
 		307C901A1EC2BD5A0020E535 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307C90191EC2BD5A0020E535 /* UserDefaults.swift */; };
+		307C901C1EC2C64F0020E535 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 307C901B1EC2C64F0020E535 /* GoogleService-Info.plist */; };
 		307D44331EBE910F007929D3 /* down_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 307D44321EBE910F007929D3 /* down_icon.png */; };
 		307D44351EBE931A007929D3 /* MainMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307D44341EBE931A007929D3 /* MainMapViewController.swift */; };
 		307D44371EBE933A007929D3 /* ChooseTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307D44361EBE933A007929D3 /* ChooseTimeViewController.swift */; };
@@ -33,6 +34,7 @@
 		3093D8CB1EBEAD740035732D /* SlideMenuControllerSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3093D8C91EBEAD740035732D /* SlideMenuControllerSwift.framework */; };
 		3093D8CD1EBEAF040035732D /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3093D8CC1EBEAF040035732D /* ContainerViewController.swift */; };
 		30A168141EBFDB72002F5D52 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A168131EBFDB72002F5D52 /* SearchTextField.swift */; };
+		30A4D7141EC2C99900E9E7DF /* RemoteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A4D7131EC2C99900E9E7DF /* RemoteDatabase.swift */; };
 		AFC0BC2AA855429AFEA2C4C2 /* Pods_Women4Women.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC67C331923F50E1084FC9D /* Pods_Women4Women.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +59,7 @@
 		307C90151EC161160020E535 /* AccordionMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccordionMenu.swift; sourceTree = "<group>"; };
 		307C90161EC161160020E535 /* Parent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parent.swift; sourceTree = "<group>"; };
 		307C90191EC2BD5A0020E535 /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		307C901B1EC2C64F0020E535 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		307D44321EBE910F007929D3 /* down_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down_icon.png; sourceTree = "<group>"; };
 		307D44341EBE931A007929D3 /* MainMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMapViewController.swift; sourceTree = "<group>"; };
 		307D44361EBE933A007929D3 /* ChooseTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseTimeViewController.swift; sourceTree = "<group>"; };
@@ -67,6 +70,7 @@
 		3093D8CC1EBEAF040035732D /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		30A1680F1EBFD30E002F5D52 /* SearchTextField.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SearchTextField.framework; path = "../../../Library/Developer/Xcode/DerivedData/Women4Women-dzixkfetucpsnyabfjaxwmjjhrve/Build/Products/Debug-iphonesimulator/SearchTextField/SearchTextField.framework"; sourceTree = "<group>"; };
 		30A168131EBFDB72002F5D52 /* SearchTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
+		30A4D7131EC2C99900E9E7DF /* RemoteDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteDatabase.swift; sourceTree = "<group>"; };
 		6DC67C331923F50E1084FC9D /* Pods_Women4Women.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Women4Women.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B315B48242589C96E63C32D0 /* Pods-Women4Women.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Women4Women.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Women4Women/Pods-Women4Women.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -129,9 +133,11 @@
 				307D44361EBE933A007929D3 /* ChooseTimeViewController.swift */,
 				307D44341EBE931A007929D3 /* MainMapViewController.swift */,
 				307C90191EC2BD5A0020E535 /* UserDefaults.swift */,
+				30A4D7131EC2C99900E9E7DF /* RemoteDatabase.swift */,
 				3020AE8B1EB7B8340075D849 /* Assets.xcassets */,
 				3020AE8D1EB7B8340075D849 /* LaunchScreen.storyboard */,
 				3020AE901EB7B8340075D849 /* Info.plist */,
+				307C901B1EC2C64F0020E535 /* GoogleService-Info.plist */,
 				3020AE881EB7B8340075D849 /* Women4Women.xcdatamodeld */,
 				3020AE9C1EBE83520075D849 /* icons */,
 			);
@@ -234,6 +240,7 @@
 				3020AE8C1EB7B8340075D849 /* Assets.xcassets in Resources */,
 				3020AEA31EBE8CD70075D849 /* default-user.png in Resources */,
 				3020AE991EB7BC480075D849 /* logo_white.png in Resources */,
+				307C901C1EC2C64F0020E535 /* GoogleService-Info.plist in Resources */,
 				3020AE871EB7B8340075D849 /* Main.storyboard in Resources */,
 				3020AE9B1EBE834C0075D849 /* Menu-50.png in Resources */,
 			);
@@ -303,6 +310,7 @@
 				307D443D1EBE93AC007929D3 /* LoginRegisterViewController.swift in Sources */,
 				3063AEE61EC1203800DEEB5B /* AccordionMenuTableViewController.swift in Sources */,
 				3020AE8A1EB7B8340075D849 /* Women4Women.xcdatamodeld in Sources */,
+				30A4D7141EC2C99900E9E7DF /* RemoteDatabase.swift in Sources */,
 				30A168141EBFDB72002F5D52 /* SearchTextField.swift in Sources */,
 				3020AE841EB7B8340075D849 /* ViewController.swift in Sources */,
 				3020AE821EB7B8340075D849 /* AppDelegate.swift in Sources */,

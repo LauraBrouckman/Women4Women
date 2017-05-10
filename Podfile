@@ -6,4 +6,6 @@ target 'Women4Women' do
   use_frameworks!
   # Pods for Women4Women
 pod 'SlideMenuControllerSwift'
+pod 'Firebase/Core'
+pod 'Firebase/Database'
 end

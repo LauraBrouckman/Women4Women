@@ -21,6 +21,8 @@ class UserDefaults{
     static fileprivate var timeToBeHome             =   "timeHomeKey"
     static fileprivate var locationLatKey           =   "locationLatKey"
     static fileprivate var locationLonKey           =   "locationLonKey"
+    static fileprivate var homeLocationLatKey       =   "homeLocationLatKey"
+    static fileprivate var homeLocationLonKEy       =   "homeLocationLonKey"
     static fileprivate var firstNameKey             =   "firstNameKey"
     static fileprivate var lastNameKey              =   "lastNameKey"
     static fileprivate var emergencyContactNameKey  =   "emergencyContactNameKey"
@@ -79,6 +81,23 @@ class UserDefaults{
         }
         return nil
     }
+    
+    //Get and set the home location (set by passing in the latitude and longitude coordinates as Doubles)
+    // Google how to convert address to lat/lon if needed
+    static func setHomeLocation(latitude: Double, longitude: Double) {
+        Foundation.UserDefaults.standard.setValue(latitude, forKey: homeLocationLatKey)
+        Foundation.UserDefaults.standard.setValue(longitude, forKey: homeLocationLonKEy)
+    }
+    
+    static func getHomeLocation() -> (Double, Double)? {
+        if let latitude = Foundation.UserDefaults.standard.value(forKey: homeLocationLatKey) as? Double {
+            if let longitude = Foundation.UserDefaults.standard.value(forKey: homeLocationLonKEy) as? Double {
+                return (latitude, longitude)
+            }
+        }
+        return nil
+    }
+    
     
     //Get the users first name 
     static func setFirstName(_ first: String) {
