@@ -13,13 +13,16 @@ import MapKit
 
 
 class MainMapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
-
+    
+    
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var searchTextField: SearchTextField!
     let locationManager = CLLocationManager()
     let searchCompleter = MKLocalSearchCompleter()
     var searchResults: [MKLocalSearchCompletion] = []
     var hideSearchResults = false
+    @IBOutlet weak var popupMenu: UIView!
+    @IBOutlet weak var popupMenuHeight: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +46,8 @@ class MainMapViewController: UIViewController, CLLocationManagerDelegate, MKMapV
         mapView.isZoomEnabled = true
         mapView.isScrollEnabled = true
         mapView.userTrackingMode = .follow
+        
+        popupMenu.isHidden = true
     }
     
     
@@ -66,7 +71,6 @@ class MainMapViewController: UIViewController, CLLocationManagerDelegate, MKMapV
         searchTextField.backgroundColor = .white
         searchTextField.borderStyle = UITextBorderStyle.roundedRect
         searchTextField.comparisonOptions = [.caseInsensitive]
-        //searchTextField.maxNumberOfResults = 5
         searchTextField.startVisible = true
         searchTextField.theme.font = UIFont.systemFont(ofSize: 18)
         searchTextField.theme.cellHeight = 65
@@ -89,6 +93,7 @@ class MainMapViewController: UIViewController, CLLocationManagerDelegate, MKMapV
     
  func textFieldDidChange(_ textField: UITextField) {
         hideSearchResults = false
+        popupMenu.isHidden = true
     }
     
     
@@ -161,9 +166,18 @@ class MainMapViewController: UIViewController, CLLocationManagerDelegate, MKMapV
         mapView.addAnnotation(annotationView.annotation!)
         mapView.selectAnnotation(annotation, animated: true)
 
-        
+        openPopupMenu()
     }
 
+    //Open up the popup menu from the bottom of the screen
+    func openPopupMenu() {
+        searchTextField.resignFirstResponder()
+        popupMenu.isHidden = false
+        UIView.animate(withDuration: 1, animations: {
+            self.popupMenuHeight.constant = 300 // heightCon is the IBOutlet to the constraint
+            self.view.layoutIfNeeded()
+        })
+    }
     
     @IBAction func openSettingsDrawer(_ sender: UIButton) {
         self.slideMenuController()?.openLeft()
