@@ -11,9 +11,9 @@ import CoreLocation
 import MapKit
 
 
-
 class MainMapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
+
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var searchTextField: SearchTextField!
@@ -26,6 +26,7 @@ class MainMapViewController: UIViewController, CLLocationManagerDelegate, MKMapV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configueSearchTextField()
         setUpMap()
         searchCompleter.delegate = self

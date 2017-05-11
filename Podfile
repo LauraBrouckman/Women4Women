@@ -8,4 +8,5 @@ target 'Women4Women' do
 pod 'SlideMenuControllerSwift'
 pod 'Firebase/Core'
 pod 'Firebase/Database'
+pod 'Firebase/Storage'
 end
