@@ -13,7 +13,6 @@ class AccordionMenuTableViewController: AccordionTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         let item1 = Parent(state: .collapsed, childs: ["Set the time here"], title: "Time", subtitle: "12:00 am")
         let item2 = Parent(state: .collapsed, childs: ["553 Mayfield Avenue"], title: "Home", subtitle: "553 Mayfield Avenue")
         let item3 = Parent(state: .collapsed, childs: ["Bryan Powell"], title: "Emergency Contact", subtitle: "Bryan Powell")

@@ -9,16 +9,32 @@
 import UIKit
 import CoreData
 import SlideMenuControllerSwift
+import Firebase
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
+     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch
-
+        FIRApp.configure()
+        
+        
+        
+        
+        
+        // Listen for other users to change their latitudes and longitudes, if they do update list of nearby users accordingly
+        FIRDatabase.database().reference().child("users").observe(.value, with: { (snapshot) in
+            if let userDict = snapshot.value as? [String : AnyObject] {
+                TrackUsers.updateNearbyUserList(users: userDict)
+            }
+            else {
+            }
+        })
+        
         return true
     }
 
@@ -74,7 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         return container
     }()
-
+    
     // MARK: - Core Data Saving support
 
     func saveContext () {
