@@ -9,12 +9,12 @@
 import UIKit
 import CoreLocation
 import MapKit
-
+import CoreData
 
 class MainMapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
 
-    
+    let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var searchTextField: SearchTextField!
     let locationManager = CLLocationManager()
@@ -146,7 +146,11 @@ class MainMapViewController: UIViewController, CLLocationManagerDelegate, MKMapV
         //convert the strong address into coordinates
         geocoder.geocodeAddressString(ad!) {
             if let placemarks = $0 {
-                self.centerMap((placemarks[0].location?.coordinate)!, title: title)
+                let coordinate = (placemarks[0].location?.coordinate)!
+                // Update your location remotely and in local storage
+                UserDefaults.setNightOutLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+                RemoteDatabase.updateUserLocation(forUser: "current_user", locationLat: coordinate.latitude, locationLon: coordinate.longitude)
+                self.centerMap(coordinate, title: title)
             } else {
                 print("error \($1)")
             }
@@ -159,16 +163,37 @@ class MainMapViewController: UIViewController, CLLocationManagerDelegate, MKMapV
         let spanY = 0.007
         let newRegion = MKCoordinateRegion(center:center , span: MKCoordinateSpanMake(spanX, spanY))
         mapView.setRegion(newRegion, animated: true)
+        addAnnotation(toPoint: center, withTitle: (title ?? "Unknown"), withSubtitle: "7 lifelines")
+        addNearbyUsers()
+        openPopupMenu()
+    }
+    
+    func addAnnotation(toPoint coordinate: CLLocationCoordinate2D, withTitle title: String, withSubtitle subtitle: String?) {
         let annotation = MKPointAnnotation()
-        annotation.coordinate = center
-        annotation.title = title ?? "Unknown"
-        annotation.subtitle = "7 lifelines"
+        annotation.coordinate = coordinate
+        annotation.title = title
+        if subtitle != nil {
+            annotation.subtitle = subtitle
+        }
         let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
         mapView.addAnnotation(annotationView.annotation!)
         mapView.selectAnnotation(annotation, animated: true)
-
-        openPopupMenu()
     }
+    
+    // Find users that are close to the "going-out" location and add annotations for them onto the map
+    func addNearbyUsers() {
+        self.managedObjectContext.perform {
+            let results = NearbyUser.getAllNearbyUsers(inManagedObjectContext: self.managedObjectContext)
+            for result in results! {
+                self.addAnnotation(
+                    toPoint: CLLocationCoordinate2D(latitude: result.latitude, longitude: result.longitude),
+                    withTitle: result.first_name!,
+                    withSubtitle: nil
+                )
+            }
+        }
+    }
+    
 
     //Open up the popup menu from the bottom of the screen
     func openPopupMenu() {

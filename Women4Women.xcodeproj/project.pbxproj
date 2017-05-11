@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3020AE821EB7B8340075D849 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3020AE811EB7B8340075D849 /* AppDelegate.swift */; };
-		3020AE841EB7B8340075D849 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3020AE831EB7B8340075D849 /* ViewController.swift */; };
 		3020AE871EB7B8340075D849 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3020AE851EB7B8340075D849 /* Main.storyboard */; };
 		3020AE8A1EB7B8340075D849 /* Women4Women.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3020AE881EB7B8340075D849 /* Women4Women.xcdatamodeld */; };
 		3020AE8C1EB7B8340075D849 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3020AE8B1EB7B8340075D849 /* Assets.xcassets */; };
@@ -46,7 +45,6 @@
 		19E48749ED33D9629853AF59 /* Pods-Women4Women.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Women4Women.release.xcconfig"; path = "Pods/Target Support Files/Pods-Women4Women/Pods-Women4Women.release.xcconfig"; sourceTree = "<group>"; };
 		3020AE7E1EB7B8340075D849 /* Women4Women.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Women4Women.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3020AE811EB7B8340075D849 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3020AE831EB7B8340075D849 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3020AE861EB7B8340075D849 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3020AE891EB7B8340075D849 /* Women4Women.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Women4Women.xcdatamodel; sourceTree = "<group>"; };
 		3020AE8B1EB7B8340075D849 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -131,7 +129,6 @@
 				303A02F51EC3B8BF0050E90B /* CoreData */,
 				30A168131EBFDB72002F5D52 /* SearchTextField.swift */,
 				3020AE811EB7B8340075D849 /* AppDelegate.swift */,
-				3020AE831EB7B8340075D849 /* ViewController.swift */,
 				307C90151EC161160020E535 /* AccordionMenu.swift */,
 				307C90161EC161160020E535 /* Parent.swift */,
 				3020AE851EB7B8340075D849 /* Main.storyboard */,
@@ -333,7 +330,6 @@
 				30A4D7141EC2C99900E9E7DF /* RemoteDatabase.swift in Sources */,
 				303A02FD1EC3BA410050E90B /* NearbyUser+CoreDataProperties.swift in Sources */,
 				30A168141EBFDB72002F5D52 /* SearchTextField.swift in Sources */,
-				3020AE841EB7B8340075D849 /* ViewController.swift in Sources */,
 				3072DB3D1EC40BD5006A953C /* LifelineTableViewController.swift in Sources */,
 				3020AE821EB7B8340075D849 /* AppDelegate.swift in Sources */,
 				303A02FC1EC3BA410050E90B /* NearbyUser+CoreDataClass.swift in Sources */,

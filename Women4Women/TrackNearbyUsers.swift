@@ -16,16 +16,21 @@ class TrackUsers {
     static var distanceThreshold: Double = 0.001 //how far apart max two users can be in degrees
     
     static func updateNearbyUserList(users: [String: AnyObject]) {
-        let myLatitude = 37.422692
-        let myLongitude = -122.168603
         
         // Really should get the users location from local storage
-        //let (myLatitude, myLongitude) = UserDefaults.getNightOutLocation()!
+        let (myLatitude, myLongitude) = UserDefaults.getNightOutLocation() ?? (37.422692, -122.168603)
+        print("My latitude: \(myLatitude) my longitude \(myLongitude)")
+        
         
         var nearbyUsers: [[String: Any]] = []
         
         //Look through each user in the list and calculate the distance apart, if the distance is short, add to array of nearby users
         for user in users {
+            // Don't add yourself to the list
+            if user.key == UserDefaults.getUsername() || user.key == "current_user" {
+                return
+            }
+            
             let username = user.key
             let userData = user.value
             let userLatitude = userData["location_lat"] as! Double
@@ -33,6 +38,7 @@ class TrackUsers {
             let distance = sqrt(pow(userLatitude - myLatitude, 2.0) + pow(userLongitude - myLongitude, 2.0))
 
             if distance <= distanceThreshold {
+                print("NEARBY USER FOUND: \(username)")
                 let newUser: [String: Any] = [
                     "username": username,
                     "longitude": userLongitude,
@@ -44,9 +50,7 @@ class TrackUsers {
                 nearbyUsers.append(newUser)
                 //Add user to list of nearby users
             }
-        }
-        print("Nearby users are: \(nearbyUsers)" )
-        
+        }        
         
         // Add the nearby users to the list in CoreData
         self.managedObjectContext.perform {
