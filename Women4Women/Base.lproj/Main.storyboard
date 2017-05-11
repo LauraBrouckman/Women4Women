@@ -149,7 +149,7 @@
             <objects>
                 <tableViewController id="8kq-H9-Qbv" customClass="AccordionMenuTableViewController" customModule="Women4Women" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="5nq-aT-Dde">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -229,9 +229,6 @@
                                             <rect key="frame" x="206" y="13" width="30" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Edit"/>
-                                            <connections>
-                                                <segue destination="MwU-kZ-S7j" kind="show" id="tm7-XJ-gDN"/>
-                                            </connections>
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>
@@ -567,6 +564,6 @@
         <image name="message_icon.png" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="tm7-XJ-gDN"/>
+        <segue reference="v2d-1a-Y1t"/>
     </inferredMetricsTieBreakers>
 </document>
