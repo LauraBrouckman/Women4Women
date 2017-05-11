@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Colors.swift">
+   </FileRef>
+   <FileRef
+      location = "group:HelpViewController.swift">
+   </FileRef>
+   <FileRef
       location = "group:Women4Women.xcodeproj">
    </FileRef>
    <FileRef
