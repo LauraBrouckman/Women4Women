@@ -164,7 +164,7 @@ class MainMapViewController: UIViewController, CLLocationManagerDelegate, MKMapV
         let newRegion = MKCoordinateRegion(center:center , span: MKCoordinateSpanMake(spanX, spanY))
         mapView.setRegion(newRegion, animated: true)
         addAnnotation(toPoint: center, withTitle: (title ?? "Unknown"), withSubtitle: "7 lifelines")
-        addNearbyUsers()
+        //addNearbyUsers()
         openPopupMenu()
     }
     
@@ -181,19 +181,19 @@ class MainMapViewController: UIViewController, CLLocationManagerDelegate, MKMapV
     }
     
     // Find users that are close to the "going-out" location and add annotations for them onto the map
-    func addNearbyUsers() {
-        self.managedObjectContext.perform {
-            let results = NearbyUser.getAllNearbyUsers(inManagedObjectContext: self.managedObjectContext)
-            for result in results! {
-                self.addAnnotation(
-                    toPoint: CLLocationCoordinate2D(latitude: result.latitude, longitude: result.longitude),
-                    withTitle: result.first_name!,
-                    withSubtitle: nil
-                )
-            }
-        }
-    }
-    
+//    func addNearbyUsers() {
+//        self.managedObjectContext.perform {
+//            let results = NearbyUser.getAllNearbyUsers(inManagedObjectContext: self.managedObjectContext)
+//            for result in results! {
+//                self.addAnnotation(
+//                    toPoint: CLLocationCoordinate2D(latitude: result.latitude, longitude: result.longitude),
+//                    withTitle: result.first_name!,
+//                    withSubtitle: nil
+//                )
+//            }
+//        }
+//    }
+//    
 
     //Open up the popup menu from the bottom of the screen
     func openPopupMenu() {

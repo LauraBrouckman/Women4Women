@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16A323" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16A323" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="NearbyUser" representedClassName="NearbyUser" syncable="YES">
         <attribute name="first_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="home_city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="home_country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="home_location_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="home_street" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="home_zip" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="last_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -9,6 +14,6 @@
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="NearbyUser" positionX="-63" positionY="-18" width="128" height="133"/>
+        <element name="NearbyUser" positionX="-63" positionY="-18" width="128" height="210"/>
     </elements>
 </model>

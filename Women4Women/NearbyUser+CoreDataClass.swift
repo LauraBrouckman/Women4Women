@@ -37,32 +37,33 @@ public class NearbyUser: NSManagedObject {
                 }
             }
         //add in new users
-        for user in nearbyUsers {
-            if let result = NSEntityDescription.insertNewObject(forEntityName: "NearbyUser", into: context) as? NearbyUser {
-                print("adding \(user)")
-                
-                result.username = user["username"] as? String
-                result.last_name = user["last_name"] as? String
-                result.first_name = user["first_name"] as? String
-                result.latitude = user["latitude"] as! Double
-                result.longitude = user["longitude"] as! Double
-                result.photo_filename = user["photo_filename"] as? String
-            }
-        }
-    }
+//        for user in nearbyUsers {
+//            if let result = NSEntityDescription.insertNewObject(forEntityName: "NearbyUser", into: context) as? NearbyUser {
+//                print("adding \(user)")
+//                
+//                result.username = user["username"] as? String
+//                result.last_name = user["last_name"] as? String
+//                result.first_name = user["first_name"] as? String
+//                result.latitude = user["latitude"] as! Double
+//                result.longitude = user["longitude"] as! Double
+//                result.photo_filename = user["photo_filename"] as? String
+//            }
+//        }
+//    }
     
     
     // Get the information for a single nearby user by their username
-    class func getNearbyUser(withUsername username: String, inManagedObjectContext context: NSManagedObjectContext) -> NearbyUser? {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "NearbyUser")
-        request.predicate = NSPredicate(format: "username = %@", username)
-        
-        /*If the article already is in the database then just return the article object */
-        if let result = (try? context.fetch(request))?.first as? NearbyUser {
-            return result
-
-        }
-        return nil
-    }
+//    class func getNearbyUser(withUsername username: String, inManagedObjectContext context: NSManagedObjectContext) -> NearbyUser? {
+//        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "NearbyUser")
+//        request.predicate = NSPredicate(format: "username = %@", username)
+//        
+//        /*If the article already is in the database then just return the article object */
+//        if let result = (try? context.fetch(request))?.first as? NearbyUser {
+//            return result
+//
+//        }
+//        return nil
+//    }
     
+}
 }

@@ -10,6 +10,7 @@ import UIKit
 
 class EmergencyContactViewController: UIViewController {
 
+    @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var firstNameLabel: UILabel!
     @IBOutlet weak var firstNameButton: UIButton!
     @IBOutlet weak var lastNameButton: UIButton!

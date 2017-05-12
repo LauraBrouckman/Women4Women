@@ -7,36 +7,39 @@
 //
 
 import UIKit
+import MapKit
 
 class SettingsViewController: UIViewController {
     
+    
+    
     @IBOutlet weak var firstNameButton: UIButton!
-    @IBOutlet weak var lastNameButton: UIButton!
     @IBOutlet weak var lastNameLabel: UILabel!
-    @IBOutlet weak var phoneNumberButton: UIButton!
-    @IBOutlet weak var phoneNumberLabel: UILabel!
     @IBOutlet weak var firstNameLabel: UILabel!
     @IBOutlet weak var homeAddressLabel: UILabel!
     @IBOutlet weak var homeAddressButton: UIButton!
     @IBOutlet weak var homeAddressLabel2: UILabel!
+//
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        firstNameLabel.text = "Leslie"
+        
+        //UserDefaults.setUsername("lkurt17")
+        firstNameLabel.text = UserDefaults.getFirstName()
         firstNameButton.layer.borderWidth = 1
         firstNameButton.layer.borderColor = UIColor.lightGray.cgColor
         
-        lastNameLabel.text = "Kurt"
-        lastNameButton.layer.borderWidth = 1
-        lastNameButton.layer.borderColor = UIColor.lightGray.cgColor
+        lastNameLabel.text = UserDefaults.getLastName()
+
         
-        phoneNumberLabel.text = "3109779751"
-        phoneNumberButton.layer.borderWidth = 1
-        phoneNumberButton.layer.borderColor = UIColor.lightGray.cgColor
         
-        homeAddressLabel.text = "3226 Dianora Drive"
-        homeAddressLabel2.text = "Rancho Palos Verdes, CA"
+        
+        
+//        var test = UserDefaults.getAddressNameFromCoordinates()
+//        print(test)
+        homeAddressLabel.text = UserDefaults.getHomeLocationName()
+        homeAddressLabel2.text = UserDefaults.getHomeStreet() + ", " + UserDefaults.getHomeCity()
         homeAddressButton.layer.borderWidth = 1
         homeAddressButton.layer.borderColor = UIColor.lightGray.cgColor
         
@@ -46,6 +49,7 @@ class SettingsViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
 
     /*

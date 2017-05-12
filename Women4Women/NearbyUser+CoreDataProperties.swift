@@ -22,5 +22,6 @@ extension NearbyUser {
     @NSManaged public var photo_filename: String?
     @NSManaged public var first_name: String?
     @NSManaged public var last_name: String?
+    @NSManaged public var home_city: String?
 
 }

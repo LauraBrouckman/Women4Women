@@ -23,8 +23,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
         
         
-        
-        
+        UserDefaults.setFirstName("Leslie")
+        UserDefaults.setLastName("Kurt")
+        UserDefaults.setHomeLocation(latitude: 37.423246 , longitude: 122.169750)
+        UserDefaults.getAddressNameFromCoordinates();
+
+    
         
         // Listen for other users to change their latitudes and longitudes, if they do update list of nearby users accordingly
         FIRDatabase.database().reference().child("users").observe(.value, with: { (snapshot) in
