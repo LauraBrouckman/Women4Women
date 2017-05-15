@@ -13,7 +13,6 @@ class EmergencyContactViewController: UIViewController {
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var firstNameLabel: UILabel!
     @IBOutlet weak var firstNameButton: UIButton!
-    @IBOutlet weak var lastNameButton: UIButton!
     @IBOutlet weak var lastNameLabel: UILabel!
     @IBOutlet weak var phoneNumberButton: UIButton!
     @IBOutlet weak var phoneNumberLabel: UILabel!
@@ -21,16 +20,8 @@ class EmergencyContactViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        firstNameLabel.text = "Laura"
         firstNameButton.layer.borderWidth = 1
         firstNameButton.layer.borderColor = UIColor.lightGray.cgColor
-        
-        lastNameLabel.text = "Brouckman"
-        lastNameButton.layer.borderWidth = 1
-        lastNameButton.layer.borderColor = UIColor.lightGray.cgColor
-        
-        phoneNumberLabel.text = "3109779751"
         phoneNumberButton.layer.borderWidth = 1
         phoneNumberButton.layer.borderColor = UIColor.lightGray.cgColor
     }
@@ -40,7 +31,14 @@ class EmergencyContactViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    override open func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        firstNameLabel.text = UserDefaults.getEmergencyContactFirstName()
+        lastNameLabel.text = UserDefaults.getEmergencyContactLastName()
+        phoneNumberLabel.text = UserDefaults.getEmergencyContactPhoneNumber()
+        
+    }
+    
     /*
     // MARK: - Navigation
 

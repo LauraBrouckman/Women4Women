@@ -1,26 +1,22 @@
 //
-//  nameUpdateViewController.swift
+//  emergencyNameUpdateViewController.swift
 //  Women4Women
 //
-//  Created by Leslie Kurt on 5/11/17.
+//  Created by Leslie Kurt on 5/12/17.
 //  Copyright © 2017 cs194w. All rights reserved.
 //
 
 import UIKit
 
-class nameUpdateViewController: UIViewController {
+class emergencyNameUpdateViewController: UIViewController {
 
-    @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
+    @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var updateButton: UIButton!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        firstNameTextField.text = UserDefaults.getFirstName()
-        lastNameTextField.text = UserDefaults.getLastName()
-        
-        //updateButton.
-        // Do any additional setup after loading the view.
+        firstNameTextField.text = UserDefaults.getEmergencyContactFirstName()
+        lastNameTextField.text = UserDefaults.getEmergencyContactLastName()
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,9 +25,10 @@ class nameUpdateViewController: UIViewController {
     }
     
     @IBAction func updateName(_ sender: Any) {
-        UserDefaults.setFirstName(firstNameTextField.text!)
-        UserDefaults.setLastName(lastNameTextField.text!)
+        UserDefaults.setEmergencyContactFirstName(firstNameTextField.text!)
+        UserDefaults.setEmergencyContactLastName(lastNameTextField.text!)
     }
+  
 
     /*
     // MARK: - Navigation

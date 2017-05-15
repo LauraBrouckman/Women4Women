@@ -1,25 +1,21 @@
 //
-//  nameUpdateViewController.swift
+//  emergencyPhoneNumberUpdateViewController.swift
 //  Women4Women
 //
-//  Created by Leslie Kurt on 5/11/17.
+//  Created by Leslie Kurt on 5/12/17.
 //  Copyright © 2017 cs194w. All rights reserved.
 //
 
 import UIKit
 
-class nameUpdateViewController: UIViewController {
+class emergencyPhoneNumberUpdateViewController: UIViewController {
 
-    @IBOutlet weak var firstNameTextField: UITextField!
-    @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var updateButton: UIButton!
+    @IBOutlet weak var phoneNumberTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        firstNameTextField.text = UserDefaults.getFirstName()
-        lastNameTextField.text = UserDefaults.getLastName()
-        
-        //updateButton.
+        phoneNumberTextField.text = UserDefaults.getEmergencyContactPhoneNumber()
         // Do any additional setup after loading the view.
     }
 
@@ -28,9 +24,9 @@ class nameUpdateViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func updateName(_ sender: Any) {
-        UserDefaults.setFirstName(firstNameTextField.text!)
-        UserDefaults.setLastName(lastNameTextField.text!)
+    @IBAction func updatePhoneNumber(_ sender: Any) {
+        UserDefaults.setEmergencyContactPhoneNumber(phoneNumberTextField.text!)
+        
     }
 
     /*

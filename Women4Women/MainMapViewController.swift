@@ -136,6 +136,8 @@ class MainMapViewController: UIViewController, CLLocationManagerDelegate, MKMapV
     // When this happens, it will also bring up the bottom toolbar to set time/contact/etc.
     func locateOnMap(address: String?, title: String?) {
         var ad = address
+        print("TEST")
+        print(address)
         if address == nil {
             //error no address
             ad = title

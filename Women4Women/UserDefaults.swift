@@ -26,7 +26,8 @@ class UserDefaults{
     static fileprivate var homeLocationLonKEy       =   "homeLocationLonKey"
     static fileprivate var firstNameKey             =   "firstNameKey"
     static fileprivate var lastNameKey              =   "lastNameKey"
-    static fileprivate var emergencyContactNameKey  =   "emergencyContactNameKey"
+    static fileprivate var emergencyContactFirstNameKey  =   "emergencyContactFirstNameKey"
+    static fileprivate var emergencyContactLastNameKey  =   "emergencyContactLastNameKey"
     static fileprivate var emergencyContactNumKey   =   "emergencyContactNumKey"
     static fileprivate var profilePicFileKey        =   "profilePicFileKey"
     static fileprivate var homeCityKey             =   "homeCityKey"
@@ -34,10 +35,9 @@ class UserDefaults{
     static fileprivate var homeZipKey             =   "homeZipKey"
     static fileprivate var homeCountryKey             =   "homeCountryKey"
     static fileprivate var homeLocationNameKey             =   "homeLocationNameKey"
-
-    
-    
-
+    static fileprivate var iceFirstNameKey             =   "iceFirstNameKey"
+        static fileprivate var iceLastNameKey             =   "iceLastNameKey"
+        static fileprivate var icePhoneNumberKey             =   "icePhoneNumberKey"
 
     
     
@@ -133,15 +133,27 @@ class UserDefaults{
         }
         return ""
     }
-
-    //Get and set the full name of the emergency contact
-    static func setEmergencyContactName(_ name: String) {
-        Foundation.UserDefaults.standard.setValue(name, forKey: emergencyContactNameKey)
+    
+    //Get and set the first name of the emergency contact
+    static func setEmergencyContactFirstName(_ first: String) {
+        Foundation.UserDefaults.standard.setValue(first, forKey: emergencyContactFirstNameKey)
     }
     
-    static func getEmergencyContactName() -> String {
-        if let name = Foundation.UserDefaults.standard.value(forKey: emergencyContactNameKey) as? String {
-            return name
+    static func getEmergencyContactFirstName() -> String {
+        if let first = Foundation.UserDefaults.standard.value(forKey: emergencyContactFirstNameKey) as? String {
+            return first
+        }
+        return ""
+    }
+    
+    //Get and set the last name of the emergency contact
+    static func setEmergencyContactLastName(_ last: String) {
+        Foundation.UserDefaults.standard.setValue(last, forKey: emergencyContactLastNameKey)
+    }
+    
+    static func getEmergencyContactLastName() -> String {
+        if let last = Foundation.UserDefaults.standard.value(forKey: emergencyContactLastNameKey) as? String {
+            return last
         }
         return ""
     }
@@ -234,7 +246,6 @@ class UserDefaults{
     {
         let geoCoder = CLGeocoder()
         let location = CLLocation(latitude: 37.427475 , longitude: -122.169719)
-        var streetName = ""
         //CLLocation(latitude: _point1.coordinate.latitude, longitude: _point1.coordinate.longitude)
         geoCoder.reverseGeocodeLocation(location)
         {

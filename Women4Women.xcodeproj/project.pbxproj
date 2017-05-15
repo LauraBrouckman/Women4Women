@@ -48,6 +48,8 @@
 		9F1B52111EC4FCD800560294 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B51EC1EC3BFA800560294 /* SettingsViewController.swift */; };
 		9F1B52131EC5187000560294 /* nameUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B52121EC5187000560294 /* nameUpdateViewController.swift */; };
 		9F1B52151EC6581B00560294 /* homeAddressUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B52141EC6581B00560294 /* homeAddressUpdateViewController.swift */; };
+		9F1B52171EC667A600560294 /* emergencyNameUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B52161EC667A600560294 /* emergencyNameUpdateViewController.swift */; };
+		9F1B52191EC66AE600560294 /* emergencyPhoneNumberUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B52181EC66AE600560294 /* emergencyPhoneNumberUpdateViewController.swift */; };
 		AFC0BC2AA855429AFEA2C4C2 /* Pods_Women4Women.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC67C331923F50E1084FC9D /* Pods_Women4Women.framework */; };
 /* End PBXBuildFile section */
 
@@ -99,6 +101,8 @@
 		9F1B520E1EC426F700560294 /* CoreDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewController.swift; sourceTree = "<group>"; };
 		9F1B52121EC5187000560294 /* nameUpdateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = nameUpdateViewController.swift; sourceTree = "<group>"; };
 		9F1B52141EC6581B00560294 /* homeAddressUpdateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = homeAddressUpdateViewController.swift; sourceTree = "<group>"; };
+		9F1B52161EC667A600560294 /* emergencyNameUpdateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = emergencyNameUpdateViewController.swift; sourceTree = "<group>"; };
+		9F1B52181EC66AE600560294 /* emergencyPhoneNumberUpdateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = emergencyPhoneNumberUpdateViewController.swift; sourceTree = "<group>"; };
 		B315B48242589C96E63C32D0 /* Pods-Women4Women.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Women4Women.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Women4Women/Pods-Women4Women.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -155,6 +159,8 @@
 				307C90161EC161160020E535 /* Parent.swift */,
 				3020AE851EB7B8340075D849 /* Main.storyboard */,
 				9F1B52121EC5187000560294 /* nameUpdateViewController.swift */,
+				9F1B52161EC667A600560294 /* emergencyNameUpdateViewController.swift */,
+				9F1B52181EC66AE600560294 /* emergencyPhoneNumberUpdateViewController.swift */,
 				9F1B51FE1EC415B400560294 /* EmergencyContactViewController.swift */,
 				9F1B51EC1EC3BFA800560294 /* SettingsViewController.swift */,
 				9F1B52141EC6581B00560294 /* homeAddressUpdateViewController.swift */,
@@ -361,6 +367,7 @@
 				9F1B520C1EC426BC00560294 /* UserDefaults.swift in Sources */,
 				307D44351EBE931A007929D3 /* MainMapViewController.swift in Sources */,
 				9F1B51EF1EC3C68E00560294 /* Colors.swift in Sources */,
+				9F1B52191EC66AE600560294 /* emergencyPhoneNumberUpdateViewController.swift in Sources */,
 				307C90171EC161160020E535 /* AccordionMenu.swift in Sources */,
 				307C90181EC161160020E535 /* Parent.swift in Sources */,
 				307D44391EBE935E007929D3 /* ContactsTableViewController.swift in Sources */,
@@ -377,6 +384,7 @@
 				3020AE821EB7B8340075D849 /* AppDelegate.swift in Sources */,
 				303A02FC1EC3BA410050E90B /* NearbyUser+CoreDataClass.swift in Sources */,
 				3093D8CD1EBEAF040035732D /* ContainerViewController.swift in Sources */,
+				9F1B52171EC667A600560294 /* emergencyNameUpdateViewController.swift in Sources */,
 				307D443B1EBE9384007929D3 /* EditNightViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
