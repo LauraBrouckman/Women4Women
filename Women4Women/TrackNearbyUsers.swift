@@ -46,7 +46,8 @@ class TrackUsers {
                     "latitude": userLatitude,
                     "photo_filename": userData["photo_filename"] as? String ?? "",
                     "first_name": userData["first_name"] as? String ?? "",
-                    "last_name": userData["last_name"] as? String ?? ""
+                    "last_name": userData["last_name"] as? String ?? "",
+                    "home_city": userData["home_city"] as? String ?? ""
                 ]
                 nearbyUsers.append(newUser)
                 //Add user to list of nearby users

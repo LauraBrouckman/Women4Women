@@ -57,9 +57,9 @@ class LifelineTableViewController: CoreDataTableViewController {
             var last_name: String?
             var photo_filename: String?
             user.managedObjectContext?.performAndWait {
-                first_name = user.first_name
-                last_name = user.last_name
-                photo_filename = user.photo_filename
+//                first_name = user.first_name
+//                last_name = user.last_name
+//                photo_filename = user.photo_filename
             }
             cell.textLabel?.text = first_name! + " " + last_name!
         }

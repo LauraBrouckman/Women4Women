@@ -7,15 +7,18 @@
 //
 
 import Foundation
+import MapKit
 
 // This file contains all the functions for getting and setting the user's information, so all of their settings (like emergency contact, time to be home) as well as stuff like their name and profile picture
-// To use one of these functions:
+// To use one of these functions: 
 // UserDefaults.setUsername("laura")
 // let username = UserDefaults.getUsername()
 
 class UserDefaults{
     
     //These are the keys for all the information about the user that is being stored locally
+    static fileprivate var loggedIn                 = "loggedIn"
+    static fileprivate var passwordKey              =   "passwordKey"
     static fileprivate var usernameKey              =   "usernameKey"
     static fileprivate var homeAlertOn              =   "homeAlertOnKey"
     static fileprivate var timeToBeHome             =   "timeHomeKey"
@@ -25,9 +28,30 @@ class UserDefaults{
     static fileprivate var homeLocationLonKEy       =   "homeLocationLonKey"
     static fileprivate var firstNameKey             =   "firstNameKey"
     static fileprivate var lastNameKey              =   "lastNameKey"
-    static fileprivate var emergencyContactNameKey  =   "emergencyContactNameKey"
+    static fileprivate var emergencyContactFirstNameKey  =   "emergencyContactFirstNameKey"
+    static fileprivate var emergencyContactLastNameKey  =   "emergencyContactLastNameKey"
     static fileprivate var emergencyContactNumKey   =   "emergencyContactNumKey"
     static fileprivate var profilePicFileKey        =   "profilePicFileKey"
+    static fileprivate var homeCityKey             =   "homeCityKey"
+    static fileprivate var homeStreetKey             =   "homeStreetKey"
+    static fileprivate var homeZipKey             =   "homeZipKey"
+    static fileprivate var homeCountryKey             =   "homeCountryKey"
+    static fileprivate var homeLocationNameKey             =   "homeLocationNameKey"
+    static fileprivate var iceFirstNameKey             =   "iceFirstNameKey"
+        static fileprivate var iceLastNameKey             =   "iceLastNameKey"
+        static fileprivate var icePhoneNumberKey             =   "icePhoneNumberKey"
+
+    
+    
+    //Get and set if user logged in 
+    
+    static func setLoggedIn(on: Bool){
+        Foundation.UserDefaults.standard.set(true, forKey: loggedIn);
+    }
+    
+    static func getLoggedIn() -> Bool{
+        return Foundation.UserDefaults.standard.bool(forKey: loggedIn);
+    }
     
     
     //Get and set the username for the user - this is the unique name that they use to log in
@@ -38,6 +62,18 @@ class UserDefaults{
     static func getUsername() -> String {
         if let username = Foundation.UserDefaults.standard.value(forKey: usernameKey) as? String {
             return username
+        }
+        return ""
+    }
+    
+    //Get and set the password for the user - this is the unique password that they use to log in
+    static func setPassword(_ password: String) {
+        Foundation.UserDefaults.standard.setValue(password, forKey: passwordKey)
+    }
+    
+    static func getPassword() -> String {
+        if let password = Foundation.UserDefaults.standard.value(forKey: passwordKey) as? String {
+            return password
         }
         return ""
     }
@@ -103,7 +139,7 @@ class UserDefaults{
     static func setFirstName(_ first: String) {
         Foundation.UserDefaults.standard.setValue(first, forKey: firstNameKey)
     }
-    
+
     static func getFirstName() -> String {
         if let first = Foundation.UserDefaults.standard.value(forKey: firstNameKey) as? String {
             return first
@@ -122,15 +158,27 @@ class UserDefaults{
         }
         return ""
     }
-
-    //Get and set the full name of the emergency contact
-    static func setEmergencyContactName(_ name: String) {
-        Foundation.UserDefaults.standard.setValue(name, forKey: emergencyContactNameKey)
+    
+    //Get and set the first name of the emergency contact
+    static func setEmergencyContactFirstName(_ first: String) {
+        Foundation.UserDefaults.standard.setValue(first, forKey: emergencyContactFirstNameKey)
     }
     
-    static func getEmergencyContactName() -> String {
-        if let name = Foundation.UserDefaults.standard.value(forKey: emergencyContactNameKey) as? String {
-            return name
+    static func getEmergencyContactFirstName() -> String {
+        if let first = Foundation.UserDefaults.standard.value(forKey: emergencyContactFirstNameKey) as? String {
+            return first
+        }
+        return ""
+    }
+    
+    //Get and set the last name of the emergency contact
+    static func setEmergencyContactLastName(_ last: String) {
+        Foundation.UserDefaults.standard.setValue(last, forKey: emergencyContactLastNameKey)
+    }
+    
+    static func getEmergencyContactLastName() -> String {
+        if let last = Foundation.UserDefaults.standard.value(forKey: emergencyContactLastNameKey) as? String {
+            return last
         }
         return ""
     }
@@ -157,6 +205,113 @@ class UserDefaults{
             return filename
         }
         return ""
+    }
+    
+    //Get and set home city
+    static func setHomeCity(_ city: String) {
+        Foundation.UserDefaults.standard.setValue(city, forKey: homeCityKey)
+    }
+    
+    static func getHomeCity() -> String {
+        if let city = Foundation.UserDefaults.standard.value(forKey: homeCityKey) as? String {
+            return city
+        }
+        return ""
+    }
+    
+    //Get and set home street
+    static func setHomeStreet(_ street: String) {
+        Foundation.UserDefaults.standard.setValue(street, forKey: homeStreetKey)
+    }
+    
+    static func getHomeStreet() -> String {
+        if let street = Foundation.UserDefaults.standard.value(forKey: homeStreetKey) as? String {
+            return street
+        }
+        return ""
+    }
+    
+    //Get and set home zip
+    static func setHomeZip(_ zip: String) {
+        Foundation.UserDefaults.standard.setValue(zip, forKey: homeZipKey)
+    }
+    
+    static func getHomeZip() -> String {
+        if let zip = Foundation.UserDefaults.standard.value(forKey: homeZipKey) as? String {
+            return zip
+        }
+        return ""
+    }
+    
+    //Get and set home country
+    static func setHomeCountry(_ country: String) {
+        Foundation.UserDefaults.standard.setValue(country, forKey: homeCountryKey)
+    }
+    
+    static func getHomeCountry() -> String {
+        if let country = Foundation.UserDefaults.standard.value(forKey: homeCountryKey) as? String {
+            return country
+        }
+        return ""
+    }
+    
+    //Get and set home location name
+    static func setHomeLocationName(_ locationName: String) {
+        Foundation.UserDefaults.standard.setValue(locationName, forKey: homeLocationNameKey )
+    }
+    
+    static func getHomeLocationName() -> String {
+        if let locationName = Foundation.UserDefaults.standard.value(forKey: homeLocationNameKey ) as? String {
+            return locationName
+        }
+        return ""
+    }
+
+    static func getAddressNameFromCoordinates()
+    {
+        let geoCoder = CLGeocoder()
+        let location = CLLocation(latitude: 37.427475 , longitude: -122.169719)
+        //CLLocation(latitude: _point1.coordinate.latitude, longitude: _point1.coordinate.longitude)
+        geoCoder.reverseGeocodeLocation(location)
+        {
+            (placemarks, error) -> Void in
+            
+            let placeArray = placemarks as [CLPlacemark]!
+            
+            // Place details
+            var placeMark: CLPlacemark!
+            placeMark = placeArray?[0]
+            
+            // Location name
+            if let locationName = placeMark.addressDictionary?["Name"] as? NSString
+            {
+                UserDefaults.setHomeLocationName(String(locationName))
+            }
+            
+            // Street address
+            if let street = placeMark.addressDictionary?["Thoroughfare"] as? NSString
+            {
+                UserDefaults.setHomeStreet(String(street))
+            }
+            
+            // City
+            if let city = placeMark.addressDictionary?["City"] as? NSString
+            {
+                UserDefaults.setHomeCity(String(city))
+            }
+            
+            // Zip code
+            if let zip = placeMark.addressDictionary?["ZIP"] as? NSString
+            {
+                UserDefaults.setHomeZip(String(zip))
+            }
+            
+            // Country
+            if let country = placeMark.addressDictionary?["Country"] as? NSString
+            {
+                UserDefaults.setHomeCountry(String(country))
+            }
+        }
     }
 
 }

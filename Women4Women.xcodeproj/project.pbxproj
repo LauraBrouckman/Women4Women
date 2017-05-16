@@ -40,6 +40,9 @@
 		3093D8CB1EBEAD740035732D /* SlideMenuControllerSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3093D8C91EBEAD740035732D /* SlideMenuControllerSwift.framework */; };
 		3093D8CD1EBEAF040035732D /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3093D8CC1EBEAF040035732D /* ContainerViewController.swift */; };
 		30A168141EBFDB72002F5D52 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A168131EBFDB72002F5D52 /* SearchTextField.swift */; };
+		4E21FC021ECA7BCF00822B47 /* register1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E21FC011ECA7BCF00822B47 /* register1.png */; };
+		4E21FC041ECA7C3D00822B47 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E21FC031ECA7C3D00822B47 /* RegisterViewController.swift */; };
+		4E21FC061ECA7C5200822B47 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E21FC051ECA7C5200822B47 /* LoginViewController.swift */; };
 		9F1B51EB1EC2CDF900560294 /* button_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F1B51EA1EC2CDF900560294 /* button_close.png */; };
 		9F1B51EF1EC3C68E00560294 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B51EE1EC3C68E00560294 /* Colors.swift */; };
 		9F1B51F31EC3FCCF00560294 /* next-icon2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F1B51F21EC3FCCF00560294 /* next-icon2.png */; };
@@ -48,6 +51,15 @@
 		9F1B51FB1EC4098900560294 /* back-arrow-icon2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F1B51FA1EC4098900560294 /* back-arrow-icon2.png */; };
 		9F1B51FD1EC4109500560294 /* white-close.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F1B51FC1EC4109500560294 /* white-close.png */; };
 		9F1B51FF1EC415B400560294 /* EmergencyContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B51FE1EC415B400560294 /* EmergencyContactViewController.swift */; };
+		9F1B520B1EC426B600560294 /* TrackNearbyUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B520A1EC426B600560294 /* TrackNearbyUsers.swift */; };
+		9F1B520C1EC426BC00560294 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B52081EC4265E00560294 /* UserDefaults.swift */; };
+		9F1B520D1EC426C200560294 /* RemoteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B52061EC4265500560294 /* RemoteDatabase.swift */; };
+		9F1B520F1EC426F700560294 /* CoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B520E1EC426F700560294 /* CoreDataTableViewController.swift */; };
+		9F1B52111EC4FCD800560294 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B51EC1EC3BFA800560294 /* SettingsViewController.swift */; };
+		9F1B52131EC5187000560294 /* nameUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B52121EC5187000560294 /* nameUpdateViewController.swift */; };
+		9F1B52151EC6581B00560294 /* homeAddressUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B52141EC6581B00560294 /* homeAddressUpdateViewController.swift */; };
+		9F1B52171EC667A600560294 /* emergencyNameUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B52161EC667A600560294 /* emergencyNameUpdateViewController.swift */; };
+		9F1B52191EC66AE600560294 /* emergencyPhoneNumberUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B52181EC66AE600560294 /* emergencyPhoneNumberUpdateViewController.swift */; };
 		AFC0BC2AA855429AFEA2C4C2 /* Pods_Women4Women.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC67C331923F50E1084FC9D /* Pods_Women4Women.framework */; };
 /* End PBXBuildFile section */
 
@@ -98,6 +110,14 @@
 		9F1B51FA1EC4098900560294 /* back-arrow-icon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back-arrow-icon2.png"; sourceTree = "<group>"; };
 		9F1B51FC1EC4109500560294 /* white-close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "white-close.png"; sourceTree = "<group>"; };
 		9F1B51FE1EC415B400560294 /* EmergencyContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmergencyContactViewController.swift; sourceTree = "<group>"; };
+		9F1B52061EC4265500560294 /* RemoteDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteDatabase.swift; sourceTree = "<group>"; };
+		9F1B52081EC4265E00560294 /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		9F1B520A1EC426B600560294 /* TrackNearbyUsers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackNearbyUsers.swift; sourceTree = "<group>"; };
+		9F1B520E1EC426F700560294 /* CoreDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewController.swift; sourceTree = "<group>"; };
+		9F1B52121EC5187000560294 /* nameUpdateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = nameUpdateViewController.swift; sourceTree = "<group>"; };
+		9F1B52141EC6581B00560294 /* homeAddressUpdateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = homeAddressUpdateViewController.swift; sourceTree = "<group>"; };
+		9F1B52161EC667A600560294 /* emergencyNameUpdateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = emergencyNameUpdateViewController.swift; sourceTree = "<group>"; };
+		9F1B52181EC66AE600560294 /* emergencyPhoneNumberUpdateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = emergencyPhoneNumberUpdateViewController.swift; sourceTree = "<group>"; };
 		B315B48242589C96E63C32D0 /* Pods-Women4Women.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Women4Women.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Women4Women/Pods-Women4Women.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -180,6 +200,7 @@
 			children = (
 				9F1B51F21EC3FCCF00560294 /* next-icon2.png */,
 				9F1B51F81EC4093B00560294 /* next-icon3.png */,
+				4E21FC011ECA7BCF00822B47 /* register1.png */,
 				9F1B51EA1EC2CDF900560294 /* button_close.png */,
 				3020AEA21EBE8CD70075D849 /* default-user.png */,
 				3020AEA41EBE8D9F0075D849 /* message_icon.png */,
@@ -283,6 +304,7 @@
 				3020AEA11EBE887E0075D849 /* Search-50.png in Resources */,
 				307D44331EBE910F007929D3 /* down_icon.png in Resources */,
 				3020AEA51EBE8D9F0075D849 /* message_icon.png in Resources */,
+				4E21FC021ECA7BCF00822B47 /* register1.png in Resources */,
 				9F1B51EB1EC2CDF900560294 /* button_close.png in Resources */,
 				9F1B51F91EC4093B00560294 /* next-icon3.png in Resources */,
 				9F1B51FD1EC4109500560294 /* white-close.png in Resources */,
@@ -329,7 +351,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		E7CBA6FEAAF58D41B6D3F278 /* [CP] Copy Pods Resources */ = {
@@ -363,10 +385,13 @@
 				307C90181EC161160020E535 /* Parent.swift in Sources */,
 				307D44391EBE935E007929D3 /* ContactsTableViewController.swift in Sources */,
 				307D443D1EBE93AC007929D3 /* LoginRegisterViewController.swift in Sources */,
+				9F1B520F1EC426F700560294 /* CoreDataTableViewController.swift in Sources */,
 				3063AEE61EC1203800DEEB5B /* AccordionMenuTableViewController.swift in Sources */,
 				303D52791EC4289500170F62 /* CoreDataTableViewController.swift in Sources */,
 				3020AE8A1EB7B8340075D849 /* Women4Women.xcdatamodeld in Sources */,
 				9F1B51FF1EC415B400560294 /* EmergencyContactViewController.swift in Sources */,
+				9F1B520B1EC426B600560294 /* TrackNearbyUsers.swift in Sources */,
+				4E21FC041ECA7C3D00822B47 /* RegisterViewController.swift in Sources */,
 				30A168141EBFDB72002F5D52 /* SearchTextField.swift in Sources */,
 				303D52811EC428F400170F62 /* UserDefaults.swift in Sources */,
 				303D52771EC4281B00170F62 /* NearbyUser+CoreDataProperties.swift in Sources */,
@@ -374,6 +399,8 @@
 				3072DB3D1EC40BD5006A953C /* LifelineTableViewController.swift in Sources */,
 				3020AE821EB7B8340075D849 /* AppDelegate.swift in Sources */,
 				3093D8CD1EBEAF040035732D /* ContainerViewController.swift in Sources */,
+				9F1B52171EC667A600560294 /* emergencyNameUpdateViewController.swift in Sources */,
+				4E21FC061ECA7C5200822B47 /* LoginViewController.swift in Sources */,
 				307D443B1EBE9384007929D3 /* EditNightViewController.swift in Sources */,
 				303D527B1EC428C600170F62 /* HelpViewController.swift in Sources */,
 			);
