@@ -28,7 +28,8 @@ class TrackUsers {
         for user in users {
             // Don't add yourself to the list
             if user.key == UserDefaults.getUsername() || user.key == "current_user" {
-                return
+                print("SKIPPING ADDING MYSELF TO THE LIST OF CURRENT USERS!!!")
+                continue
             }
             
             let username = user.key

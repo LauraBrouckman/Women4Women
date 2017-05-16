@@ -19,15 +19,18 @@
 		3020AEA11EBE887E0075D849 /* Search-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 3020AEA01EBE887E0075D849 /* Search-50.png */; };
 		3020AEA31EBE8CD70075D849 /* default-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 3020AEA21EBE8CD70075D849 /* default-user.png */; };
 		3020AEA51EBE8D9F0075D849 /* message_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3020AEA41EBE8D9F0075D849 /* message_icon.png */; };
-		303A02FC1EC3BA410050E90B /* NearbyUser+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303A02FA1EC3BA410050E90B /* NearbyUser+CoreDataClass.swift */; };
-		303A02FD1EC3BA410050E90B /* NearbyUser+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303A02FB1EC3BA410050E90B /* NearbyUser+CoreDataProperties.swift */; };
-		303A02FF1EC3D96B0050E90B /* TrackNearbyUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303A02FE1EC3D96B0050E90B /* TrackNearbyUsers.swift */; };
+		303D52761EC4281B00170F62 /* NearbyUser+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303D52741EC4281B00170F62 /* NearbyUser+CoreDataClass.swift */; };
+		303D52771EC4281B00170F62 /* NearbyUser+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303D52751EC4281B00170F62 /* NearbyUser+CoreDataProperties.swift */; };
+		303D52791EC4289500170F62 /* CoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303D52781EC4289500170F62 /* CoreDataTableViewController.swift */; };
+		303D527B1EC428C600170F62 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303D527A1EC428C600170F62 /* HelpViewController.swift */; };
+		303D527D1EC428E500170F62 /* RemoteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303D527C1EC428E500170F62 /* RemoteDatabase.swift */; };
+		303D527F1EC428EE00170F62 /* TrackNearbyUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303D527E1EC428EE00170F62 /* TrackNearbyUsers.swift */; };
+		303D52811EC428F400170F62 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303D52801EC428F400170F62 /* UserDefaults.swift */; };
+		303D52821EC4291500170F62 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B51EC1EC3BFA800560294 /* SettingsViewController.swift */; };
 		3063AEE61EC1203800DEEB5B /* AccordionMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3063AEE51EC1203800DEEB5B /* AccordionMenuTableViewController.swift */; };
-		3072DB3B1EC40BB9006A953C /* CoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072DB3A1EC40BB9006A953C /* CoreDataTableViewController.swift */; };
 		3072DB3D1EC40BD5006A953C /* LifelineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3072DB3C1EC40BD5006A953C /* LifelineTableViewController.swift */; };
 		307C90171EC161160020E535 /* AccordionMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307C90151EC161160020E535 /* AccordionMenu.swift */; };
 		307C90181EC161160020E535 /* Parent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307C90161EC161160020E535 /* Parent.swift */; };
-		307C901A1EC2BD5A0020E535 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307C90191EC2BD5A0020E535 /* UserDefaults.swift */; };
 		307C901C1EC2C64F0020E535 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 307C901B1EC2C64F0020E535 /* GoogleService-Info.plist */; };
 		307D44331EBE910F007929D3 /* down_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 307D44321EBE910F007929D3 /* down_icon.png */; };
 		307D44351EBE931A007929D3 /* MainMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307D44341EBE931A007929D3 /* MainMapViewController.swift */; };
@@ -38,7 +41,6 @@
 		3093D8CD1EBEAF040035732D /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3093D8CC1EBEAF040035732D /* ContainerViewController.swift */; };
 		30A168141EBFDB72002F5D52 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A168131EBFDB72002F5D52 /* SearchTextField.swift */; };
 		9F1B51EB1EC2CDF900560294 /* button_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F1B51EA1EC2CDF900560294 /* button_close.png */; };
-		9F1B51ED1EC3BFA800560294 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B51EC1EC3BFA800560294 /* SettingsViewController.swift */; };
 		9F1B51EF1EC3C68E00560294 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B51EE1EC3C68E00560294 /* Colors.swift */; };
 		9F1B51F31EC3FCCF00560294 /* next-icon2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F1B51F21EC3FCCF00560294 /* next-icon2.png */; };
 		9F1B51F71EC4080C00560294 /* back-arrow-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F1B51F61EC4080C00560294 /* back-arrow-icon.png */; };
@@ -65,15 +67,17 @@
 		3020AEA01EBE887E0075D849 /* Search-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Search-50.png"; sourceTree = "<group>"; };
 		3020AEA21EBE8CD70075D849 /* default-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-user.png"; sourceTree = "<group>"; };
 		3020AEA41EBE8D9F0075D849 /* message_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = message_icon.png; sourceTree = "<group>"; };
-		303A02FA1EC3BA410050E90B /* NearbyUser+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NearbyUser+CoreDataClass.swift"; sourceTree = "<group>"; };
-		303A02FB1EC3BA410050E90B /* NearbyUser+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NearbyUser+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		303A02FE1EC3D96B0050E90B /* TrackNearbyUsers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackNearbyUsers.swift; sourceTree = "<group>"; };
+		303D52741EC4281B00170F62 /* NearbyUser+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NearbyUser+CoreDataClass.swift"; sourceTree = "<group>"; };
+		303D52751EC4281B00170F62 /* NearbyUser+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NearbyUser+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		303D52781EC4289500170F62 /* CoreDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewController.swift; sourceTree = "<group>"; };
+		303D527A1EC428C600170F62 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		303D527C1EC428E500170F62 /* RemoteDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteDatabase.swift; sourceTree = "<group>"; };
+		303D527E1EC428EE00170F62 /* TrackNearbyUsers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackNearbyUsers.swift; sourceTree = "<group>"; };
+		303D52801EC428F400170F62 /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		3063AEE51EC1203800DEEB5B /* AccordionMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccordionMenuTableViewController.swift; sourceTree = "<group>"; };
-		3072DB3A1EC40BB9006A953C /* CoreDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewController.swift; sourceTree = "<group>"; };
 		3072DB3C1EC40BD5006A953C /* LifelineTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifelineTableViewController.swift; sourceTree = "<group>"; };
 		307C90151EC161160020E535 /* AccordionMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccordionMenu.swift; sourceTree = "<group>"; };
 		307C90161EC161160020E535 /* Parent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parent.swift; sourceTree = "<group>"; };
-		307C90191EC2BD5A0020E535 /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		307C901B1EC2C64F0020E535 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		307D44321EBE910F007929D3 /* down_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down_icon.png; sourceTree = "<group>"; };
 		307D44341EBE931A007929D3 /* MainMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMapViewController.swift; sourceTree = "<group>"; };
@@ -84,7 +88,6 @@
 		3093D8CC1EBEAF040035732D /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		30A1680F1EBFD30E002F5D52 /* SearchTextField.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SearchTextField.framework; path = "../../../Library/Developer/Xcode/DerivedData/Women4Women-dzixkfetucpsnyabfjaxwmjjhrve/Build/Products/Debug-iphonesimulator/SearchTextField/SearchTextField.framework"; sourceTree = "<group>"; };
 		30A168131EBFDB72002F5D52 /* SearchTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
-		30A4D7131EC2C99900E9E7DF /* RemoteDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteDatabase.swift; sourceTree = "<group>"; };
 		6DC67C331923F50E1084FC9D /* Pods_Women4Women.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Women4Women.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F1B51EA1EC2CDF900560294 /* button_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_close.png; sourceTree = "<group>"; };
 		9F1B51EC1EC3BFA800560294 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -142,26 +145,31 @@
 		3020AE801EB7B8340075D849 /* Women4Women */ = {
 			isa = PBXGroup;
 			children = (
-				3072DB3C1EC40BD5006A953C /* LifelineTableViewController.swift */,
-				303A02F51EC3B8BF0050E90B /* CoreData */,
-				30A168131EBFDB72002F5D52 /* SearchTextField.swift */,
-				3020AE811EB7B8340075D849 /* AppDelegate.swift */,
 				307C90151EC161160020E535 /* AccordionMenu.swift */,
-				307C90161EC161160020E535 /* Parent.swift */,
-				3020AE851EB7B8340075D849 /* Main.storyboard */,
-				9F1B51FE1EC415B400560294 /* EmergencyContactViewController.swift */,
-				9F1B51EC1EC3BFA800560294 /* SettingsViewController.swift */,
 				3063AEE51EC1203800DEEB5B /* AccordionMenuTableViewController.swift */,
-				3093D8CC1EBEAF040035732D /* ContainerViewController.swift */,
-				307D443C1EBE93AC007929D3 /* LoginRegisterViewController.swift */,
-				307D443A1EBE9384007929D3 /* EditNightViewController.swift */,
-				307D44381EBE935E007929D3 /* ContactsTableViewController.swift */,
-				307D44341EBE931A007929D3 /* MainMapViewController.swift */,
-				9F1B51EE1EC3C68E00560294 /* Colors.swift */,
+				3020AE811EB7B8340075D849 /* AppDelegate.swift */,
 				3020AE8B1EB7B8340075D849 /* Assets.xcassets */,
+				9F1B51EE1EC3C68E00560294 /* Colors.swift */,
+				307D44381EBE935E007929D3 /* ContactsTableViewController.swift */,
+				3093D8CC1EBEAF040035732D /* ContainerViewController.swift */,
+				303D52781EC4289500170F62 /* CoreDataTableViewController.swift */,
+				307D443A1EBE9384007929D3 /* EditNightViewController.swift */,
+				9F1B51FE1EC415B400560294 /* EmergencyContactViewController.swift */,
+				303D527A1EC428C600170F62 /* HelpViewController.swift */,
+				3072DB3C1EC40BD5006A953C /* LifelineTableViewController.swift */,
+				307D443C1EBE93AC007929D3 /* LoginRegisterViewController.swift */,
+				307D44341EBE931A007929D3 /* MainMapViewController.swift */,
+				307C90161EC161160020E535 /* Parent.swift */,
+				303D527C1EC428E500170F62 /* RemoteDatabase.swift */,
+				30A168131EBFDB72002F5D52 /* SearchTextField.swift */,
+				9F1B51EC1EC3BFA800560294 /* SettingsViewController.swift */,
+				303D527E1EC428EE00170F62 /* TrackNearbyUsers.swift */,
+				303D52801EC428F400170F62 /* UserDefaults.swift */,
+				3020AE851EB7B8340075D849 /* Main.storyboard */,
 				3020AE8D1EB7B8340075D849 /* LaunchScreen.storyboard */,
 				3020AE901EB7B8340075D849 /* Info.plist */,
 				307C901B1EC2C64F0020E535 /* GoogleService-Info.plist */,
+				303A02F51EC3B8BF0050E90B /* CoreData */,
 				3020AE9C1EBE83520075D849 /* icons */,
 			);
 			path = Women4Women;
@@ -201,8 +209,8 @@
 		303A02F51EC3B8BF0050E90B /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				303A02FA1EC3BA410050E90B /* NearbyUser+CoreDataClass.swift */,
-				303A02FB1EC3BA410050E90B /* NearbyUser+CoreDataProperties.swift */,
+				303D52741EC4281B00170F62 /* NearbyUser+CoreDataClass.swift */,
+				303D52751EC4281B00170F62 /* NearbyUser+CoreDataProperties.swift */,
 				3020AE881EB7B8340075D849 /* Women4Women.xcdatamodeld */,
 			);
 			name = CoreData;
@@ -346,23 +354,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				303D52821EC4291500170F62 /* SettingsViewController.swift in Sources */,
+				303D527D1EC428E500170F62 /* RemoteDatabase.swift in Sources */,
 				307D44351EBE931A007929D3 /* MainMapViewController.swift in Sources */,
 				9F1B51EF1EC3C68E00560294 /* Colors.swift in Sources */,
+				303D527F1EC428EE00170F62 /* TrackNearbyUsers.swift in Sources */,
 				307C90171EC161160020E535 /* AccordionMenu.swift in Sources */,
 				307C90181EC161160020E535 /* Parent.swift in Sources */,
-				307C901A1EC2BD5A0020E535 /* UserDefaults.swift in Sources */,
 				307D44391EBE935E007929D3 /* ContactsTableViewController.swift in Sources */,
 				307D443D1EBE93AC007929D3 /* LoginRegisterViewController.swift in Sources */,
 				3063AEE61EC1203800DEEB5B /* AccordionMenuTableViewController.swift in Sources */,
+				303D52791EC4289500170F62 /* CoreDataTableViewController.swift in Sources */,
 				3020AE8A1EB7B8340075D849 /* Women4Women.xcdatamodeld in Sources */,
 				9F1B51FF1EC415B400560294 /* EmergencyContactViewController.swift in Sources */,
 				30A168141EBFDB72002F5D52 /* SearchTextField.swift in Sources */,
+				303D52811EC428F400170F62 /* UserDefaults.swift in Sources */,
+				303D52771EC4281B00170F62 /* NearbyUser+CoreDataProperties.swift in Sources */,
+				303D52761EC4281B00170F62 /* NearbyUser+CoreDataClass.swift in Sources */,
 				3072DB3D1EC40BD5006A953C /* LifelineTableViewController.swift in Sources */,
 				3020AE821EB7B8340075D849 /* AppDelegate.swift in Sources */,
-				303A02FC1EC3BA410050E90B /* NearbyUser+CoreDataClass.swift in Sources */,
 				3093D8CD1EBEAF040035732D /* ContainerViewController.swift in Sources */,
 				307D443B1EBE9384007929D3 /* EditNightViewController.swift in Sources */,
-				303A02FF1EC3D96B0050E90B /* TrackNearbyUsers.swift in Sources */,
+				303D527B1EC428C600170F62 /* HelpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

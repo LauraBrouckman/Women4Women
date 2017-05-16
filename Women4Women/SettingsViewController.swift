@@ -41,7 +41,7 @@ class SettingsViewController: UIViewController {
         homeAddressButton.layer.borderColor = UIColor.lightGray.cgColor
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

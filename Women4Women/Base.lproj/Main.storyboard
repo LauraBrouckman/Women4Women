@@ -149,7 +149,7 @@
             <objects>
                 <tableViewController id="8kq-H9-Qbv" customClass="AccordionMenuTableViewController" customModule="Women4Women" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="5nq-aT-Dde">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -261,7 +261,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xdn-QL-ifK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="303" y="830"/>
+            <point key="canvasLocation" x="788" y="676"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="yOn-RA-DLG">
@@ -1304,9 +1304,9 @@
         <image name="white-close.png" width="300" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="taY-Nc-1xO"/>
-        <segue reference="v2d-1a-Y1t"/>
+        <segue reference="53V-uC-BQD"/>
+        <segue reference="boC-ve-eJK"/>
         <segue reference="wRa-wN-SG0"/>
-        <segue reference="oxb-gu-exH"/>
+        <segue reference="v2d-1a-Y1t"/>
     </inferredMetricsTieBreakers>
 </document>

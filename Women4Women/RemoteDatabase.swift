@@ -21,8 +21,6 @@ class RemoteDatabase {
      TODO:
      - pull down information about restaurant based on the address
      - create a new restaurant
-     - listen for changes in other users' locations
-     - pull down information about other users that are close by
     */
     
     

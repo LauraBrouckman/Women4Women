@@ -11,10 +11,10 @@ import CoreData
 
 @objc(NearbyUser)
 public class NearbyUser: NSManagedObject {
-// want to be able to: get all the users from the list
-// get a specific user by username
-//delete all current nearby users and update the whole list
-
+    // want to be able to: get all the users from the list
+    // get a specific user by username
+    //delete all current nearby users and update the whole list
+    
     
     
     // Returns all the nearby users
@@ -29,18 +29,16 @@ public class NearbyUser: NSManagedObject {
     //Given a list of nearby users, makes this the new list of users in the database
     class func setNearbyUsers(nearbyUsers: [[String: Any]], inManagedObjectContext context: NSManagedObjectContext) {
         //remove all the old users
-         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NearbyUser")
-            if let results = (try? context.fetch(fetchRequest)) as? [NearbyUser] {
-                for managedObject in results {
-                    let managedObjectData:NSManagedObject = managedObject as NSManagedObject
-                    context.delete(managedObjectData)
-                }
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NearbyUser")
+        if let results = (try? context.fetch(fetchRequest)) as? [NearbyUser] {
+            for managedObject in results {
+                let managedObjectData:NSManagedObject = managedObject as NSManagedObject
+                context.delete(managedObjectData)
             }
+        }
         //add in new users
         for user in nearbyUsers {
             if let result = NSEntityDescription.insertNewObject(forEntityName: "NearbyUser", into: context) as? NearbyUser {
-                print("adding \(user)")
-                
                 result.username = user["username"] as? String
                 result.last_name = user["last_name"] as? String
                 result.first_name = user["first_name"] as? String
@@ -60,7 +58,7 @@ public class NearbyUser: NSManagedObject {
         /*If the article already is in the database then just return the article object */
         if let result = (try? context.fetch(request))?.first as? NearbyUser {
             return result
-
+            
         }
         return nil
     }
