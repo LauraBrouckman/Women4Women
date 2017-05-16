@@ -132,7 +132,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="test login"/>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="imn-nT-Wbk"/>
+                                    <segue destination="0Xe-Dk-ed3" kind="presentation" id="DuN-MR-8X3"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3TQ-6F-1wZ">
@@ -1310,9 +1310,9 @@
     <inferredMetricsTieBreakers>
         <segue reference="g7b-uX-ZAe"/>
         <segue reference="FTF-6x-cY5"/>
-        <segue reference="r1s-cr-fvo"/>
-        <segue reference="OeN-fb-hXY"/>
-        <segue reference="v2d-1a-Y1t"/>
+        <segue reference="Sz2-yB-MJJ"/>
         <segue reference="oxb-gu-exH"/>
+        <segue reference="v2d-1a-Y1t"/>
+        <segue reference="DuN-MR-8X3"/>
     </inferredMetricsTieBreakers>
 </document>

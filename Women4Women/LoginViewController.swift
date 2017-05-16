@@ -31,8 +31,6 @@ class LoginViewController: UIViewController {
         let loginPassword = password.text;
         
         //Get username and password
-//        let usernameStored = defaults.string(forKey: "userUsername");
-//        let passwordStored = defaults.string(forKey: "userPassword");
         let usernameStored = UserDefaults.getUsername();
         let passwordStored = UserDefaults.getPassword();
         
@@ -42,7 +40,6 @@ class LoginViewController: UIViewController {
             if (loginPassword == passwordStored){
                 
                 //Login Successful!
-                //displayAlertMessage(alertMessage: "Login Successful!");
                 UserDefaults.setLoggedIn(on: true);
                 
                 //Dismiss Login View

@@ -10,7 +10,7 @@ import Foundation
 import MapKit
 
 // This file contains all the functions for getting and setting the user's information, so all of their settings (like emergency contact, time to be home) as well as stuff like their name and profile picture
-// To use one of these functions:
+// To use one of these functions: 
 // UserDefaults.setUsername("laura")
 // let username = UserDefaults.getUsername()
 

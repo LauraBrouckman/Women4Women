@@ -22,7 +22,7 @@ class RegisterViewController: UIViewController {
     }
     
 
-    @IBOutlet weak var firstName: UITextField!
+    @IBOutlet weak var firstName: UITextField! 
     @IBOutlet weak var lastName: UITextField!
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
