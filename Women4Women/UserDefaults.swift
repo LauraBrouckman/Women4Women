@@ -17,6 +17,8 @@ import MapKit
 class UserDefaults{
     
     //These are the keys for all the information about the user that is being stored locally
+    static fileprivate var loggedIn                 = "loggedIn"
+    static fileprivate var passwordKey              =   "passwordKey"
     static fileprivate var usernameKey              =   "usernameKey"
     static fileprivate var homeAlertOn              =   "homeAlertOnKey"
     static fileprivate var timeToBeHome             =   "timeHomeKey"
@@ -41,6 +43,17 @@ class UserDefaults{
 
     
     
+    //Get and set if user logged in 
+    
+    static func setLoggedIn(on: Bool){
+        Foundation.UserDefaults.standard.set(true, forKey: loggedIn);
+    }
+    
+    static func getLoggedIn() -> Bool{
+        return Foundation.UserDefaults.standard.bool(forKey: loggedIn);
+    }
+    
+    
     //Get and set the username for the user - this is the unique name that they use to log in
     static func setUsername(_ username: String) {
         Foundation.UserDefaults.standard.setValue(username, forKey: usernameKey)
@@ -49,6 +62,18 @@ class UserDefaults{
     static func getUsername() -> String {
         if let username = Foundation.UserDefaults.standard.value(forKey: usernameKey) as? String {
             return username
+        }
+        return ""
+    }
+    
+    //Get and set the password for the user - this is the unique password that they use to log in
+    static func setPassword(_ password: String) {
+        Foundation.UserDefaults.standard.setValue(password, forKey: passwordKey)
+    }
+    
+    static func getPassword() -> String {
+        if let password = Foundation.UserDefaults.standard.value(forKey: passwordKey) as? String {
+            return password
         }
         return ""
     }
