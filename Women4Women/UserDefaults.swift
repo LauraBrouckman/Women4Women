@@ -17,6 +17,7 @@ import MapKit
 class UserDefaults{
     
     //These are the keys for all the information about the user that is being stored locally
+    static fileprivate var openedBefore             = "openedBefore"
     static fileprivate var loggedIn                 = "loggedIn"
     static fileprivate var passwordKey              =   "passwordKey"
     static fileprivate var usernameKey              =   "usernameKey"
@@ -38,8 +39,8 @@ class UserDefaults{
     static fileprivate var homeCountryKey             =   "homeCountryKey"
     static fileprivate var homeLocationNameKey             =   "homeLocationNameKey"
     static fileprivate var iceFirstNameKey             =   "iceFirstNameKey"
-        static fileprivate var iceLastNameKey             =   "iceLastNameKey"
-        static fileprivate var icePhoneNumberKey             =   "icePhoneNumberKey"
+    static fileprivate var iceLastNameKey             =   "iceLastNameKey"
+    static fileprivate var icePhoneNumberKey             =   "icePhoneNumberKey"
 
     
     
@@ -77,6 +78,19 @@ class UserDefaults{
         }
         return ""
     }
+    
+    // Get and set whether the app has been opened before
+    static func setAppOpenedBefore(_ value: Bool) {
+        Foundation.UserDefaults.standard.set(value, forKey: openedBefore)
+    }
+    
+    static func getAppOpenedBefore() -> Bool {
+        if let opened = Foundation.UserDefaults.standard.value(forKey: openedBefore) as? Bool {
+            return opened
+        }
+        return false
+    }
+    
     
     
     // Get and set whether or not the home alert feature is on

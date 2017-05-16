@@ -13,9 +13,14 @@ class ContainerViewController: SlideMenuController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.leftViewController = self.storyboard?.instantiateViewController(withIdentifier: "Left")
-        self.mainViewController = self.storyboard?.instantiateViewController(withIdentifier: "Main")
-        // Do any additional setup after loading the view.
+        if UserDefaults.getAppOpenedBefore() {
+            self.leftViewController = self.storyboard?.instantiateViewController(withIdentifier: "Left")
+            self.mainViewController = self.storyboard?.instantiateViewController(withIdentifier: "Main")
+        }
+        else {
+            self.mainViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
+        }
+        
     }
     
 //    override func awakeFromNib() {

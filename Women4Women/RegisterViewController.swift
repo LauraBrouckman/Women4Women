@@ -29,49 +29,67 @@ class RegisterViewController: UIViewController {
     
     
     @IBAction func registerUser(_ sender: UIButton) {
-        let userFirstName = firstName.text!;
-        let userLastName = lastName.text!;
-        let userUsername = username.text!;
-        let userPassword = password.text!;
+        let userFirstName = firstName.text!
+        let userLastName = lastName.text!
+        let userUsername = username.text!
+        let userPassword = password.text!
 
         //Check for empty fields
 
         if ((userFirstName.isEmpty) || (userLastName.isEmpty) || (userUsername.isEmpty) || (userPassword.isEmpty)){
 
             //Display alert message
-            displayAlertMessage(alertMessage: "All fields required.");
-            return;
+            displayAlertMessage(alertMessage: "All fields are required.")
+            return
 
         }
 
-
-        //Store Data
-        UserDefaults.setFirstName(userFirstName);
-        UserDefaults.setLastName(userLastName);
-        UserDefaults.setPassword(userPassword);
-        UserDefaults.setUsername(userUsername);
-
-
-        //Display alert message with confirmation
-        let successAlert = UIAlertController(title:"Alert", message:"Registration is Successful! Welcome to W4W!", preferredStyle: UIAlertControllerStyle.alert);
-
-        let yayAction = UIAlertAction(title:"Ok", style:UIAlertActionStyle.default){
-            action in self.dismiss(animated: true, completion:nil);
-        };
-        
-        successAlert.addAction(yayAction);
-        self.present(successAlert, animated: true, completion: nil);
+        // Check if that username is already in user
+        RemoteDatabase.getUserFromDB(userUsername) { user in
+            if user == nil {
+                self.createUser(username: userUsername, firstName: userFirstName, lastName: userLastName, password: userPassword)
+            }
+            //username has been taken
+            else {
+                self.displayAlertMessage(alertMessage: "This username has already been taken")
+            }
+        }
     }
 
+    func createUser(username: String, firstName: String, lastName: String, password: String) {
+        //Store Data
+        UserDefaults.setFirstName(firstName)
+        UserDefaults.setLastName(lastName)
+        UserDefaults.setPassword(password)
+        UserDefaults.setUsername(username)
+        UserDefaults.setLoggedIn(on: true)
+        UserDefaults.setAppOpenedBefore(true)
+        RemoteDatabase.addNewUser(username, password: password, firstName: firstName, lastName: lastName, locationLat: 0.0, locationLon: 0.0)
+        
+        
+        //Display alert message with confirmation
+        let successAlert = UIAlertController(title:"Congratulations!", message:"Registration is Successful! Welcome to W4W!", preferredStyle: UIAlertControllerStyle.alert)
+        
+        let yayAction = UIAlertAction(title:"Ok", style:UIAlertActionStyle.default){
+            action in
+            let containerViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Container")
+            UIApplication.topViewController()?.present(containerViewController, animated: true, completion: nil)
+        }
+        
+        successAlert.addAction(yayAction)
+        UIApplication.topViewController()?.present(successAlert, animated: true, completion: nil)
+
+    }
     
     func displayAlertMessage(alertMessage:String){
-        let myAlert = UIAlertController(title:"Alert", message:alertMessage, preferredStyle: UIAlertControllerStyle.alert);
+        let myAlert = UIAlertController(title:"Alert", message:alertMessage, preferredStyle: UIAlertControllerStyle.alert)
         
-        let okAction = UIAlertAction(title:"Ok", style:UIAlertActionStyle.default, handler:nil);
+        let okAction = UIAlertAction(title:"Ok", style:UIAlertActionStyle.default, handler:nil)
         
-        myAlert.addAction(okAction);
+        myAlert.addAction(okAction)
         
-        self.present(myAlert, animated: true, completion: nil);
+        
+        UIApplication.topViewController()?.present(myAlert, animated: true, completion: nil)
     }
     
 
