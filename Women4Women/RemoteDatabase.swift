@@ -21,17 +21,15 @@ class RemoteDatabase {
      TODO:
      - pull down information about restaurant based on the address
      - create a new restaurant
-     - listen for changes in other users' locations
-     - pull down information about other users that are close by
     */
     
     
     //USERS
     
     //Add a new user to the database, if you don't know their location, just put 0 and 0 for lat and lon
-    static func addNewUser(_ username: String, firstName: String, lastName: String, locationLat: Double, locationLon: Double)
+    static func addNewUser(_ username: String, password: String, firstName: String, lastName: String, locationLat: Double, locationLon: Double)
     {
-        let newUser = ["first_name": firstName, "last_name": lastName, "location_lat": locationLat, "location_lon": locationLon, "photo_filename": ""] as [String : Any]
+        let newUser = ["password": password, "first_name": firstName, "last_name": lastName, "location_lat": locationLat, "location_lon": locationLon, "photo_filename": ""] as [String : Any]
         let newUserRef = usersRef.child(username)
         newUserRef.setValue(newUser)
         uploadFileToDatabase(forUser: username)
@@ -74,6 +72,8 @@ class RemoteDatabase {
     static func updateProfilePicture(_ username: String) {
         uploadFileToDatabase(forUser: username)
     }
+    
+    
     
     
     

@@ -18,18 +18,23 @@ class LoginRegisterViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        // Dispose of any resources that can be recreated. 
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewDidAppear(_ animated: Bool) {
+        
+        let userLoggedIn = UserDefaults.getLoggedIn()
+        
+        if (!userLoggedIn){
+            
+            self.performSegue(withIdentifier: "loginView", sender: self);
+        }
+        
     }
-    */
 
+    @IBAction func logoutUser(_ sender: UIButton) {
+        UserDefaults.setLoggedIn(on: false);
+        self.performSegue(withIdentifier: "loginView", sender: self);
+    
+    }
 }

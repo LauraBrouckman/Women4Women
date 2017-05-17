@@ -10,13 +10,16 @@ import Foundation
 import MapKit
 
 // This file contains all the functions for getting and setting the user's information, so all of their settings (like emergency contact, time to be home) as well as stuff like their name and profile picture
-// To use one of these functions:
+// To use one of these functions: 
 // UserDefaults.setUsername("laura")
 // let username = UserDefaults.getUsername()
 
 class UserDefaults{
     
     //These are the keys for all the information about the user that is being stored locally
+    static fileprivate var openedBefore             = "openedBefore"
+    static fileprivate var loggedIn                 = "loggedIn"
+    static fileprivate var passwordKey              =   "passwordKey"
     static fileprivate var usernameKey              =   "usernameKey"
     static fileprivate var homeAlertOn              =   "homeAlertOnKey"
     static fileprivate var timeToBeHome             =   "timeHomeKey"
@@ -36,9 +39,20 @@ class UserDefaults{
     static fileprivate var homeCountryKey             =   "homeCountryKey"
     static fileprivate var homeLocationNameKey             =   "homeLocationNameKey"
     static fileprivate var iceFirstNameKey             =   "iceFirstNameKey"
-        static fileprivate var iceLastNameKey             =   "iceLastNameKey"
-        static fileprivate var icePhoneNumberKey             =   "icePhoneNumberKey"
+    static fileprivate var iceLastNameKey             =   "iceLastNameKey"
+    static fileprivate var icePhoneNumberKey             =   "icePhoneNumberKey"
 
+    
+    
+    //Get and set if user logged in 
+    
+    static func setLoggedIn(on: Bool){
+        Foundation.UserDefaults.standard.set(true, forKey: loggedIn);
+    }
+    
+    static func getLoggedIn() -> Bool{
+        return Foundation.UserDefaults.standard.bool(forKey: loggedIn);
+    }
     
     
     //Get and set the username for the user - this is the unique name that they use to log in
@@ -52,6 +66,31 @@ class UserDefaults{
         }
         return ""
     }
+    
+    //Get and set the password for the user - this is the unique password that they use to log in
+    static func setPassword(_ password: String) {
+        Foundation.UserDefaults.standard.setValue(password, forKey: passwordKey)
+    }
+    
+    static func getPassword() -> String {
+        if let password = Foundation.UserDefaults.standard.value(forKey: passwordKey) as? String {
+            return password
+        }
+        return ""
+    }
+    
+    // Get and set whether the app has been opened before
+    static func setAppOpenedBefore(_ value: Bool) {
+        Foundation.UserDefaults.standard.set(value, forKey: openedBefore)
+    }
+    
+    static func getAppOpenedBefore() -> Bool {
+        if let opened = Foundation.UserDefaults.standard.value(forKey: openedBefore) as? Bool {
+            return opened
+        }
+        return false
+    }
+    
     
     
     // Get and set whether or not the home alert feature is on

@@ -131,8 +131,8 @@ class MainMapViewController: UIViewController, CLLocationManagerDelegate, MKMapV
         }
     }
 
-    //Locate the given address on the map, and center the MapView around that location
-    //Show a pin with restaurant info and nearby user's locations
+    // Locate the given address on the map, and center the MapView around that location
+    // Show a pin with restaurant info and nearby user's locations
     // When this happens, it will also bring up the bottom toolbar to set time/contact/etc.
     func locateOnMap(address: String?, title: String?) {
         var ad = address
@@ -143,7 +143,7 @@ class MainMapViewController: UIViewController, CLLocationManagerDelegate, MKMapV
         //Remove all the old annotations
         mapView.removeAnnotations(mapView.annotations)
         let geocoder = CLGeocoder()
-        //convert the strong address into coordinates
+        //convert the string address into coordinates
         geocoder.geocodeAddressString(ad!) {
             if let placemarks = $0 {
                 let coordinate = (placemarks[0].location?.coordinate)!
@@ -163,12 +163,30 @@ class MainMapViewController: UIViewController, CLLocationManagerDelegate, MKMapV
         let spanY = 0.007
         let newRegion = MKCoordinateRegion(center:center , span: MKCoordinateSpanMake(spanX, spanY))
         mapView.setRegion(newRegion, animated: true)
-        addAnnotation(toPoint: center, withTitle: (title ?? "Unknown"), withSubtitle: "7 lifelines")
-        //addNearbyUsers()
+        addAnnotation(toPoint: center, withTitle: (title ?? "Unknown"), withSubtitle: "7 lifelines", selectPin: true)
+        addNearbyUsers()
         openPopupMenu()
     }
     
-    func addAnnotation(toPoint coordinate: CLLocationCoordinate2D, withTitle title: String, withSubtitle subtitle: String?) {
+    // Find users that are close to the "going-out" location and add annotations for them onto the map
+    func addNearbyUsers() {
+        self.managedObjectContext.perform {
+            let results = NearbyUser.getAllNearbyUsers(inManagedObjectContext: self.managedObjectContext)
+            for result in results! {
+                self.addAnnotation(
+                    toPoint: CLLocationCoordinate2D(latitude: result.latitude, longitude: result.longitude),
+                    withTitle: result.first_name!,
+                    withSubtitle: nil,
+                    selectPin: false
+                )
+            }
+        }
+    }
+    
+    
+    
+    //Add an annotation (pin) to the map
+    func addAnnotation(toPoint coordinate: CLLocationCoordinate2D, withTitle title: String, withSubtitle subtitle: String?, selectPin: Bool) {
         let annotation = MKPointAnnotation()
         annotation.coordinate = coordinate
         annotation.title = title
@@ -177,23 +195,12 @@ class MainMapViewController: UIViewController, CLLocationManagerDelegate, MKMapV
         }
         let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
         mapView.addAnnotation(annotationView.annotation!)
-        mapView.selectAnnotation(annotation, animated: true)
+        if selectPin {
+            mapView.selectAnnotation(annotation, animated: true)
+        }
     }
     
-    // Find users that are close to the "going-out" location and add annotations for them onto the map
-//    func addNearbyUsers() {
-//        self.managedObjectContext.perform {
-//            let results = NearbyUser.getAllNearbyUsers(inManagedObjectContext: self.managedObjectContext)
-//            for result in results! {
-//                self.addAnnotation(
-//                    toPoint: CLLocationCoordinate2D(latitude: result.latitude, longitude: result.longitude),
-//                    withTitle: result.first_name!,
-//                    withSubtitle: nil
-//                )
-//            }
-//        }
-//    }
-//    
+
 
     //Open up the popup menu from the bottom of the screen
     func openPopupMenu() {

@@ -17,11 +17,10 @@ extension NearbyUser {
     }
 
     @NSManaged public var username: String?
-    @NSManaged public var longitude: Double
-    @NSManaged public var latitude: Double
-    @NSManaged public var photo_filename: String?
     @NSManaged public var first_name: String?
     @NSManaged public var last_name: String?
-    @NSManaged public var home_city: String?
+    @NSManaged public var latitude: Double
+    @NSManaged public var longitude: Double
+    @NSManaged public var photo_filename: String?
 
 }

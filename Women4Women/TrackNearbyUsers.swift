@@ -28,7 +28,7 @@ class TrackUsers {
         for user in users {
             // Don't add yourself to the list
             if user.key == UserDefaults.getUsername() || user.key == "current_user" {
-                return
+                continue
             }
             
             let username = user.key
@@ -38,7 +38,6 @@ class TrackUsers {
             let distance = sqrt(pow(userLatitude - myLatitude, 2.0) + pow(userLongitude - myLongitude, 2.0))
 
             if distance <= distanceThreshold {
-                print("NEARBY USER FOUND: \(username)")
                 let newUser: [String: Any] = [
                     "username": username,
                     "longitude": userLongitude,
