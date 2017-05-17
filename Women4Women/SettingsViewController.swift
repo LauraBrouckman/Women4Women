@@ -41,8 +41,8 @@ class SettingsViewController: UIViewController {
         homeAddressLabel.text = UserDefaults.getHomeLocationName()
         homeAddressLabel2.text = UserDefaults.getHomeStreet() + ", " + UserDefaults.getHomeCity()
     }
-    
 
+    
     /*
     // MARK: - Navigation
 

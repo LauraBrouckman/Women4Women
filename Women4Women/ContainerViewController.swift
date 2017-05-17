@@ -20,8 +20,9 @@ class ContainerViewController: SlideMenuController {
         else {
             self.mainViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
         }
-        
     }
+
+
     
 //    override func awakeFromNib() {
 //        if let controller = self.storyboard?.instantiateViewController(withIdentifier: "Main") {
