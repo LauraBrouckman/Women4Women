@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20ECF8F61ECCB70200373964 /* ConversationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20ECF8F51ECCB70200373964 /* ConversationsTableViewController.swift */; };
+		20ECF8FA1ECCB8AC00373964 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20ECF8F91ECCB8AC00373964 /* ConversationViewController.swift */; };
 		3020AE821EB7B8340075D849 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3020AE811EB7B8340075D849 /* AppDelegate.swift */; };
 		3020AE8A1EB7B8340075D849 /* Women4Women.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3020AE881EB7B8340075D849 /* Women4Women.xcdatamodeld */; };
 		3020AE8C1EB7B8340075D849 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3020AE8B1EB7B8340075D849 /* Assets.xcassets */; };
@@ -59,6 +61,8 @@
 
 /* Begin PBXFileReference section */
 		19E48749ED33D9629853AF59 /* Pods-Women4Women.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Women4Women.release.xcconfig"; path = "Pods/Target Support Files/Pods-Women4Women/Pods-Women4Women.release.xcconfig"; sourceTree = "<group>"; };
+		20ECF8F51ECCB70200373964 /* ConversationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsTableViewController.swift; sourceTree = "<group>"; };
+		20ECF8F91ECCB8AC00373964 /* ConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		3020AE7E1EB7B8340075D849 /* Women4Women.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Women4Women.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3020AE811EB7B8340075D849 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3020AE891EB7B8340075D849 /* Women4Women.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Women4Women.xcdatamodel; sourceTree = "<group>"; };
@@ -164,6 +168,7 @@
 				307D44381EBE935E007929D3 /* ContactsTableViewController.swift */,
 				3093D8CC1EBEAF040035732D /* ContainerViewController.swift */,
 				303D52781EC4289500170F62 /* CoreDataTableViewController.swift */,
+				20ECF8F91ECCB8AC00373964 /* ConversationViewController.swift */,
 				307D443A1EBE9384007929D3 /* EditNightViewController.swift */,
 				9F1B51FE1EC415B400560294 /* EmergencyContactViewController.swift */,
 				303D527A1EC428C600170F62 /* HelpViewController.swift */,
@@ -181,6 +186,7 @@
 				303D527E1EC428EE00170F62 /* TrackNearbyUsers.swift */,
 				303D52801EC428F400170F62 /* UserDefaults.swift */,
 				307A29911ECAE0FD00262B65 /* Main.storyboard */,
+				20ECF8F51ECCB70200373964 /* ConversationsTableViewController.swift */,
 				3020AE8D1EB7B8340075D849 /* LaunchScreen.storyboard */,
 				3020AE901EB7B8340075D849 /* Info.plist */,
 				307C901B1EC2C64F0020E535 /* GoogleService-Info.plist */,
@@ -267,7 +273,7 @@
 				TargetAttributes = {
 					3020AE7D1EB7B8340075D849 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 557F97CTX7;
+						DevelopmentTeam = 8HU79SG3YQ;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -386,6 +392,7 @@
 				307D443D1EBE93AC007929D3 /* LoginRegisterViewController.swift in Sources */,
 				3063AEE61EC1203800DEEB5B /* AccordionMenuTableViewController.swift in Sources */,
 				303D52791EC4289500170F62 /* CoreDataTableViewController.swift in Sources */,
+				20ECF8FA1ECCB8AC00373964 /* ConversationViewController.swift in Sources */,
 				3020AE8A1EB7B8340075D849 /* Women4Women.xcdatamodeld in Sources */,
 				9F1B51FF1EC415B400560294 /* EmergencyContactViewController.swift in Sources */,
 				30A168141EBFDB72002F5D52 /* SearchTextField.swift in Sources */,
@@ -398,6 +405,7 @@
 				3093D8CD1EBEAF040035732D /* ContainerViewController.swift in Sources */,
 				307D443B1EBE9384007929D3 /* EditNightViewController.swift in Sources */,
 				303D527B1EC428C600170F62 /* HelpViewController.swift in Sources */,
+				20ECF8F61ECCB70200373964 /* ConversationsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,7 +529,8 @@
 			baseConfigurationReference = B315B48242589C96E63C32D0 /* Pods-Women4Women.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 557F97CTX7;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 8HU79SG3YQ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
@@ -530,6 +539,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.cs194w.Women4Women;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -539,7 +549,8 @@
 			baseConfigurationReference = 19E48749ED33D9629853AF59 /* Pods-Women4Women.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 557F97CTX7;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 8HU79SG3YQ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
@@ -548,6 +559,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.cs194w.Women4Women;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
