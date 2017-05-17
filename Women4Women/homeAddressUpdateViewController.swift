@@ -10,10 +10,22 @@ import UIKit
 
 class homeAddressUpdateViewController: UIViewController {
 
+    @IBOutlet weak var streetText: UITextField!
+    @IBOutlet weak var cityText: UITextField!
+    @IBOutlet weak var zipText: UITextField!
+    @IBOutlet weak var countryText: UITextField!
+    @IBOutlet weak var updateButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        streetText.text = UserDefaults.getHomeStreet()
+        cityText.text = UserDefaults.getHomeCity()
+        zipText.text = UserDefaults.getHomeZip()
+        countryText.text = UserDefaults.getHomeCountry()
+   
+        let ad = UserDefaults.getHomeStreet()+", "+UserDefaults.getHomeCity() + ", " + UserDefaults.getHomeZip() + ", " + UserDefaults.getHomeCountry()
+        
+        UserDefaults.getCoordinatesFromAddressName(address: ad,title: "")
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,6 +33,16 @@ class homeAddressUpdateViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func updateAddress(_ sender: Any) {
+        let ad = streetText.text!+", "+cityText.text!+", "+zipText.text!+", "+countryText.text!
+        
+        UserDefaults.getCoordinatesFromAddressName(address: ad,title: "")
+        UserDefaults.setHomeCity(cityText.text!)
+        UserDefaults.setHomeStreet(streetText.text!)
+        UserDefaults.setHomeCountry(countryText.text!)
+        UserDefaults.setHomeZip(zipText.text!)
+        
+    }
 
     /*
     // MARK: - Navigation

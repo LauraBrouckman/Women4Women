@@ -25,8 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UserDefaults.setFirstName("Leslie")
         UserDefaults.setLastName("Kurt")
-        UserDefaults.setHomeLocation(latitude: 37.423246 , longitude: 122.169750)
-        UserDefaults.getAddressNameFromCoordinates();
+        UserDefaults.setHomeLocation(latitude: 37.423246 , longitude: -122.169750)
+        UserDefaults.getAddressNameFromCoordinates(lat: 37.423246 , long: -122.169750);
         UserDefaults.setEmergencyContactFirstName("Laura")
         UserDefaults.setEmergencyContactLastName("Brouckman")
         UserDefaults.setEmergencyContactPhoneNumber("3109779751")

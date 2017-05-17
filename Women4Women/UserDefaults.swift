@@ -137,6 +137,7 @@ class UserDefaults{
     static func setHomeLocation(latitude: Double, longitude: Double) {
         Foundation.UserDefaults.standard.setValue(latitude, forKey: homeLocationLatKey)
         Foundation.UserDefaults.standard.setValue(longitude, forKey: homeLocationLonKEy)
+        //UserDefaults.getAddressNameFromCoordinates(lat: latitude, long: longitude)
     }
     
     static func getHomeLocation() -> (Double, Double)? {
@@ -271,7 +272,7 @@ class UserDefaults{
     
     //Get and set home location name
     static func setHomeLocationName(_ locationName: String) {
-        Foundation.UserDefaults.standard.setValue(locationName, forKey: homeLocationNameKey )
+        Foundation.UserDefaults.standard.setValue(locationName, forKey: homeLocationNameKey)
     }
     
     static func getHomeLocationName() -> String {
@@ -281,10 +282,11 @@ class UserDefaults{
         return ""
     }
 
-    static func getAddressNameFromCoordinates()
+    static func getAddressNameFromCoordinates(lat: Double, long: Double)
     {
         let geoCoder = CLGeocoder()
-        let location = CLLocation(latitude: 37.427475 , longitude: -122.169719)
+        let location = CLLocation(latitude: lat, longitude: long)
+        //let location = CLLocation(latitude: 37.427475 , longitude: -122.169719)
         //CLLocation(latitude: _point1.coordinate.latitude, longitude: _point1.coordinate.longitude)
         geoCoder.reverseGeocodeLocation(location)
         {
@@ -327,5 +329,24 @@ class UserDefaults{
             }
         }
     }
+    
+    static func getCoordinatesFromAddressName(address: String?, title: String?){
+        var ad = address
+        if address == nil {
+            //error no address
+            ad = title
+        }
 
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(ad!) {
+            if let placemarks = $0 {
+                let coordinate = (placemarks[0].location?.coordinate)!
+                UserDefaults.setHomeLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+                
+            } else {
+                print("error \($1)")
+            }
+        }
+    }
+    
 }
