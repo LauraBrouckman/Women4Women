@@ -18,16 +18,14 @@ class TrackUsers {
     static func updateNearbyUserList(users: [String: AnyObject]) {
         
         // Really should get the users location from local storage
-        let (myLatitude, myLongitude) = UserDefaults.getNightOutLocation() ?? (37.422692, -122.168603)
-        print("My latitude: \(myLatitude) my longitude \(myLongitude)")
-        
+        let (myLatitude, myLongitude) = UserDefaults.getNightOutLocation() ?? (37.422692, -122.168603)        
         
         var nearbyUsers: [[String: Any]] = []
         
         //Look through each user in the list and calculate the distance apart, if the distance is short, add to array of nearby users
         for user in users {
             // Don't add yourself to the list
-            if user.key == UserDefaults.getUsername() || user.key == "current_user" {
+            if user.key == UserDefaults.getUsername() {
                 continue
             }
             
