@@ -13,7 +13,7 @@ import Firebase
 
 class TrackUsers {
     static let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    static var distanceThreshold: Double = 0.001 //how far apart max two users can be in degrees
+    static var distanceThreshold: Double = 0.0018 //how far apart max two users can be in degrees
     
     static func updateNearbyUserList(users: [String: AnyObject]) {
         
