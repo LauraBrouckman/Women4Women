@@ -273,10 +273,10 @@
             </objects>
             <point key="canvasLocation" x="582" y="73"/>
         </scene>
-        <!--View Controller-->
+        <!--Side Bar View Controller-->
         <scene sceneID="yOn-RA-DLG">
             <objects>
-                <viewController storyboardIdentifier="Left" id="XHE-cf-sYI" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Left" id="XHE-cf-sYI" customClass="SideBarViewController" customModule="Women4Women" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4cI-Qc-NZE"/>
                         <viewControllerLayoutGuide type="bottom" id="OvP-OH-Y5y"/>
@@ -329,13 +329,29 @@
                                     <segue destination="fGu-dd-5wc" kind="show" id="WAh-5v-SzF"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ofm-ME-tBH">
+                                <rect key="frame" x="59" y="318" width="74" height="52"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Logout">
+                                    <color key="titleColor" red="0.29803921568627451" green="0.29803921568627451" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="logoutUser:" destination="XHE-cf-sYI" eventType="touchUpInside" id="ou5-HT-3An"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="logoutSegue" id="qw7-W2-wIE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.50196078431372548" green="0.68235294117647061" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="logoutButton" destination="ofm-ME-tBH" id="54c-p0-uNh"/>
+                        <outlet property="nameLabel" destination="JZA-8a-Wpg" id="I0f-yO-ZKf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dXR-qy-ioN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2196" y="869"/>
+            <point key="canvasLocation" x="1150" y="829"/>
         </scene>
         <!--Help View Controller-->
         <scene sceneID="5q2-xJ-zTe">
@@ -348,12 +364,42 @@
                     <view key="view" contentMode="scaleToFill" id="ugJ-8C-6DQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="     Help" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wip-l3-TtO">
+                                <rect key="frame" x="-1" y="42" width="375" height="59"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.50196078430000002" green="0.68235294120000001" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bfW-Ni-RNH">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.50196078430000002" green="0.68235294120000001" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NV9-TD-RMP">
+                                <rect key="frame" x="28" y="9" width="32" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" backgroundImage="white-close.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="VVX-7Q-da2" kind="show" id="cuy-Cb-NQq"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P4r-97-lQT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1310" y="1693"/>
+            <point key="canvasLocation" x="1151" y="1534"/>
         </scene>
         <!--Emergency Contact View Controller-->
         <scene sceneID="e7a-B5-ODX">
@@ -826,7 +872,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rNc-KV-sDN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4759" y="920"/>
+            <point key="canvasLocation" x="4742" y="904"/>
         </scene>
         <!--Name Update View Controller-->
         <scene sceneID="Luf-tC-usm">
@@ -1250,9 +1296,10 @@
         <image name="white-close.png" width="300" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="FTF-6x-cY5"/>
-        <segue reference="au4-hx-aq5"/>
-        <segue reference="oxb-gu-exH"/>
         <segue reference="v2d-1a-Y1t"/>
+        <segue reference="HeI-w9-52l"/>
+        <segue reference="qw7-W2-wIE"/>
+        <segue reference="au4-hx-aq5"/>
+        <segue reference="cuy-Cb-NQq"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -177,44 +177,43 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
         let mapCenter = CLLocationCoordinate2D(latitude: center.latitude, longitude: center.longitude + 0.02)
         let newRegion = MKCoordinateRegion(center: mapCenter, span: MKCoordinateSpanMake(spanX, spanY))
         mapView.setRegion(newRegion, animated: true)
-        addAnnotations(title: title, center: center)
+   //     addAnnotations(title: title, center: center)
         
         openPopupMenu()
     }
     
     // Find users that are close to the "going-out" location and add annotations for them onto the map
-    func addAnnotations(title: String?, center: CLLocationCoordinate2D) {
-        self.managedObjectContext.perform {
-            let results = NearbyUser.getAllNearbyUsers(inManagedObjectContext: self.managedObjectContext)
-            self.numLifelines = (results?.count)!
-            print("Updating number of lifelines to \(self.numLifelines)")
-            for result in results! {
-                self.addAnnotation(
-                    toPoint: CLLocationCoordinate2D(latitude: result.latitude, longitude: result.longitude),
-                    withTitle: result.first_name!,
-                    withSubtitle: nil,
-                    selectPin: false
-                )
-            }
-            self.addAnnotation(toPoint: center, withTitle: (title ?? "Unknown"), withSubtitle: String(self.numLifelines) + " lifelines", selectPin: true)
-            let circle = MKCircle(center: center, radius: 100)
-            self.mapView.add(circle)
+  //  func addAnnotations(title: String?, center: CLLocationCoordinate2D) {
+  //      self.managedObjectContext.perform {
+  //          let results = NearbyUser.getAllNearbyUsers(inManagedObjectContext: self.managedObjectContext)
+  //          self.numLifelines = (results?.count)!
+  //          print("Updating number of lifelines to \(self.numLifelines)")
+  //          for result in results! {
+  //              self.addAnnotation(
+  //                  toPoint: CLLocationCoordinate2D(latitude: result.latitude, longitude: result.longitude),
+  //                  withTitle: result.first_name!,
+  //                  withSubtitle: nil,
+  //                  selectPin: false
+  //              )
+  //          }
+  //          self.addAnnotation(toPoint: center, withTitle: (title ?? "Unknown"), withSubtitle: String(self.numLifelines) + " lifelines", selectPin: true)
+  //          let circle = MKCircle(center: center, radius: 100)
+   //         self.mapView.add(circle)
 
-        }
-    }
+   //     }
+   // }
     
     // Customize what the user pins look like 
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        var view : MKPinAnnotationView
-        guard let annotation = annotation as? UserAnnotation else {return nil}
-        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: annotation.identifier) as? MKPinAnnotationView {
-            view = dequeuedView
-        }else {
-            view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: annotation.identifier)
-        }
-        view.pinTintColor = UIColor.cyan
-        return view
-    }
+ //   func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+ //       var view : MKPinAnnotationView
+ //       guard let annotation = annotation as? UserAnnotation else {return nil}
+ //       if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: annotation.identifier) as? MKPinAnnotationView {
+ //           view = dequeuedView
+ //       }else {
+ //           view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: annotation.identifier)
+ //       }
+//        return view
+ //   }
     
     
     // Style the circle overlay that marks the nearby region to the restaurant
@@ -229,13 +228,13 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
     
     
     //Add an annotation (pin) to the map
-    func addAnnotation(toPoint coordinate: CLLocationCoordinate2D, withTitle title: String, withSubtitle subtitle: String?, selectPin: Bool) {
-        let annotation = UserAnnotation(name: title, center: coordinate, sub: subtitle)
-        mapView.addAnnotation(annotation)
-        if selectPin {
-            mapView.selectAnnotation(annotation, animated: true)
-        }
-    }
+//    func addAnnotation(toPoint coordinate: CLLocationCoordinate2D, withTitle title: String, withSubtitle subtitle: String?, selectPin: Bool) {
+ //       let annotation = UserAnnotation(name: title, center: coordinate, sub: subtitle)
+//        mapView.addAnnotation(annotation)
+ //       if selectPin {
+ //           mapView.selectAnnotation(annotation, animated: true)
+ //       }
+ //   }
     
 
 
