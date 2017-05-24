@@ -177,7 +177,7 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
         let mapCenter = CLLocationCoordinate2D(latitude: center.latitude - 0.0015, longitude: center.longitude)
         let newRegion = MKCoordinateRegion(center: mapCenter, span: MKCoordinateSpanMake(spanX, spanY))
         mapView.setRegion(newRegion, animated: true)
-        addAnnotations(title: title, center: center)
+   //     addAnnotations(title: title, center: center)
         
         openPopupMenu()
     }
@@ -206,8 +206,8 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
             let circle = MKCircle(center: center, radius: 115)
             self.mapView.add(circle)
 
-        }
-    }
+   //     }
+   // }
     
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {

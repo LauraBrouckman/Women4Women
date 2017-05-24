@@ -59,6 +59,7 @@
 		9F1B51FB1EC4098900560294 /* back-arrow-icon2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F1B51FA1EC4098900560294 /* back-arrow-icon2.png */; };
 		9F1B51FD1EC4109500560294 /* white-close.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F1B51FC1EC4109500560294 /* white-close.png */; };
 		9F1B51FF1EC415B400560294 /* EmergencyContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B51FE1EC415B400560294 /* EmergencyContactViewController.swift */; };
+		9FC3B1D31ECCFC5A00814EB0 /* SideBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC3B1D21ECCFC5A00814EB0 /* SideBarViewController.swift */; };
 		AFC0BC2AA855429AFEA2C4C2 /* Pods_Women4Women.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC67C331923F50E1084FC9D /* Pods_Women4Women.framework */; };
 /* End PBXBuildFile section */
 
@@ -119,6 +120,7 @@
 		9F1B51FA1EC4098900560294 /* back-arrow-icon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back-arrow-icon2.png"; sourceTree = "<group>"; };
 		9F1B51FC1EC4109500560294 /* white-close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "white-close.png"; sourceTree = "<group>"; };
 		9F1B51FE1EC415B400560294 /* EmergencyContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmergencyContactViewController.swift; sourceTree = "<group>"; };
+		9FC3B1D21ECCFC5A00814EB0 /* SideBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarViewController.swift; sourceTree = "<group>"; };
 		B315B48242589C96E63C32D0 /* Pods-Women4Women.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Women4Women.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Women4Women/Pods-Women4Women.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -185,6 +187,7 @@
 				307A29891ECAD26600262B65 /* LoginViewController.swift */,
 				307D443C1EBE93AC007929D3 /* LoginRegisterViewController.swift */,
 				307D44341EBE931A007929D3 /* MainMapViewController.swift */,
+				9FC3B1D21ECCFC5A00814EB0 /* SideBarViewController.swift */,
 				307A298D1ECAD28900262B65 /* nameUpdateViewController.swift */,
 				307C90161EC161160020E535 /* Parent.swift */,
 				307A298B1ECAD27100262B65 /* RegisterViewController.swift */,
@@ -416,6 +419,7 @@
 				30A168141EBFDB72002F5D52 /* SearchTextField.swift in Sources */,
 				303D52811EC428F400170F62 /* UserDefaults.swift in Sources */,
 				303D52771EC4281B00170F62 /* NearbyUser+CoreDataProperties.swift in Sources */,
+				9FC3B1D31ECCFC5A00814EB0 /* SideBarViewController.swift in Sources */,
 				303D52761EC4281B00170F62 /* NearbyUser+CoreDataClass.swift in Sources */,
 				307A298E1ECAD28900262B65 /* nameUpdateViewController.swift in Sources */,
 				3072DB3D1EC40BD5006A953C /* LifelineTableViewController.swift in Sources */,
