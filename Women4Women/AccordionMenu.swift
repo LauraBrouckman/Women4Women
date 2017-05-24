@@ -221,20 +221,57 @@ extension AccordionTableViewController {
         
         if !isParentCell {
             if indexPath.row == 1 {
-                cell = tableView.dequeueReusableCell(withIdentifier: timeChildCellIndentifier, for: indexPath)
+                if let c = tableView.dequeueReusableCell(withIdentifier: timeChildCellIndentifier, for: indexPath) as? TimeTableViewCell {
+                    c.callback = self.reloadTable
+                    return c
+                }
             } else if (indexPath.row == 2 && !firstCellExpanaded) || (indexPath.row == 3 && firstCellExpanaded) {
-                cell = tableView.dequeueReusableCell(withIdentifier: homeChildCellIdentifier, for: indexPath)
+                if let c = tableView.dequeueReusableCell(withIdentifier: homeChildCellIdentifier, for: indexPath) as? HomeAddressTableViewCell {
+                    c.callback = self.reloadTable
+                    return c
+                }
             } else {
                 cell = tableView.dequeueReusableCell(withIdentifier: contactChildCellIdentifier, for: indexPath)
             }
         }
         else {
             cell = tableView.dequeueReusableCell(withIdentifier: parentCellIdentifier, for: indexPath)
+            
             cell.textLabel!.text = self.dataSource[parent].title
-            cell.detailTextLabel!.text = self.dataSource[parent].subtitle
+            
+            //Setting the subtitle for the time cell
+            var timeToComeHome: String
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "hh:mm a"
+            if let time = UserDefaults.getHomeTime() {
+                timeToComeHome = dateFormatter.string(from: time)
+            } else {
+                let time = Date(timeIntervalSinceNow: TimeInterval(7200))
+                timeToComeHome = dateFormatter.string(from: time)
+            }
+            
+            
+            switch self.dataSource[parent].title {
+                case "Time":
+                    cell.detailTextLabel!.text = timeToComeHome
+            case "Home address":
+                cell.detailTextLabel!.text = UserDefaults.getHomeStreet() + ", " + UserDefaults.getHomeCity()
+            case "Emergency Contact":
+                cell.detailTextLabel!.text = UserDefaults.getEmergencyContactFirstName() + " " + UserDefaults.getEmergencyContactLastName()
+            default:
+                ""
+            }
+  
         }
         
         return cell
+    }
+    
+    func reloadTable() {
+        DispatchQueue.main.async{
+            print("RELOADING THE TABLE DATA!!")
+            self.tableView.reloadData()
+        }
     }
     
     // MARK: UITableViewDelegate
@@ -258,6 +295,6 @@ extension AccordionTableViewController {
     }
     
     override open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return !self.findParent(indexPath.row).isParentCell ? 74.0 : 64.0
+        return !self.findParent(indexPath.row).isParentCell ? 94.0 : 64.0
     }
 }

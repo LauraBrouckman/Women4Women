@@ -13,15 +13,41 @@ class AccordionMenuTableViewController: AccordionTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let item1 = Parent(state: .collapsed, childs: ["Set the time here"], title: "Time", subtitle: "12:00 am")
+        var timeToComeHome: String
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "hh:mm a"
+
+        if let time = UserDefaults.getHomeTime() {
+            timeToComeHome = dateFormatter.string(from: time)
+        } else {
+            let time = Date(timeIntervalSinceNow: TimeInterval(7200))
+            timeToComeHome = dateFormatter.string(from: time)
+        }
+        
+        let item1 = Parent(state: .collapsed, childs: ["Set the time here"], title: "Time", subtitle: timeToComeHome)
         let item2 = Parent(state: .collapsed, childs: ["553 Mayfield Avenue"], title: "Home address", subtitle: UserDefaults.getHomeStreet() + ", " + UserDefaults.getHomeCity())
         let item3 = Parent(state: .collapsed, childs: ["Bryan Powell"], title: "Emergency Contact", subtitle: UserDefaults.getEmergencyContactFirstName() + " " + UserDefaults.getEmergencyContactLastName())
         
         dataSource = [item1, item2, item3]
         numberOfCellsExpanded = .several
         total = dataSource.count
+        
+        //make custom view to go at the bottom of the table
+        let customView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
+        customView.backgroundColor = Colors.lightBlue
+        let button = UIButton(frame: CGRect(x: 50, y: 12, width: 100, height: 26))
+        button.setTitle("Plan Outing", for: .normal)
+        button.backgroundColor = UIColor.white
+        button.setTitleColor(Colors.lightBlue, for: .normal)
+        button.layer.cornerRadius = 6
+        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        customView.addSubview(button)
+        self.tableView.tableFooterView = customView
     }
     
+    func buttonAction(_ sender: UIButton!) {
+        performSegue(withIdentifier: "showLifelines", sender: nil)
+    }
     
 
 //    override func didReceiveMemoryWarning() {
@@ -70,14 +96,21 @@ class AccordionMenuTableViewController: AccordionTableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let id = segue.identifier {
+            print("Segue id: \(id)")
+            if id == "showLifelines" {
+                if let destinationVC = segue.destination as? ContainerViewController {
+                    print("Correct type of VC")
+                    destinationVC.lifeline = true
+                }
+            }
+        }
     }
-    */
+ 
 
 }

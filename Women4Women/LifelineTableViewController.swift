@@ -13,6 +13,9 @@ class LifelineTableViewController: CoreDataTableViewController {
 
     var managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    @IBAction func openSettings(_ sender: UIButton) {
+        self.slideMenuController()?.openLeft()
+    }
 
 
     override func viewDidLoad() {
@@ -27,7 +30,6 @@ class LifelineTableViewController: CoreDataTableViewController {
     }
     
     private func updateUI() {
-        print("UPDATE UI")
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "NearbyUser")
         request.sortDescriptors = [NSSortDescriptor(key: "first_name", ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))]
         fetchedResultsController = NSFetchedResultsController(
@@ -49,21 +51,27 @@ class LifelineTableViewController: CoreDataTableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("dequeueing cell for \(indexPath)")
-        let cell = tableView.dequeueReusableCell(withIdentifier: "lifelineCell", for: indexPath)
+        let c = tableView.dequeueReusableCell(withIdentifier: "lifelineCell", for: indexPath)
+        if let cell = c as? LifelineTableViewCell {
         
         if let user = fetchedResultsController?.object(at: indexPath) as? NearbyUser {
             var first_name: String?
             var last_name: String?
             var photo_filename: String?
+            var username: String?
             user.managedObjectContext?.performAndWait {                first_name = user.first_name
                 last_name = user.last_name
                 photo_filename = user.photo_filename
+                username = user.username
             }
-            cell.textLabel?.text = first_name! + " " + last_name!
+            cell.lifelineNameLabel.text = first_name! + " " + last_name!
+            cell.username = username!
+            //SET THE PROFILE PICTURE IMAGE HERE!
         }
-        
-        return cell
+            return cell
+
+        }
+        return c
     }
 
     /*
