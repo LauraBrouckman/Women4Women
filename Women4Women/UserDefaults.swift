@@ -106,12 +106,12 @@ class UserDefaults{
     }
     
     // Get and set the time that the user wants to be home by
-    static func setHomeTime(_ time: NSDate) {
+    static func setHomeTime(_ time: Date) {
         Foundation.UserDefaults.standard.setValue(time, forKey: timeToBeHome)
     }
     
-    static func getHomeTime() -> NSDate? {
-        if let time = Foundation.UserDefaults.standard.value(forKey: timeToBeHome) as? NSDate {
+    static func getHomeTime() -> Date? {
+        if let time = Foundation.UserDefaults.standard.value(forKey: timeToBeHome) as? Date {
             return time
         }
         return nil
@@ -293,12 +293,12 @@ class UserDefaults{
         return ""
     }
 
-    static func getAddressNameFromCoordinates(lat: Double, long: Double)
+    static func getAddressNameFromCoordinates(_ callback: (() -> Void)?)
     {
         let geoCoder = CLGeocoder()
-        let location = CLLocation(latitude: lat, longitude: long)
-        //let location = CLLocation(latitude: 37.427475 , longitude: -122.169719)
-        //CLLocation(latitude: _point1.coordinate.latitude, longitude: _point1.coordinate.longitude)
+        let (lat, lon) = UserDefaults.getHomeLocation()!
+        let location = CLLocation(latitude: lat, longitude: lon)
+
         geoCoder.reverseGeocodeLocation(location)
         {
             (placemarks, error) -> Void in
@@ -308,15 +308,15 @@ class UserDefaults{
             // Place details
             var placeMark: CLPlacemark!
             placeMark = placeArray?[0]
-            
-            // Location name
+                        // Location name
+            print(placeMark.addressDictionary)
             if let locationName = placeMark.addressDictionary?["Name"] as? NSString
             {
                 UserDefaults.setHomeLocationName(String(locationName))
             }
             
             // Street address
-            if let street = placeMark.addressDictionary?["Thoroughfare"] as? NSString
+            if let street = placeMark.addressDictionary?["Street"] as? NSString
             {
                 UserDefaults.setHomeStreet(String(street))
             }
@@ -338,6 +338,7 @@ class UserDefaults{
             {
                 UserDefaults.setHomeCountry(String(country))
             }
+            callback?()
         }
     }
     
