@@ -12,20 +12,23 @@ import JSQMessagesViewController
 import MobileCoreServices
 import AVKit
 
-class ConversationViewController: JSQMessagesViewController {
+class ConversationViewController: JSQMessagesViewController, FetchMessages {
     
     var recipientID = ""
     private var messages = [JSQMessage]()
     var conversationRef: FIRDatabaseReference?
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
     lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
-    private lazy var messageRef: FIRDatabaseReference = self.conversationRef!.child("messages")
-    private var newMessageRefHandle: FIRDatabaseHandle?
+    //private lazy var messageRef: FIRDatabaseReference = self.conversationRef!.child("messages")
+    //private var newMessageRefHandle: FIRDatabaseHandle?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.senderId = UserDefaults.getUsername()
         self.senderDisplayName = UserDefaults.getFirstName()
+        FIRDatabase.database().reference().child("users/"+UserDefaults.getUsername()+"/conversations/"+self.recipientID).observe(.value, with: { (snapshot) in
+            RemoteDatabase.getMessages(recipientID: self.recipientID)
+        })
     }
     
     private func setupOutgoingBubble() -> JSQMessagesBubbleImage {
@@ -73,6 +76,10 @@ class ConversationViewController: JSQMessagesViewController {
             cell.textView?.textColor = UIColor.black
         }
         return cell
+    }
+    
+    func messageDataReceived(messages: [JSQMessage]){
+        self.messages = messages
     }
     
     //override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

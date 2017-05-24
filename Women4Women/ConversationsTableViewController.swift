@@ -16,8 +16,8 @@ class ConversationsTableViewController: UIViewController, UITableViewDelegate, U
     @IBOutlet weak var myMessages: UITableView!
     private var conversations = [Conversation]()
     
-    private lazy var conversationRef: FIRDatabaseReference=FIRDatabase.database().reference().child("conversations")
-    private var conversationRefHandle: FIRDatabaseHandle?
+    //private lazy var conversationRef: FIRDatabaseReference=FIRDatabase.database().reference().child("conversations")
+    //private var conversationRefHandle: FIRDatabaseHandle?
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -45,6 +45,9 @@ class ConversationsTableViewController: UIViewController, UITableViewDelegate, U
         RemoteDatabase.delegate = self
         RemoteDatabase.getConversations()
         
+        FIRDatabase.database().reference().child("users/"+UserDefaults.getUsername()+"/conversations").observe(.value, with: { (snapshot) in
+            RemoteDatabase.getConversations()
+        })
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -56,6 +59,7 @@ class ConversationsTableViewController: UIViewController, UITableViewDelegate, U
         self.conversations = conversations
         myMessages.reloadData()
     }
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         senderDisplayName = conversations[indexPath.row].username
@@ -70,8 +74,6 @@ class ConversationsTableViewController: UIViewController, UITableViewDelegate, U
             }
         }
     }
-    
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

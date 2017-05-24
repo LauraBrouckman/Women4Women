@@ -9,13 +9,19 @@
 import Foundation
 import Firebase
 import FirebaseDatabase
+import JSQMessagesViewController
 
 protocol FetchData: class {
     func dataReceived(conversations: [Conversation])
 }
 
+protocol FetchMessages: class {
+    func messageDataReceived(messages: [JSQMessage])
+}
+
 class RemoteDatabase {
     static weak var delegate: FetchData?
+    static weak var m_delegate: FetchMessages?
     static let LAST_MESSAGE = "last_message"
     static fileprivate var usersRef = FIRDatabase.database().reference().child("users")
     static fileprivate var restauarantsRef = FIRDatabase.database().reference().child("restaurants")
@@ -91,6 +97,28 @@ class RemoteDatabase {
         
     }
     
+    static func getMessages(recipientID: String){
+        conversationsRef.child(recipientID).observeSingleEvent(of: FIRDataEventType.value){
+            (snapshot: FIRDataSnapshot) in
+            var messages = [JSQMessage]()
+            if let myMessages = snapshot.value as? NSDictionary {
+                for (key, value) in myMessages{
+                    if key as! String !=  self.LAST_MESSAGE{
+                        if let messageData = value as? NSDictionary{
+                            let id = messageData["sender_id"] as! String
+                            let name = messageData["sender_name"] as! String
+                            let t =  messageData["text"] as! String
+                            if let message = JSQMessage(senderId: id, displayName: name, text: t){
+                                messages.append(message)
+                            }
+                        }
+                    }
+                }
+            }
+            self.m_delegate?.messageDataReceived(messages: messages)
+        }
+    }
+    
     static func getConversations(){
         conversationsRef.observeSingleEvent(of: FIRDataEventType.value){
             (snapshot: FIRDataSnapshot) in
@@ -110,6 +138,8 @@ class RemoteDatabase {
             self.delegate?.dataReceived(conversations: conversations)
         }
     }
+    
+
     
     
     
