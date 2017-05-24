@@ -31,7 +31,8 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var city: UITextField!
     @IBOutlet weak var country: UITextField!
     @IBOutlet weak var zip: UITextField!
-
+    @IBOutlet weak var state: UITextField!
+    
     @IBAction func registerUser(_ sender: UIButton) {
         let userFirstName = firstName.text!
         let userLastName = lastName.text!
@@ -65,11 +66,12 @@ class RegisterViewController: UIViewController {
         let userCity = city.text!;
         let userCountry = country.text!;
         let userZip = zip.text!;
-        self.addAddress(streetText: userStreet, cityText:userCity, countryText:userCountry, zipText: userZip);
+        let userState = state.text!
+        self.addAddress(streetText: userStreet, cityText:userCity, countryText:userCountry, zipText: userZip, stateText: userState);
     
     }
     
-    func addAddress(streetText:String, cityText:String, countryText:String, zipText:String){
+    func addAddress(streetText:String, cityText:String, countryText:String, zipText:String, stateText:String){
         
         //Store Data
         let ad = streetText+", "+cityText+", "+zipText+", "+countryText;
@@ -78,6 +80,7 @@ class RegisterViewController: UIViewController {
         UserDefaults.setHomeStreet(streetText);
         UserDefaults.setHomeCountry(countryText);
         UserDefaults.setHomeZip(zipText);
+        UserDefaults.setHomeState(stateText);
 
         
         //Display alert message with confirmation

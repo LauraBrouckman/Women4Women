@@ -15,6 +15,7 @@ class homeAddressUpdateViewController: UIViewController {
     @IBOutlet weak var zipText: UITextField!
     @IBOutlet weak var countryText: UITextField!
     @IBOutlet weak var updateButton: UIButton!
+    @IBOutlet weak var stateText: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,7 @@ class homeAddressUpdateViewController: UIViewController {
         cityText.text = UserDefaults.getHomeCity()
         zipText.text = UserDefaults.getHomeZip()
         countryText.text = UserDefaults.getHomeCountry()
+        stateText.text = UserDefaults.getHomeState()
    
         let ad = UserDefaults.getHomeStreet()+", "+UserDefaults.getHomeCity() + ", " + UserDefaults.getHomeZip() + ", " + UserDefaults.getHomeCountry()
         
@@ -41,6 +43,7 @@ class homeAddressUpdateViewController: UIViewController {
         UserDefaults.setHomeStreet(streetText.text!)
         UserDefaults.setHomeCountry(countryText.text!)
         UserDefaults.setHomeZip(zipText.text!)
+        UserDefaults.setHomeState(stateText.text!)
         
     }
 

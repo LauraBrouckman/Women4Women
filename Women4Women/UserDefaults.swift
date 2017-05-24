@@ -41,7 +41,7 @@ class UserDefaults{
     static fileprivate var iceFirstNameKey             =   "iceFirstNameKey"
     static fileprivate var iceLastNameKey             =   "iceLastNameKey"
     static fileprivate var icePhoneNumberKey             =   "icePhoneNumberKey"
-
+    static fileprivate var homeStateKey             =   "homeStateKey"
     
     
     //Get and set if user logged in 
@@ -234,7 +234,6 @@ class UserDefaults{
         return ""
     }
     
-    //Get and set home street
     static func setHomeStreet(_ street: String) {
         Foundation.UserDefaults.standard.setValue(street, forKey: homeStreetKey)
     }
@@ -242,6 +241,18 @@ class UserDefaults{
     static func getHomeStreet() -> String {
         if let street = Foundation.UserDefaults.standard.value(forKey: homeStreetKey) as? String {
             return street
+        }
+        return ""
+    }
+    
+    //Get and set home street
+    static func setHomeState(_ state: String) {
+        Foundation.UserDefaults.standard.setValue(state, forKey: homeStateKey)
+    }
+    
+    static func getHomeState() -> String {
+        if let state = Foundation.UserDefaults.standard.value(forKey: homeStateKey) as? String {
+            return state
         }
         return ""
     }
