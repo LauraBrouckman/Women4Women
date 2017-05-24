@@ -206,8 +206,8 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
             let circle = MKCircle(center: center, radius: 115)
             self.mapView.add(circle)
 
-   //     }
-   // }
+        }
+    }
     
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
