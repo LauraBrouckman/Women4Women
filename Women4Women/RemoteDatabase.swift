@@ -10,12 +10,16 @@ import Foundation
 import Firebase
 import FirebaseDatabase
 
-
+protocol FetchData: class {
+    func dataReceived(conversations: [Conversation])
+}
 
 class RemoteDatabase {
-    
+    static weak var delegate: FetchData?
+    static let LAST_MESSAGE = "last_message"
     static fileprivate var usersRef = FIRDatabase.database().reference().child("users")
     static fileprivate var restauarantsRef = FIRDatabase.database().reference().child("restaurants")
+    static fileprivate var conversationsRef = usersRef.child(UserDefaults.getUsername()).child("conversations")
     
     /*
      TODO:
@@ -29,7 +33,7 @@ class RemoteDatabase {
     //Add a new user to the database, if you don't know their location, just put 0 and 0 for lat and lon
     static func addNewUser(_ username: String, password: String, firstName: String, lastName: String, locationLat: Double, locationLon: Double)
     {
-        let newUser = ["password": password, "first_name": firstName, "last_name": lastName, "location_lat": locationLat, "location_lon": locationLon, "photo_filename": ""] as [String : Any]
+        let newUser = ["password": password, "first_name": firstName, "last_name": lastName, "location_lat": locationLat, "location_lon": locationLon, "photo_filename": "", "conversations":[ 0 : ""]] as [String : Any]
         let newUserRef = usersRef.child(username)
         newUserRef.setValue(newUser)
         uploadFileToDatabase(forUser: username)
@@ -73,6 +77,39 @@ class RemoteDatabase {
         uploadFileToDatabase(forUser: username)
     }
     
+    static func sendMessage(to recipientID: String, messageToSend: Dictionary<String, Any>){
+        // must update your side of the database.
+        conversationsRef.child(recipientID).childByAutoId().setValue(messageToSend)
+        
+        let sender = messageToSend["sender_id"] as! String
+        usersRef.child(recipientID).child("conversations").child(sender).childByAutoId().setValue(messageToSend)
+        // must update the person you just messaged.
+        //let sender = messageToSend["sender_id"] as! String
+        //if let recipientConversationsRef = usersRef.child(recipientID).child("conversations").child(sender){
+        //    recipientConversationsRef.childByAutoID().setValue(messageToSend)
+        //}
+        
+    }
+    
+    static func getConversations(){
+        conversationsRef.observeSingleEvent(of: FIRDataEventType.value){
+            (snapshot: FIRDataSnapshot) in
+            var conversations = [Conversation]()
+            if let myConversations = snapshot.value as? NSDictionary {
+                for (key, value) in myConversations{
+                    
+                    if let conversationData = value as? NSDictionary{
+                        if let lastmessage=conversationData[self.LAST_MESSAGE] as? String{
+                            let username = key as! String
+                            let newConversation = Conversation(username: username, lastmessage: lastmessage)
+                            conversations.append(newConversation)
+                        }
+                    }
+                }
+            }
+            self.delegate?.dataReceived(conversations: conversations)
+        }
+    }
     
     
     
