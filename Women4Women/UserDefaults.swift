@@ -38,10 +38,7 @@ class UserDefaults{
     static fileprivate var homeZipKey             =   "homeZipKey"
     static fileprivate var homeCountryKey             =   "homeCountryKey"
     static fileprivate var homeLocationNameKey             =   "homeLocationNameKey"
-    static fileprivate var iceFirstNameKey             =   "iceFirstNameKey"
-    static fileprivate var iceLastNameKey             =   "iceLastNameKey"
-    static fileprivate var icePhoneNumberKey             =   "icePhoneNumberKey"
-
+    static fileprivate var nightOutLocationKey = "nightOutLocationKey"
     
     
     //Get and set if user logged in 
@@ -130,6 +127,17 @@ class UserDefaults{
             }
         }
         return nil
+    }
+    
+    static func setNightOutLocationName(name: String) {
+        Foundation.UserDefaults.standard.setValue(name, forKey: nightOutLocationKey)
+    }
+    
+    static func getNightOutLocationName() -> String {
+        if let name = Foundation.UserDefaults.standard.value(forKey: nightOutLocationKey) as? String {
+            return name
+        }
+        return ""
     }
     
     //Get and set the home location (set by passing in the latitude and longitude coordinates as Doubles)
@@ -298,7 +306,6 @@ class UserDefaults{
             var placeMark: CLPlacemark!
             placeMark = placeArray?[0]
                         // Location name
-            print(placeMark.addressDictionary)
             if let locationName = placeMark.addressDictionary?["Name"] as? NSString
             {
                 UserDefaults.setHomeLocationName(String(locationName))

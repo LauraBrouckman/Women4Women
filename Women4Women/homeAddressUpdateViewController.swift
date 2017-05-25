@@ -8,7 +8,7 @@
 
 import UIKit
 
-class homeAddressUpdateViewController: UIViewController {
+class homeAddressUpdateViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var streetText: UITextField!
     @IBOutlet weak var cityText: UITextField!
@@ -22,12 +22,28 @@ class homeAddressUpdateViewController: UIViewController {
         cityText.text = UserDefaults.getHomeCity()
         zipText.text = UserDefaults.getHomeZip()
         countryText.text = UserDefaults.getHomeCountry()
-   
+        
+        streetText.delegate = self
+        cityText.delegate = self
+        zipText.delegate = self
+        countryText.delegate = self
+        
+        streetText.returnKeyType = UIReturnKeyType.done
+        cityText.returnKeyType = UIReturnKeyType.done
+        zipText.returnKeyType = UIReturnKeyType.done
+        countryText.returnKeyType = UIReturnKeyType.done
+        
         let ad = UserDefaults.getHomeStreet()+", "+UserDefaults.getHomeCity() + ", " + UserDefaults.getHomeZip() + ", " + UserDefaults.getHomeCountry()
         
         UserDefaults.getCoordinatesFromAddressName(address: ad,title: "")
     }
 
+    
+    func textFieldShouldReturn(_ textField: UITextField!) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

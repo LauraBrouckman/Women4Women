@@ -34,10 +34,8 @@ class CoreDataTableViewController: UITableViewController, NSFetchedResultsContro
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if let sections = fetchedResultsController?.sections, sections.count > 0 {
-            print("Number of rows is: \(sections[section].numberOfObjects)")
             return sections[section].numberOfObjects
         } else {
-            print("No rows...")
             return 0
         }
     }

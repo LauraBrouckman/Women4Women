@@ -50,7 +50,6 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
         locationManager.requestAlwaysAuthorization()
         
         if(CLLocationManager.locationServicesEnabled()) {
-            print("WILL START UPDATING LOCATION!!")
             locationManager.startUpdatingLocation()
         }
         
@@ -160,7 +159,8 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
                 let coordinate = (placemarks[0].location?.coordinate)!
                 // Update your location remotely and in local storage
                 UserDefaults.setNightOutLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-                RemoteDatabase.updateUserLocation(forUser: "current_user", locationLat: coordinate.latitude, locationLon: coordinate.longitude)
+                UserDefaults.setNightOutLocationName(name: ad!)
+                RemoteDatabase.updateUserLocation(forUser: UserDefaults.getUsername(), locationLat: coordinate.latitude, locationLon: coordinate.longitude)
                 self.centerMap(coordinate, title: title)
             } else {
                 print("error \($1)")
@@ -177,7 +177,7 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
         let mapCenter = CLLocationCoordinate2D(latitude: center.latitude - 0.0015, longitude: center.longitude)
         let newRegion = MKCoordinateRegion(center: mapCenter, span: MKCoordinateSpanMake(spanX, spanY))
         mapView.setRegion(newRegion, animated: true)
-   //     addAnnotations(title: title, center: center)
+        addAnnotations(title: title, center: center)
         
         openPopupMenu()
     }
@@ -240,7 +240,6 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
     func addAnnotation(toPoint coordinate: CLLocationCoordinate2D, withTitle title: String, withSubtitle subtitle: String?, selectPin: Bool) {
         let annotation = UserAnnotation(name: title, center: coordinate, sub: subtitle)
         mapView.addAnnotation(annotation)
-        print("PUTTING ANNOTATION ONTO MAP")
         if selectPin {
             mapView.selectAnnotation(annotation, animated: true)
         }

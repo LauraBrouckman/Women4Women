@@ -269,7 +269,6 @@ extension AccordionTableViewController {
     
     func reloadTable() {
         DispatchQueue.main.async{
-            print("RELOADING THE TABLE DATA!!")
             self.tableView.reloadData()
         }
     }
