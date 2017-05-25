@@ -24,8 +24,6 @@ class ConversationViewController: JSQMessagesViewController, FetchMessages {
         super.viewDidLoad()
         self.senderId = UserDefaults.getUsername()
         self.senderDisplayName = UserDefaults.getFirstName()
-        print(recipientID)
-        print(self.recipientID)
         RemoteDatabase.m_delegate = self
         RemoteDatabase.getMessages(recipientID: self.recipientID)
         FIRDatabase.database().reference().child("users/"+UserDefaults.getUsername()+"/conversations/"+self.recipientID).observe(.value, with: { (snapshot) in

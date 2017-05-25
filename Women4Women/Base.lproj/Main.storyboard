@@ -961,7 +961,7 @@
             </objects>
             <point key="canvasLocation" x="2880.8000000000002" y="-1266.1169415292354"/>
         </scene>
-        <!--Chat-->
+        <!--Conversation View Controller-->
         <scene sceneID="6ro-j3-2IG">
             <objects>
                 <viewController id="z5A-iC-3sj" customClass="ConversationViewController" customModule="Women4Women" customModuleProvider="target" sceneMemberID="viewController">
@@ -972,15 +972,20 @@
                     <view key="view" contentMode="scaleToFill" id="hTR-eq-zKW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EBH-rx-LyH">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Title" id="QKv-y2-d7q"/>
+                                </items>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Chat" id="0YP-te-iKX">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="UmM-0K-LM4">
-                            <connections>
-                                <action selector="backBtn:" destination="z5A-iC-3sj" id="ZsY-Aw-9Cs"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <connections>
+                        <outlet property="navBar" destination="EBH-rx-LyH" id="O5f-Jg-iez"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BQg-9S-y4z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
