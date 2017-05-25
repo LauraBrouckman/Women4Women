@@ -9,7 +9,11 @@
 import Foundation
 import FirebaseDatabase
 import FirebaseStorage
-
+extension Date {
+    var ticks: UInt64 {
+        return UInt64((self.timeIntervalSince1970 + 62_135_596_800) * 10_000_000)
+    }
+}
 class MessagesHandler {
     private static let _instance = MessagesHandler()
     private init(){}
@@ -19,7 +23,8 @@ class MessagesHandler {
     }
     
     func sendMessage(senderID: String, senderName: String, text: String, recipientID: String){
-        let data: Dictionary<String, Any> = ["sender_id": senderID, "sender_name": senderName, "text": text]
+        let date_string = String(Date().ticks)
+        let data: Dictionary<String, Any> = ["sender_id": senderID, "sender_name": senderName,"text": text, "date": date_string]
         RemoteDatabase.sendMessage(to: recipientID, messageToSend: data)
     }
 }

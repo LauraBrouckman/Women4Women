@@ -14,21 +14,29 @@ import AVKit
 
 class ConversationViewController: JSQMessagesViewController, FetchMessages {
     
-    var recipientID = ""
+    var recipientID: String!
     private var messages = [JSQMessage]()
     var conversationRef: FIRDatabaseReference?
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
     lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
-    //private lazy var messageRef: FIRDatabaseReference = self.conversationRef!.child("messages")
-    //private var newMessageRefHandle: FIRDatabaseHandle?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.senderId = UserDefaults.getUsername()
         self.senderDisplayName = UserDefaults.getFirstName()
+        print(recipientID)
+        print(self.recipientID)
+        RemoteDatabase.m_delegate = self
+        RemoteDatabase.getMessages(recipientID: self.recipientID)
         FIRDatabase.database().reference().child("users/"+UserDefaults.getUsername()+"/conversations/"+self.recipientID).observe(.value, with: { (snapshot) in
             RemoteDatabase.getMessages(recipientID: self.recipientID)
         })
+        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        FIRDatabase.database().reference().child("users/"+UserDefaults.getUsername()+"/conversations/"+self.recipientID).removeAllObservers()
     }
     
     private func setupOutgoingBubble() -> JSQMessagesBubbleImage {
@@ -80,6 +88,7 @@ class ConversationViewController: JSQMessagesViewController, FetchMessages {
     
     func messageDataReceived(messages: [JSQMessage]){
         self.messages = messages
+        self.collectionView?.reloadData()
     }
     
     //override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

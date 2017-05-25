@@ -35,6 +35,8 @@ class ConversationsTableViewController: UIViewController, UITableViewDelegate, U
         return conversations.count
     }
     
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CELL_ID, for: indexPath)
         cell.textLabel?.text = conversations[indexPath.row].username
@@ -44,7 +46,6 @@ class ConversationsTableViewController: UIViewController, UITableViewDelegate, U
         super.viewDidLoad()
         RemoteDatabase.delegate = self
         RemoteDatabase.getConversations()
-        
         FIRDatabase.database().reference().child("users/"+UserDefaults.getUsername()+"/conversations").observe(.value, with: { (snapshot) in
             RemoteDatabase.getConversations()
         })
@@ -53,6 +54,11 @@ class ConversationsTableViewController: UIViewController, UITableViewDelegate, U
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        FIRDatabase.database().reference().child("users/"+UserDefaults.getUsername()+"/conversations").removeAllObservers()
     }
     
     func dataReceived(conversations: [Conversation]) {
@@ -66,11 +72,12 @@ class ConversationsTableViewController: UIViewController, UITableViewDelegate, U
         performSegue(withIdentifier: CHAT_SEGUE, sender: self)
     }
     
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == CHAT_SEGUE{
-            let vc = segue.destination as! ConversationViewController
-            if let person = senderDisplayName{
-                vc.recipientID = person
+            if let indexPath = self.myMessages.indexPathForSelectedRow {
+                let controller = segue.destination as! ConversationViewController
+                controller.recipientID = conversations[indexPath.row].username
             }
         }
     }

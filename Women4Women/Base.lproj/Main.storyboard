@@ -168,7 +168,7 @@
             <objects>
                 <tableViewController id="8kq-H9-Qbv" customClass="AccordionMenuTableViewController" customModule="Women4Women" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="5nq-aT-Dde">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -940,6 +940,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="z5A-iC-3sj" kind="show" identifier="ChatSegue" id="zAm-71-7DG"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -952,7 +955,6 @@
                     </view>
                     <connections>
                         <outlet property="myMessages" destination="ZX5-oH-mNZ" id="run-iB-nCQ"/>
-                        <segue destination="674-Td-fd4" kind="show" identifier="ChatSegue" id="n2t-yM-2ds"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IBU-Fj-nYW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1317,24 +1319,6 @@
             </objects>
             <point key="canvasLocation" x="-654" y="-436"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Pj0-9i-JFS">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="674-Td-fd4" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Syi-cJ-1cP">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="z5A-iC-3sj" kind="relationship" relationship="rootViewController" id="iSO-IJ-dVk"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OKu-UX-Iju" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3604" y="-1266"/>
-        </scene>
     </scenes>
     <resources>
         <image name="Menu-50.png" width="50" height="50"/>
@@ -1347,9 +1331,9 @@
         <image name="white-close.png" width="300" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="v2d-1a-Y1t"/>
         <segue reference="au4-hx-aq5"/>
         <segue reference="HeI-w9-52l"/>
         <segue reference="FTF-6x-cY5"/>
+        <segue reference="v2d-1a-Y1t"/>
     </inferredMetricsTieBreakers>
 </document>
