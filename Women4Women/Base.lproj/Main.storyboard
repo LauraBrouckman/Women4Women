@@ -184,7 +184,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xdn-QL-ifK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="518" y="53"/>
+            <point key="canvasLocation" x="1150" y="82"/>
         </scene>
         <!--Side Bar View Controller-->
         <scene sceneID="yOn-RA-DLG">
@@ -1496,10 +1496,9 @@
         <image name="white-close.png" width="300" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="v2d-1a-Y1t"/>
-        <segue reference="au4-hx-aq5"/>
-        <segue reference="cuy-Cb-NQq"/>
+        <segue reference="g7b-uX-ZAe"/>
         <segue reference="Sz2-yB-MJJ"/>
+        <segue reference="cuy-Cb-NQq"/>
         <segue reference="oxb-gu-exH"/>
     </inferredMetricsTieBreakers>
 </document>

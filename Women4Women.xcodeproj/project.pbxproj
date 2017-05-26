@@ -50,7 +50,7 @@
 		3093D8CD1EBEAF040035732D /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3093D8CC1EBEAF040035732D /* ContainerViewController.swift */; };
 		30A168141EBFDB72002F5D52 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A168131EBFDB72002F5D52 /* SearchTextField.swift */; };
 		30A1F9101ED5094A00965B19 /* LifelineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A1F90F1ED5094A00965B19 /* LifelineTableViewCell.swift */; };
-		4E21FC021ECA7BCF00822B47 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		4E21FC021ECA7BCF00822B47 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
 		9F1B51EB1EC2CDF900560294 /* button_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F1B51EA1EC2CDF900560294 /* button_close.png */; };
 		9F1B51EF1EC3C68E00560294 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B51EE1EC3C68E00560294 /* Colors.swift */; };
 		9F1B51F31EC3FCCF00560294 /* next-icon2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F1B51F21EC3FCCF00560294 /* next-icon2.png */; };
@@ -322,7 +322,7 @@
 				3020AEA11EBE887E0075D849 /* Search-50.png in Resources */,
 				307D44331EBE910F007929D3 /* down_icon.png in Resources */,
 				3020AEA51EBE8D9F0075D849 /* message_icon.png in Resources */,
-				4E21FC021ECA7BCF00822B47 /* (null) in Resources */,
+				4E21FC021ECA7BCF00822B47 /* BuildFile in Resources */,
 				9F1B51EB1EC2CDF900560294 /* button_close.png in Resources */,
 				9F1B51F91EC4093B00560294 /* next-icon3.png in Resources */,
 				9F1B51FD1EC4109500560294 /* white-close.png in Resources */,
@@ -370,7 +370,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		E7CBA6FEAAF58D41B6D3F278 /* [CP] Copy Pods Resources */ = {
