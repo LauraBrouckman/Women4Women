@@ -63,6 +63,9 @@
 		9F1B51FD1EC4109500560294 /* white-close.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F1B51FC1EC4109500560294 /* white-close.png */; };
 		9F1B51FF1EC415B400560294 /* EmergencyContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B51FE1EC415B400560294 /* EmergencyContactViewController.swift */; };
 		9FC3B1D31ECCFC5A00814EB0 /* SideBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC3B1D21ECCFC5A00814EB0 /* SideBarViewController.swift */; };
+		9FED40BD1ED89E0B0074CD20 /* ICEContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FED40BC1ED89E0B0074CD20 /* ICEContactViewController.swift */; };
+		9FED40C31ED89FE30074CD20 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FED40C21ED89FE30074CD20 /* Contacts.framework */; };
+		9FED40C51ED89FE90074CD20 /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FED40C41ED89FE90074CD20 /* ContactsUI.framework */; };
 		AFC0BC2AA855429AFEA2C4C2 /* Pods_Women4Women.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC67C331923F50E1084FC9D /* Pods_Women4Women.framework */; };
 /* End PBXBuildFile section */
 
@@ -128,6 +131,11 @@
 		9F1B51FC1EC4109500560294 /* white-close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "white-close.png"; sourceTree = "<group>"; };
 		9F1B51FE1EC415B400560294 /* EmergencyContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmergencyContactViewController.swift; sourceTree = "<group>"; };
 		9FC3B1D21ECCFC5A00814EB0 /* SideBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarViewController.swift; sourceTree = "<group>"; };
+		9FED40BC1ED89E0B0074CD20 /* ICEContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ICEContactViewController.swift; sourceTree = "<group>"; };
+		9FED40BE1ED89F7C0074CD20 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		9FED40C01ED89FA60074CD20 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		9FED40C21ED89FE30074CD20 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
+		9FED40C41ED89FE90074CD20 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
 		B315B48242589C96E63C32D0 /* Pods-Women4Women.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Women4Women.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Women4Women/Pods-Women4Women.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -136,6 +144,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FED40C51ED89FE90074CD20 /* ContactsUI.framework in Frameworks */,
+				9FED40C31ED89FE30074CD20 /* Contacts.framework in Frameworks */,
 				3093D8CB1EBEAD740035732D /* SlideMenuControllerSwift.framework in Frameworks */,
 				3020AE9F1EBE86430075D849 /* MapKit.framework in Frameworks */,
 				AFC0BC2AA855429AFEA2C4C2 /* Pods_Women4Women.framework in Frameworks */,
@@ -209,6 +219,7 @@
 				307A29941ECBA8F600262B65 /* UserAnnotation.swift */,
 				303D52801EC428F400170F62 /* UserDefaults.swift */,
 				307A29911ECAE0FD00262B65 /* Main.storyboard */,
+				9FED40BC1ED89E0B0074CD20 /* ICEContactViewController.swift */,
 				3020AE8D1EB7B8340075D849 /* LaunchScreen.storyboard */,
 				3020AE901EB7B8340075D849 /* Info.plist */,
 				307C901B1EC2C64F0020E535 /* GoogleService-Info.plist */,
@@ -381,7 +392,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		E7CBA6FEAAF58D41B6D3F278 /* [CP] Copy Pods Resources */ = {
@@ -414,6 +425,7 @@
 				307A298C1ECAD27100262B65 /* RegisterViewController.swift in Sources */,
 				307A298A1ECAD26600262B65 /* LoginViewController.swift in Sources */,
 				9F1B51EF1EC3C68E00560294 /* Colors.swift in Sources */,
+				9FED40BD1ED89E0B0074CD20 /* ICEContactViewController.swift in Sources */,
 				303D527F1EC428EE00170F62 /* TrackNearbyUsers.swift in Sources */,
 				307C90171EC161160020E535 /* AccordionMenu.swift in Sources */,
 				307C90181EC161160020E535 /* Parent.swift in Sources */,
