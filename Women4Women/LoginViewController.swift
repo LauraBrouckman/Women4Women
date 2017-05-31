@@ -30,8 +30,13 @@ class LoginViewController: UIViewController {
         let loginUsername = username.text;
         let loginPassword = password.text;
         
-        if loginPassword == nil {
+        if (loginPassword == nil || loginPassword! == "")  {
             displayAlertMessage(alertMessage: "Incorect password, please try again")
+            return
+        }
+        
+        if (loginUsername! == "")  {
+            displayAlertMessage(alertMessage: "Please enter a username")
             return
         }
         
