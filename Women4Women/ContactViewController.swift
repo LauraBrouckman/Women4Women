@@ -1,8 +1,8 @@
 //
-//  ICEContactViewController.swift
+//  ContactViewController.swift
 //  Women4Women
 //
-//  Created by Leslie Kurt on 5/26/17.
+//  Created by Leslie Kurt on 5/30/17.
 //  Copyright © 2017 cs194w. All rights reserved.
 //
 
@@ -10,33 +10,10 @@ import UIKit
 import Contacts
 import ContactsUI
 
-class ICEContactViewController: UIViewController, CNContactPickerDelegate {
+class ContactViewController: UIViewController, CNContactPickerDelegate  {
 
-    @IBOutlet weak var firstNameLabel: UILabel!
-    @IBOutlet weak var lastNameLabel: UILabel!
-    @IBOutlet weak var phoneNumberLabel: UILabel!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override open func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        firstNameLabel.text = UserDefaults.getEmergencyContactFirstName()
-        lastNameLabel.text = UserDefaults.getEmergencyContactLastName()
-        phoneNumberLabel.text = UserDefaults.getEmergencyContactPhoneNumber()
-    }
-
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    @IBAction func updateContact(_ sender: Any) {
-        
         let entityType = CNEntityType.contacts
         let authStatus = CNContactStore.authorizationStatus(for: entityType)
         
@@ -54,16 +31,19 @@ class ICEContactViewController: UIViewController, CNContactPickerDelegate {
         else if authStatus == CNAuthorizationStatus.authorized {
             self.openContacts()
         }
-        
-        
     }
     
+
+    override open func viewWillAppear(_ animated: Bool){
+  
+    }
+
     func openContacts()
     {
         let contactPicker = CNContactPickerViewController.init()
         contactPicker.delegate = self
         self.present(contactPicker, animated: true, completion: nil)
-
+        
     }
     
     func contactPickerDidCancel(_ picker: CNContactPickerViewController)
@@ -72,23 +52,31 @@ class ICEContactViewController: UIViewController, CNContactPickerDelegate {
             
         }
     }
-
+    
     func contactPicker(_ picker:CNContactPickerViewController, didSelect contact: CNContact)
     {
-
+        
         UserDefaults.setEmergencyContactLastName(contact.familyName)
         UserDefaults.setEmergencyContactFirstName(contact.givenName)
         var phoneNo = "Not Avaliable"
-
+        
         
         let phoneString = ((((contact.phoneNumbers[0] as AnyObject).value(forKey: "labelValuePair") as AnyObject).value(forKey: "value") as AnyObject).value(forKey: "stringValue"))
         phoneNo = phoneString! as! String
         
         UserDefaults.setEmergencyContactPhoneNumber(phoneNo)
+        //performSegue(withIdentifier: "showPlanNightICE", sender: nil)
+        
     }
 
+
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
-    
+
     /*
     // MARK: - Navigation
 
