@@ -30,8 +30,13 @@ class LoginViewController: UIViewController {
         let loginUsername = username.text;
         let loginPassword = password.text;
         
-        if loginPassword == nil {
+        if (loginPassword == nil || loginPassword! == "")  {
             displayAlertMessage(alertMessage: "Incorect password, please try again")
+            return
+        }
+        
+        if (loginUsername! == "")  {
+            displayAlertMessage(alertMessage: "Please enter a username")
             return
         }
         
@@ -50,6 +55,7 @@ class LoginViewController: UIViewController {
                             UserDefaults.setAppOpenedBefore(true)
                             UserDefaults.setUsername(username)
                             UserDefaults.setFirstName(snapshotDict["first_name"] as! String)
+                            UserDefaults.setLastName(snapshotDict["last_name"] as! String)
                             UserDefaults.setProfilePicFilename(snapshotDict["photo_filename"] as! String)
                             let containerViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Container")
                             UIApplication.topViewController()?.present(containerViewController, animated: true, completion: nil)                        }

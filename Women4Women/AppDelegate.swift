@@ -41,6 +41,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         })
         
+        // Check if the time for the outing has passed, and if it has, then remove the night out info
+        let currentTime = Date()
+        if let outingEndTime = UserDefaults.getHomeTime() {
+            if outingEndTime > currentTime {
+                UserDefaults.setNightOccuring(false)
+                UserDefaults.setNightOutLocationName(name: "")
+                UserDefaults.setNightOutLocation(latitude: 0, longitude: 0)
+            }
+        }
+        
         return true
     }
 
