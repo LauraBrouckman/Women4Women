@@ -1401,8 +1401,8 @@
         <image name="white-close.png" width="300" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SDK-u9-uE1"/>
-        <segue reference="qw7-W2-wIE"/>
+        <segue reference="dge-64-VnY"/>
         <segue reference="HeI-w9-52l"/>
+        <segue reference="qw7-W2-wIE"/>
     </inferredMetricsTieBreakers>
 </document>
