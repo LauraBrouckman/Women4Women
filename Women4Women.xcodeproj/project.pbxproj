@@ -73,7 +73,6 @@
 		9FED40C71EDE76130074CD20 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FED40C61EDE76130074CD20 /* ContactViewController.swift */; };
 		AFC0BC2AA855429AFEA2C4C2 /* Pods_Women4Women.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC67C331923F50E1084FC9D /* Pods_Women4Women.framework */; };
 		FFD9CC3F0125D0621F51792C /* Pods_Women4Women.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493492482635CACD8DD4C087 /* Pods_Women4Women.framework */; };
->>>>>>> e6345af238ba489dc879657ef6075b7f510abff2
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -229,11 +228,8 @@
 				303D527E1EC428EE00170F62 /* TrackNearbyUsers.swift */,
 				20ECF8FB1ECCBD1E00373964 /* UserAnnotation.swift */,
 				303D52801EC428F400170F62 /* UserDefaults.swift */,
-<<<<<<< HEAD
 				307A29911ECAE0FD00262B65 /* Main.storyboard */,
 				9FED40C61EDE76130074CD20 /* ContactViewController.swift */,
-=======
->>>>>>> e6345af238ba489dc879657ef6075b7f510abff2
 				3020AE8D1EB7B8340075D849 /* LaunchScreen.storyboard */,
 				3020AE901EB7B8340075D849 /* Info.plist */,
 				307C901B1EC2C64F0020E535 /* GoogleService-Info.plist */,
@@ -369,10 +365,7 @@
 				3020AEA11EBE887E0075D849 /* Search-50.png in Resources */,
 				307D44331EBE910F007929D3 /* down_icon.png in Resources */,
 				3020AEA51EBE8D9F0075D849 /* message_icon.png in Resources */,
-<<<<<<< HEAD
 				4E21FC021ECA7BCF00822B47 /* (null) in Resources */,
-=======
->>>>>>> e6345af238ba489dc879657ef6075b7f510abff2
 				9F1B51EB1EC2CDF900560294 /* button_close.png in Resources */,
 				9F1B51F91EC4093B00560294 /* next-icon3.png in Resources */,
 				9F1B51FD1EC4109500560294 /* white-close.png in Resources */,
