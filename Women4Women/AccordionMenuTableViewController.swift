@@ -52,8 +52,9 @@ class AccordionMenuTableViewController: AccordionTableViewController {
     
     //Plan button pressed
     func buttonAction(_ sender: UIButton!) {
-        //SMSMessaging.sendSMSText()
-        beginRegionMonitoring()
+        SMSMessaging.sendSMSText()
+       // beginRegionMonitoring()
+        UserDefaults.setNightOccuring(true)
         performSegue(withIdentifier: "showLifelines", sender: nil)
     }
     

@@ -39,12 +39,26 @@ class UserDefaults{
     static fileprivate var homeCountryKey             =   "homeCountryKey"
     static fileprivate var homeLocationNameKey             =   "homeLocationNameKey"
     static fileprivate var nightOutLocationKey = "nightOutLocationKey"
+    static fileprivate var iceFirstNameKey             =   "iceFirstNameKey"
+    static fileprivate var iceLastNameKey             =   "iceLastNameKey"
+    static fileprivate var icePhoneNumberKey             =   "icePhoneNumberKey"
+    static fileprivate var homeStateKey             =   "homeStateKey"
+    static fileprivate var nightOccuringKey         = "nightOccuringKey"
+    //Get and set if user logged in
     
+    static func setNightOccuring(_ on: Bool) {
+        Foundation.UserDefaults.standard.set(on, forKey: nightOccuringKey)
+    }
     
-    //Get and set if user logged in 
+    static func getNightOccuring() -> Bool {
+        if let value = Foundation.UserDefaults.standard.value(forKey: nightOccuringKey) as? Bool {
+            return value
+        }
+        return false
+    }
     
     static func setLoggedIn(on: Bool){
-        Foundation.UserDefaults.standard.set(true, forKey: loggedIn);
+        Foundation.UserDefaults.standard.set(on, forKey: loggedIn);
     }
     
     static func getLoggedIn() -> Bool{

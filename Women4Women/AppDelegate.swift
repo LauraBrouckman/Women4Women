@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Listen for other users to change their latitudes and longitudes, if they do update list of nearby users accordingly
         FIRDatabase.database().reference().child("users").observe(.value, with: { (snapshot) in
             if let userDict = snapshot.value as? [String : AnyObject] {
-                TrackUsers.updateNearbyUserList(users: userDict)
+                TrackUsers.updateNearbyUserList(users: userDict, callback: nil)
             }
             else {
             }

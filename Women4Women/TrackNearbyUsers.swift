@@ -10,12 +10,11 @@ import Foundation
 import CoreData
 import Firebase
 
-
 class TrackUsers {
     static let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     static var distanceThreshold: Double = 0.0018 //how far apart max two users can be in degrees
     
-    static func updateNearbyUserList(users: [String: AnyObject]) {
+    static func updateNearbyUserList(users: [String: AnyObject], callback: (() -> Void)?) {
         
         // Really should get the users location from local storage
         let (myLatitude, myLongitude) = UserDefaults.getNightOutLocation() ?? (37.422692, -122.168603)        
@@ -36,6 +35,7 @@ class TrackUsers {
             let distance = sqrt(pow(userLatitude - myLatitude, 2.0) + pow(userLongitude - myLongitude, 2.0))
 
             if distance <= distanceThreshold {
+                print("Found nearby users \(username)")
                 let newUser: [String: Any] = [
                     "username": username,
                     "longitude": userLongitude,
@@ -49,12 +49,13 @@ class TrackUsers {
                 //Add user to list of nearby users
             }
         }        
-        
+        print("NEARBY USERS: \(nearbyUsers)")
         // Add the nearby users to the list in CoreData
         self.managedObjectContext.perform {
             NearbyUser.setNearbyUsers(nearbyUsers: nearbyUsers, inManagedObjectContext: self.managedObjectContext)
             do {
                 try managedObjectContext.save()
+                callback?()
                 
             } catch let error {
                 print(error)
@@ -63,5 +64,17 @@ class TrackUsers {
     
     }
 
+    
+    static func updateNearbyUserList(_ callback: (() -> Void)?){
+        FIRDatabase.database().reference().child("users").observeSingleEvent(of: .value, with: {(snapshot) in
+            if snapshot.value is NSNull {
+                return
+            } else {
+                updateNearbyUserList(users: snapshot.value as! [String : AnyObject], callback: callback)
+            }
+        })
+        
+        
+    }
 
 }
