@@ -28,7 +28,7 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
         return _locationManager
     }()
     
-
+    let userPin = UIImage(named: "user pin")
     let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var searchTextField: SearchTextField!
@@ -54,7 +54,6 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
         locationManager.requestAlwaysAuthorization()
         
         if(CLLocationManager.locationServicesEnabled()) {
-            print("WILL START UPDATING LOCATION!!")
             locationManager.startUpdatingLocation()
         }
         
@@ -149,11 +148,16 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
     // Locate the given address on the map, and center the MapView around that location
     // Show a pin with restaurant info and nearby user's locations
     // When this happens, it will also bring up the bottom toolbar to set time/contact/etc.
+    
+    var centerTitle: String?
+    var mapCenter: CLLocationCoordinate2D?
+    
     func locateOnMap(address: String?, title: String?) {
         var ad = address
         if address == nil {
             //error no address
             ad = title
+            centerTitle = title
         }
         //Remove all the old annotations
         mapView.removeAnnotations(mapView.annotations)
@@ -162,10 +166,12 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
         geocoder.geocodeAddressString(ad!) {
             if let placemarks = $0 {
                 let coordinate = (placemarks[0].location?.coordinate)!
+                self.mapCenter = coordinate
                 // Update your location remotely and in local storage
                 UserDefaults.setNightOutLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-                RemoteDatabase.updateUserLocation(forUser: "current_user", locationLat: coordinate.latitude, locationLon: coordinate.longitude)
-                self.centerMap(coordinate, title: title)
+                UserDefaults.setNightOutLocationName(name: ad!)
+                RemoteDatabase.updateUserLocation(forUser: UserDefaults.getUsername(), locationLat: coordinate.latitude, locationLon: coordinate.longitude)
+                TrackUsers.updateNearbyUserList(self.centerMap)
             } else {
                 print("error \($1)")
             }
@@ -175,10 +181,12 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
     
     var numLifelines: Int = 0
     //center the map around given coordinates and drop a pin on the coordinates
-    func centerMap(_ center:CLLocationCoordinate2D, title: String?){
-        let spanX = 0.007
-        let spanY = 0.007
-        let mapCenter = CLLocationCoordinate2D(latitude: center.latitude, longitude: center.longitude + 0.02)
+    func centerMap(){
+        let center = self.mapCenter!
+        let title = self.centerTitle
+        let spanX = 0.005
+        let spanY = 0.005
+        let mapCenter = CLLocationCoordinate2D(latitude: center.latitude - 0.0015, longitude: center.longitude)
         let newRegion = MKCoordinateRegion(center: mapCenter, span: MKCoordinateSpanMake(spanX, spanY))
         mapView.setRegion(newRegion, animated: true)
         addAnnotations(title: title, center: center)
@@ -191,7 +199,6 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
         self.managedObjectContext.perform {
             let results = NearbyUser.getAllNearbyUsers(inManagedObjectContext: self.managedObjectContext)
             self.numLifelines = (results?.count)!
-            print("Updating number of lifelines to \(self.numLifelines)")
             for result in results! {
                 self.addAnnotation(
                     toPoint: CLLocationCoordinate2D(latitude: result.latitude, longitude: result.longitude),
@@ -200,32 +207,41 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
                     selectPin: false
                 )
             }
-            self.addAnnotation(toPoint: center, withTitle: (title ?? "Unknown"), withSubtitle: String(self.numLifelines) + " lifelines", selectPin: true)
-            let circle = MKCircle(center: center, radius: 100)
+            //Add in the annotation for the location
+            let locationAnnotation = MKPointAnnotation()
+            locationAnnotation.coordinate = center
+            locationAnnotation.title = (title ?? "Unknown")
+            locationAnnotation.subtitle = String(self.numLifelines) + " lifelines"
+            self.mapView.addAnnotation(locationAnnotation)
+            self.mapView.selectAnnotation(locationAnnotation, animated: true)
+            //Add a circle that goes around the annotation
+            let circle = MKCircle(center: center, radius: 115)
             self.mapView.add(circle)
 
         }
     }
     
-    // Customize what the user pins look like 
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        var view : MKPinAnnotationView
-        guard let annotation = annotation as? UserAnnotation else {return nil}
-        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: annotation.identifier) as? MKPinAnnotationView {
-            view = dequeuedView
-        }else {
-            view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: annotation.identifier)
-        }
-        view.pinTintColor = UIColor.cyan
-        return view
-    }
     
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if let annotation = annotation as? UserAnnotation {
+            if let view = mapView.dequeueReusableAnnotationView(withIdentifier: annotation.identifier){
+                return view
+            } else{
+                let view = MKAnnotationView(annotation: annotation, reuseIdentifier: annotation.identifier)
+                view.image = userPin
+                view.isEnabled = true
+                view.canShowCallout = true
+                view.leftCalloutAccessoryView = UIImageView(image: userPin)
+                return view
+            }
+        }
+        return nil
+    }
     
     // Style the circle overlay that marks the nearby region to the restaurant
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-      
         let circleRenderer = MKCircleRenderer(overlay: overlay)
-        circleRenderer.fillColor = UIColor.black.withAlphaComponent(0.2)
+        circleRenderer.fillColor = UIColor.black.withAlphaComponent(0.1)
         circleRenderer.strokeColor = UIColor.black
         circleRenderer.lineWidth = 1
         return circleRenderer

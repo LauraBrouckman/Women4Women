@@ -27,6 +27,11 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
     
+    @IBOutlet weak var street: UITextField!
+    @IBOutlet weak var city: UITextField!
+    @IBOutlet weak var country: UITextField!
+    @IBOutlet weak var zip: UITextField!
+    @IBOutlet weak var state: UITextField!
     
     @IBAction func registerUser(_ sender: UIButton) {
         let userFirstName = firstName.text!
@@ -55,17 +60,28 @@ class RegisterViewController: UIViewController {
             }
         }
     }
-
-    func createUser(username: String, firstName: String, lastName: String, password: String) {
-        //Store Data
-        UserDefaults.setFirstName(firstName)
-        UserDefaults.setLastName(lastName)
-        UserDefaults.setPassword(password)
-        UserDefaults.setUsername(username)
-        UserDefaults.setLoggedIn(on: true)
-        UserDefaults.setAppOpenedBefore(true)
-        RemoteDatabase.addNewUser(username, password: password, firstName: firstName, lastName: lastName, locationLat: 0.0, locationLon: 0.0)
+    
+    @IBAction func joinButton(_ sender: UIButton) {
+        let userStreet = street.text!;
+        let userCity = city.text!;
+        let userCountry = country.text!;
+        let userZip = zip.text!;
+        let userState = state.text!
+        self.addAddress(streetText: userStreet, cityText:userCity, countryText:userCountry, zipText: userZip, stateText: userState);
+    
+    }
+    
+    func addAddress(streetText:String, cityText:String, countryText:String, zipText:String, stateText:String){
         
+        //Store Data
+        let ad = streetText+", "+cityText+", "+zipText+", "+countryText;
+        UserDefaults.getCoordinatesFromAddressName(address: ad,title: "");
+        UserDefaults.setHomeCity(cityText);
+        UserDefaults.setHomeStreet(streetText);
+        UserDefaults.setHomeCountry(countryText);
+        UserDefaults.setHomeZip(zipText);
+        UserDefaults.setHomeState(stateText);
+
         
         //Display alert message with confirmation
         let successAlert = UIAlertController(title:"Congratulations!", message:"Registration is Successful! Welcome to W4W!", preferredStyle: UIAlertControllerStyle.alert)
@@ -78,6 +94,20 @@ class RegisterViewController: UIViewController {
         
         successAlert.addAction(yayAction)
         UIApplication.topViewController()?.present(successAlert, animated: true, completion: nil)
+    }
+    
+    func createUser(username: String, firstName: String, lastName: String, password: String) {
+        //Store Data
+        UserDefaults.setFirstName(firstName)
+        UserDefaults.setLastName(lastName)
+        UserDefaults.setPassword(password)
+        UserDefaults.setUsername(username)
+        UserDefaults.setLoggedIn(on: true)
+        UserDefaults.setAppOpenedBefore(true)
+        RemoteDatabase.addNewUser(username, password: password, firstName: firstName, lastName: lastName, locationLat: 0.0, locationLon: 0.0)
+        
+        self.performSegue(withIdentifier: "registerAddress", sender: self);
+        
 
     }
     

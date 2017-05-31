@@ -38,8 +38,8 @@ class SettingsViewController: UIViewController {
         super.viewWillAppear(animated)
         firstNameLabel.text = UserDefaults.getFirstName()
         lastNameLabel.text = UserDefaults.getLastName()
-        homeAddressLabel.text = UserDefaults.getHomeLocationName()
-        homeAddressLabel2.text = UserDefaults.getHomeStreet() + ", " + UserDefaults.getHomeCity()
+        homeAddressLabel.text = UserDefaults.getHomeStreet()
+        homeAddressLabel2.text = UserDefaults.getHomeCity()
     }
 
     

@@ -8,19 +8,59 @@
 
 import UIKit
 
-class homeAddressUpdateViewController: UIViewController {
+class homeAddressUpdateViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var streetText: UITextField!
+    @IBOutlet weak var cityText: UITextField!
+    @IBOutlet weak var zipText: UITextField!
+    @IBOutlet weak var countryText: UITextField!
+    @IBOutlet weak var updateButton: UIButton!
+    @IBOutlet weak var stateText: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        streetText.text = UserDefaults.getHomeStreet()
+        cityText.text = UserDefaults.getHomeCity()
+        zipText.text = UserDefaults.getHomeZip()
+        countryText.text = UserDefaults.getHomeCountry()
+        
+        streetText.delegate = self
+        cityText.delegate = self
+        zipText.delegate = self
+        countryText.delegate = self
+        
+        streetText.returnKeyType = UIReturnKeyType.done
+        cityText.returnKeyType = UIReturnKeyType.done
+        zipText.returnKeyType = UIReturnKeyType.done
+        countryText.returnKeyType = UIReturnKeyType.done
+        
+        let ad = UserDefaults.getHomeStreet()+", "+UserDefaults.getHomeCity() + ", " + UserDefaults.getHomeZip() + ", " + UserDefaults.getHomeCountry()
+        
+        UserDefaults.getCoordinatesFromAddressName(address: ad,title: "")
     }
 
+    
+    func textFieldShouldReturn(_ textField: UITextField!) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func updateAddress(_ sender: Any) {
+        let ad = streetText.text!+", "+cityText.text!+", "+zipText.text!+", "+countryText.text!
+        
+        UserDefaults.getCoordinatesFromAddressName(address: ad,title: "")
+        UserDefaults.setHomeCity(cityText.text!)
+        UserDefaults.setHomeStreet(streetText.text!)
+        UserDefaults.setHomeCountry(countryText.text!)
+        UserDefaults.setHomeZip(zipText.text!)
+        UserDefaults.setHomeState(stateText.text!)
+        
+    }
 
     /*
     // MARK: - Navigation

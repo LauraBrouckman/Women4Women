@@ -38,16 +38,27 @@ class UserDefaults{
     static fileprivate var homeZipKey             =   "homeZipKey"
     static fileprivate var homeCountryKey             =   "homeCountryKey"
     static fileprivate var homeLocationNameKey             =   "homeLocationNameKey"
+    static fileprivate var nightOutLocationKey = "nightOutLocationKey"
     static fileprivate var iceFirstNameKey             =   "iceFirstNameKey"
     static fileprivate var iceLastNameKey             =   "iceLastNameKey"
     static fileprivate var icePhoneNumberKey             =   "icePhoneNumberKey"
-
+    static fileprivate var homeStateKey             =   "homeStateKey"
+    static fileprivate var nightOccuringKey         = "nightOccuringKey"
+    //Get and set if user logged in
     
+    static func setNightOccuring(_ on: Bool) {
+        Foundation.UserDefaults.standard.set(on, forKey: nightOccuringKey)
+    }
     
-    //Get and set if user logged in 
+    static func getNightOccuring() -> Bool {
+        if let value = Foundation.UserDefaults.standard.value(forKey: nightOccuringKey) as? Bool {
+            return value
+        }
+        return false
+    }
     
     static func setLoggedIn(on: Bool){
-        Foundation.UserDefaults.standard.set(true, forKey: loggedIn);
+        Foundation.UserDefaults.standard.set(on, forKey: loggedIn);
     }
     
     static func getLoggedIn() -> Bool{
@@ -106,12 +117,12 @@ class UserDefaults{
     }
     
     // Get and set the time that the user wants to be home by
-    static func setHomeTime(_ time: NSDate) {
+    static func setHomeTime(_ time: Date) {
         Foundation.UserDefaults.standard.setValue(time, forKey: timeToBeHome)
     }
     
-    static func getHomeTime() -> NSDate? {
-        if let time = Foundation.UserDefaults.standard.value(forKey: timeToBeHome) as? NSDate {
+    static func getHomeTime() -> Date? {
+        if let time = Foundation.UserDefaults.standard.value(forKey: timeToBeHome) as? Date {
             return time
         }
         return nil
@@ -132,11 +143,23 @@ class UserDefaults{
         return nil
     }
     
+    static func setNightOutLocationName(name: String) {
+        Foundation.UserDefaults.standard.setValue(name, forKey: nightOutLocationKey)
+    }
+    
+    static func getNightOutLocationName() -> String {
+        if let name = Foundation.UserDefaults.standard.value(forKey: nightOutLocationKey) as? String {
+            return name
+        }
+        return ""
+    }
+    
     //Get and set the home location (set by passing in the latitude and longitude coordinates as Doubles)
     // Google how to convert address to lat/lon if needed
     static func setHomeLocation(latitude: Double, longitude: Double) {
         Foundation.UserDefaults.standard.setValue(latitude, forKey: homeLocationLatKey)
         Foundation.UserDefaults.standard.setValue(longitude, forKey: homeLocationLonKEy)
+        //UserDefaults.getAddressNameFromCoordinates(lat: latitude, long: longitude)
     }
     
     static func getHomeLocation() -> (Double, Double)? {
@@ -233,7 +256,6 @@ class UserDefaults{
         return ""
     }
     
-    //Get and set home street
     static func setHomeStreet(_ street: String) {
         Foundation.UserDefaults.standard.setValue(street, forKey: homeStreetKey)
     }
@@ -241,6 +263,18 @@ class UserDefaults{
     static func getHomeStreet() -> String {
         if let street = Foundation.UserDefaults.standard.value(forKey: homeStreetKey) as? String {
             return street
+        }
+        return ""
+    }
+    
+    //Get and set home street
+    static func setHomeState(_ state: String) {
+        Foundation.UserDefaults.standard.setValue(state, forKey: homeStateKey)
+    }
+    
+    static func getHomeState() -> String {
+        if let state = Foundation.UserDefaults.standard.value(forKey: homeStateKey) as? String {
+            return state
         }
         return ""
     }
@@ -271,7 +305,7 @@ class UserDefaults{
     
     //Get and set home location name
     static func setHomeLocationName(_ locationName: String) {
-        Foundation.UserDefaults.standard.setValue(locationName, forKey: homeLocationNameKey )
+        Foundation.UserDefaults.standard.setValue(locationName, forKey: homeLocationNameKey)
     }
     
     static func getHomeLocationName() -> String {
@@ -281,11 +315,12 @@ class UserDefaults{
         return ""
     }
 
-    static func getAddressNameFromCoordinates()
+    static func getAddressNameFromCoordinates(_ callback: (() -> Void)?)
     {
         let geoCoder = CLGeocoder()
-        let location = CLLocation(latitude: 37.427475 , longitude: -122.169719)
-        //CLLocation(latitude: _point1.coordinate.latitude, longitude: _point1.coordinate.longitude)
+        let (lat, lon) = UserDefaults.getHomeLocation()!
+        let location = CLLocation(latitude: lat, longitude: lon)
+
         geoCoder.reverseGeocodeLocation(location)
         {
             (placemarks, error) -> Void in
@@ -295,15 +330,14 @@ class UserDefaults{
             // Place details
             var placeMark: CLPlacemark!
             placeMark = placeArray?[0]
-            
-            // Location name
+                        // Location name
             if let locationName = placeMark.addressDictionary?["Name"] as? NSString
             {
                 UserDefaults.setHomeLocationName(String(locationName))
             }
             
             // Street address
-            if let street = placeMark.addressDictionary?["Thoroughfare"] as? NSString
+            if let street = placeMark.addressDictionary?["Street"] as? NSString
             {
                 UserDefaults.setHomeStreet(String(street))
             }
@@ -325,7 +359,27 @@ class UserDefaults{
             {
                 UserDefaults.setHomeCountry(String(country))
             }
+            callback?()
         }
     }
+    
+    static func getCoordinatesFromAddressName(address: String?, title: String?){
+        var ad = address
+        if address == nil {
+            //error no address
+            ad = title
+        }
 
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(ad!) {
+            if let placemarks = $0 {
+                let coordinate = (placemarks[0].location?.coordinate)!
+                UserDefaults.setHomeLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+                
+            } else {
+                print("error \($1)")
+            }
+        }
+    }
+    
 }

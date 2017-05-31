@@ -11,9 +11,24 @@ import SlideMenuControllerSwift
 
 class ContainerViewController: SlideMenuController {
 
+    var lifeline = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        if UserDefaults.getAppOpenedBefore() {
+        updateControllers()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateControllers()
+    }
+
+    func updateControllers() {
+        if lifeline || UserDefaults.getNightOccuring() {
+            self.leftViewController = self.storyboard?.instantiateViewController(withIdentifier: "Left")
+            self.mainViewController = self.storyboard?.instantiateViewController(withIdentifier: "Lifeline")
+        }
+        else if UserDefaults.getAppOpenedBefore() {
             self.leftViewController = self.storyboard?.instantiateViewController(withIdentifier: "Left")
             self.mainViewController = self.storyboard?.instantiateViewController(withIdentifier: "Main")
         }
@@ -21,18 +36,7 @@ class ContainerViewController: SlideMenuController {
             self.mainViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
         }
     }
-
-
     
-//    override func awakeFromNib() {
-//        if let controller = self.storyboard?.instantiateViewController(withIdentifier: "Main") {
-//            self.mainViewController = controller
-//        }
-//        if let controller = self.storyboard?.instantiateViewController(withIdentifier: "Left") {
-//            self.leftViewController = controller
-//        }
-//        super.awakeFromNib()
-//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

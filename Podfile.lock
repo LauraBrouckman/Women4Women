@@ -2,6 +2,7 @@ PODS:
   - Firebase/Auth (3.17.0):
     - Firebase/Core
     - FirebaseAuth (= 3.1.1)
+  - Alamofire (4.4.0)
   - Firebase/Core (3.17.0):
     - FirebaseAnalytics (= 3.9.0)
     - FirebaseCore (= 3.6.0)
@@ -46,6 +47,7 @@ PODS:
 
 DEPENDENCIES:
   - Firebase/Auth
+  - Alamofire
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
@@ -53,6 +55,7 @@ DEPENDENCIES:
   - SlideMenuControllerSwift
 
 SPEC CHECKSUMS:
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   Firebase: 4b66b5b59c43edac745b87f0c87e42cdd0279c13
   FirebaseAnalytics: e5fe8486efc01bec33f6bf82e2fa9fce4b124052
   FirebaseAuth: cc8a1824170adbd351edb7f994490a3fb5c18be6
@@ -68,4 +71,5 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: fb31073f013d521a4695dd57c34fedd5332f296b
 
-COCOAPODS: 1.2.1
+
+COCOAPODS: 1.2.0.rc.1
