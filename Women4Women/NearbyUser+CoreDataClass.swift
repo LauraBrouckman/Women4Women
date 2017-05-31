@@ -21,7 +21,6 @@ public class NearbyUser: NSManagedObject {
     class func getAllNearbyUsers(inManagedObjectContext context: NSManagedObjectContext) -> [NearbyUser]? {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "NearbyUser")
         if let result = (try? context.fetch(request)) as? [NearbyUser] {
-            print("GETTING USERS \(result)")
             return result
         }
         return nil

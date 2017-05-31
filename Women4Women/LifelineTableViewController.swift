@@ -60,7 +60,6 @@ class LifelineTableViewController: CoreDataTableViewController {
         if let cell = c as? LifelineTableViewCell {
         
         if let user = fetchedResultsController?.object(at: indexPath) as? NearbyUser {
-            print("CELL \(user.username)")
             var first_name: String?
             var last_name: String?
             var photo_filename: String?

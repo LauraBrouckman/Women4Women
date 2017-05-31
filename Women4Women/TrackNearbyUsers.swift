@@ -35,7 +35,6 @@ class TrackUsers {
             let distance = sqrt(pow(userLatitude - myLatitude, 2.0) + pow(userLongitude - myLongitude, 2.0))
 
             if distance <= distanceThreshold {
-                print("Found nearby users \(username)")
                 let newUser: [String: Any] = [
                     "username": username,
                     "longitude": userLongitude,
@@ -49,7 +48,6 @@ class TrackUsers {
                 //Add user to list of nearby users
             }
         }        
-        print("NEARBY USERS: \(nearbyUsers)")
         // Add the nearby users to the list in CoreData
         self.managedObjectContext.perform {
             NearbyUser.setNearbyUsers(nearbyUsers: nearbyUsers, inManagedObjectContext: self.managedObjectContext)
