@@ -104,10 +104,12 @@ class RemoteDatabase {
     }
     
     static func getMessages(recipientID: String){
+        print("here")
         let messagesRef = usersRef.child(UserDefaults.getUsername()).child("conversations").child(recipientID)
         messagesRef.observeSingleEvent(of: FIRDataEventType.value){
             (snapshot: FIRDataSnapshot) in
             var messages = [JSQMessage]()
+            print("made messages")
             if let myMessages = snapshot.value as? NSDictionary {
                 for (key, value) in myMessages{
                     if key as! String !=  self.LAST_MESSAGE{
@@ -117,6 +119,8 @@ class RemoteDatabase {
                             let t =  messageData["text"] as! String
                             let d_str = messageData["date"] as! String
                             let d = Date(ticks: UInt64(NSString(string: d_str).doubleValue))
+                            print(id)
+                            print(name)
                             if let m = JSQMessage(senderId: id, senderDisplayName: name, date: d, text: t){
                                 messages.append(m)
                             }
@@ -125,6 +129,7 @@ class RemoteDatabase {
                 }
             }
             messages = messages.sorted(by: { $0.date < $1.date })
+            print("returning from getMessages")
             self.m_delegate?.messageDataReceived(messages: messages)
         }
     }
@@ -141,7 +146,6 @@ class RemoteDatabase {
                         
                         if let lastmessage=conversationData[self.LAST_MESSAGE] as? String{
                             let username = key as! String
-                            print("here: "+username)
                             let newConversation = Conversation(username: username, lastmessage: lastmessage)
                             conversations.append(newConversation)
                         }

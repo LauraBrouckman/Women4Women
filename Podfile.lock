@@ -1,8 +1,8 @@
 PODS:
+  - Alamofire (4.4.0)
   - Firebase/Auth (3.17.0):
     - Firebase/Core
     - FirebaseAuth (= 3.1.1)
-  - Alamofire (4.4.0)
   - Firebase/Core (3.17.0):
     - FirebaseAnalytics (= 3.9.0)
     - FirebaseCore (= 3.6.0)
@@ -46,8 +46,8 @@ PODS:
   - SlideMenuControllerSwift (3.0.1)
 
 DEPENDENCIES:
-  - Firebase/Auth
   - Alamofire
+  - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
@@ -69,7 +69,6 @@ SPEC CHECKSUMS:
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   SlideMenuControllerSwift: 9a163b16d54afab734add42858cba7ef7c307755
 
-PODFILE CHECKSUM: fb31073f013d521a4695dd57c34fedd5332f296b
+PODFILE CHECKSUM: f08c41cb925cd62a755186ce8213febaf74bbb4b
 
-
-COCOAPODS: 1.2.0.rc.1
+COCOAPODS: 1.2.1

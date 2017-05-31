@@ -8,10 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		2002ACF71ECFB534006BC10B /* MessagesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2002ACF61ECFB534006BC10B /* MessagesHandler.swift */; };
+		201BEDBE1EDE6E150086C0ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 201BEDBD1EDE6E150086C0ED /* Main.storyboard */; };
 		20B0522D1ECF91DF006A31E8 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B0522C1ECF91DF006A31E8 /* Conversation.swift */; };
 		20B0522F1ECFA47B006A31E8 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B0522E1ECFA47B006A31E8 /* ConversationViewController.swift */; };
+		20D654EE1EDE68170002C3EA /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20ECF8FB1ECCBD1E00373964 /* UserAnnotation.swift */; };
 		20ECF8F61ECCB70200373964 /* ConversationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20ECF8F51ECCB70200373964 /* ConversationsTableViewController.swift */; };
-		20ECF8FC1ECCBD1E00373964 /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20ECF8FB1ECCBD1E00373964 /* UserAnnotation.swift */; };
 		3020AE821EB7B8340075D849 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3020AE811EB7B8340075D849 /* AppDelegate.swift */; };
 		3020AE8A1EB7B8340075D849 /* Women4Women.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3020AE881EB7B8340075D849 /* Women4Women.xcdatamodeld */; };
 		3020AE8C1EB7B8340075D849 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3020AE8B1EB7B8340075D849 /* Assets.xcassets */; };
@@ -42,8 +43,6 @@
 		307A298C1ECAD27100262B65 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307A298B1ECAD27100262B65 /* RegisterViewController.swift */; };
 		307A298E1ECAD28900262B65 /* nameUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307A298D1ECAD28900262B65 /* nameUpdateViewController.swift */; };
 		307A29901ECAD29400262B65 /* homeAddressUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307A298F1ECAD29400262B65 /* homeAddressUpdateViewController.swift */; };
-		307A29931ECAE0FD00262B65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 307A29911ECAE0FD00262B65 /* Main.storyboard */; };
-		307A29951ECBA8F600262B65 /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307A29941ECBA8F600262B65 /* UserAnnotation.swift */; };
 		307C90171EC161160020E535 /* AccordionMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307C90151EC161160020E535 /* AccordionMenu.swift */; };
 		307C90181EC161160020E535 /* Parent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307C90161EC161160020E535 /* Parent.swift */; };
 		307C901C1EC2C64F0020E535 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 307C901B1EC2C64F0020E535 /* GoogleService-Info.plist */; };
@@ -58,7 +57,6 @@
 		30E2F9531ED5302500694864 /* emergencyNameUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E2F9521ED5302500694864 /* emergencyNameUpdateViewController.swift */; };
 		30E2F9551ED5302B00694864 /* emergencyPhoneNumberUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E2F9541ED5302B00694864 /* emergencyPhoneNumberUpdateViewController.swift */; };
 		30E2F9591ED6556000694864 /* SMSMessaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E2F9581ED6556000694864 /* SMSMessaging.swift */; };
-		4E21FC021ECA7BCF00822B47 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		66DEDE4E6B29E3E8C098F401 /* Pods_Women4Women.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493492482635CACD8DD4C087 /* Pods_Women4Women.framework */; };
 		9F1B51EB1EC2CDF900560294 /* button_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F1B51EA1EC2CDF900560294 /* button_close.png */; };
 		9F1B51EF1EC3C68E00560294 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1B51EE1EC3C68E00560294 /* Colors.swift */; };
@@ -72,11 +70,11 @@
 		9FED40BD1ED89E0B0074CD20 /* ICEContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FED40BC1ED89E0B0074CD20 /* ICEContactViewController.swift */; };
 		9FED40C31ED89FE30074CD20 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FED40C21ED89FE30074CD20 /* Contacts.framework */; };
 		9FED40C51ED89FE90074CD20 /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FED40C41ED89FE90074CD20 /* ContactsUI.framework */; };
-		AFC0BC2AA855429AFEA2C4C2 /* Pods_Women4Women.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC67C331923F50E1084FC9D /* Pods_Women4Women.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2002ACF61ECFB534006BC10B /* MessagesHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesHandler.swift; sourceTree = "<group>"; };
+		201BEDBD1EDE6E150086C0ED /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		20B0522C1ECF91DF006A31E8 /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		20B0522E1ECFA47B006A31E8 /* ConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		20ECF8F51ECCB70200373964 /* ConversationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsTableViewController.swift; sourceTree = "<group>"; };
@@ -112,8 +110,6 @@
 		307A298B1ECAD27100262B65 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		307A298D1ECAD28900262B65 /* nameUpdateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = nameUpdateViewController.swift; sourceTree = "<group>"; };
 		307A298F1ECAD29400262B65 /* homeAddressUpdateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = homeAddressUpdateViewController.swift; sourceTree = "<group>"; };
-		307A29921ECAE0FD00262B65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		307A29941ECBA8F600262B65 /* UserAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAnnotation.swift; sourceTree = "<group>"; };
 		307C90151EC161160020E535 /* AccordionMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccordionMenu.swift; sourceTree = "<group>"; };
 		307C90161EC161160020E535 /* Parent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parent.swift; sourceTree = "<group>"; };
 		307C901B1EC2C64F0020E535 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -125,15 +121,14 @@
 		3093D8CC1EBEAF040035732D /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		30A1680F1EBFD30E002F5D52 /* SearchTextField.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SearchTextField.framework; path = "../../../Library/Developer/Xcode/DerivedData/Women4Women-dzixkfetucpsnyabfjaxwmjjhrve/Build/Products/Debug-iphonesimulator/SearchTextField/SearchTextField.framework"; sourceTree = "<group>"; };
 		30A168131EBFDB72002F5D52 /* SearchTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
-		33AC4CEB42AA912386DC9FEC /* Pods-Women4Women.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Women4Women.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Women4Women/Pods-Women4Women.debug.xcconfig"; sourceTree = "<group>"; };
-		493492482635CACD8DD4C087 /* Pods_Women4Women.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Women4Women.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		632518C8DA799114CF65CD46 /* Pods-Women4Women.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Women4Women.release.xcconfig"; path = "Pods/Target Support Files/Pods-Women4Women/Pods-Women4Women.release.xcconfig"; sourceTree = "<group>"; };
 		30A1F90F1ED5094A00965B19 /* LifelineTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifelineTableViewCell.swift; sourceTree = "<group>"; };
 		30E2F9521ED5302500694864 /* emergencyNameUpdateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = emergencyNameUpdateViewController.swift; sourceTree = "<group>"; };
 		30E2F9541ED5302B00694864 /* emergencyPhoneNumberUpdateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = emergencyPhoneNumberUpdateViewController.swift; sourceTree = "<group>"; };
 		30E2F9561ED5313E00694864 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		30E2F9581ED6556000694864 /* SMSMessaging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSMessaging.swift; sourceTree = "<group>"; };
-		6DC67C331923F50E1084FC9D /* Pods_Women4Women.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Women4Women.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		33AC4CEB42AA912386DC9FEC /* Pods-Women4Women.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Women4Women.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Women4Women/Pods-Women4Women.debug.xcconfig"; sourceTree = "<group>"; };
+		493492482635CACD8DD4C087 /* Pods_Women4Women.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Women4Women.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		632518C8DA799114CF65CD46 /* Pods-Women4Women.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Women4Women.release.xcconfig"; path = "Pods/Target Support Files/Pods-Women4Women/Pods-Women4Women.release.xcconfig"; sourceTree = "<group>"; };
 		9F1B51EA1EC2CDF900560294 /* button_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_close.png; sourceTree = "<group>"; };
 		9F1B51EC1EC3BFA800560294 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9F1B51EE1EC3C68E00560294 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -147,7 +142,6 @@
 		9FED40BC1ED89E0B0074CD20 /* ICEContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ICEContactViewController.swift; sourceTree = "<group>"; };
 		9FED40C21ED89FE30074CD20 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		9FED40C41ED89FE90074CD20 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
-		B315B48242589C96E63C32D0 /* Pods-Women4Women.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Women4Women.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Women4Women/Pods-Women4Women.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,7 +192,6 @@
 				20B0522C1ECF91DF006A31E8 /* Conversation.swift */,
 				20B0522E1ECFA47B006A31E8 /* ConversationViewController.swift */,
 				20ECF8F51ECCB70200373964 /* ConversationsTableViewController.swift */,
-				307D443A1EBE9384007929D3 /* EditNightViewController.swift */,
 				302DE04E1EDE592A00412099 /* EditNightTableViewController.swift */,
 				30692E261ED0DCA4007D9949 /* EmergencyContactTableViewCell.swift */,
 				9F1B51FE1EC415B400560294 /* EmergencyContactViewController.swift */,
@@ -221,12 +214,12 @@
 				30A168131EBFDB72002F5D52 /* SearchTextField.swift */,
 				9F1B51EC1EC3BFA800560294 /* SettingsViewController.swift */,
 				9FC3B1D21ECCFC5A00814EB0 /* SideBarViewController.swift */,
+				201BEDBD1EDE6E150086C0ED /* Main.storyboard */,
 				30E2F9581ED6556000694864 /* SMSMessaging.swift */,
 				306F5C811ECD590F00644FEB /* TimeTableViewCell.swift */,
 				303D527E1EC428EE00170F62 /* TrackNearbyUsers.swift */,
 				20ECF8FB1ECCBD1E00373964 /* UserAnnotation.swift */,
 				303D52801EC428F400170F62 /* UserDefaults.swift */,
-				307A29911ECAE0FD00262B65 /* Main.storyboard */,
 				3020AE8D1EB7B8340075D849 /* LaunchScreen.storyboard */,
 				3020AE901EB7B8340075D849 /* Info.plist */,
 				307C901B1EC2C64F0020E535 /* GoogleService-Info.plist */,
@@ -360,7 +353,6 @@
 				3020AEA11EBE887E0075D849 /* Search-50.png in Resources */,
 				307D44331EBE910F007929D3 /* down_icon.png in Resources */,
 				3020AEA51EBE8D9F0075D849 /* message_icon.png in Resources */,
-				4E21FC021ECA7BCF00822B47 /* (null) in Resources */,
 				9F1B51EB1EC2CDF900560294 /* button_close.png in Resources */,
 				9F1B51F91EC4093B00560294 /* next-icon3.png in Resources */,
 				9F1B51FD1EC4109500560294 /* white-close.png in Resources */,
@@ -372,8 +364,8 @@
 				3020AE991EB7BC480075D849 /* logo_white.png in Resources */,
 				307C901C1EC2C64F0020E535 /* GoogleService-Info.plist in Resources */,
 				9F1B51F31EC3FCCF00560294 /* next-icon2.png in Resources */,
+				201BEDBE1EDE6E150086C0ED /* Main.storyboard in Resources */,
 				9F1B51FB1EC4098900560294 /* back-arrow-icon2.png in Resources */,
-				307A29931ECAE0FD00262B65 /* Main.storyboard in Resources */,
 				3020AE9B1EBE834C0075D849 /* Menu-50.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -433,6 +425,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20D654EE1EDE68170002C3EA /* UserAnnotation.swift in Sources */,
 				306F5C821ECD590F00644FEB /* TimeTableViewCell.swift in Sources */,
 				30E2F9591ED6556000694864 /* SMSMessaging.swift in Sources */,
 				303D52821EC4291500170F62 /* SettingsViewController.swift in Sources */,
@@ -450,7 +443,6 @@
 				307A29901ECAD29400262B65 /* homeAddressUpdateViewController.swift in Sources */,
 				307D44391EBE935E007929D3 /* ContactsTableViewController.swift in Sources */,
 				307D443D1EBE93AC007929D3 /* LoginRegisterViewController.swift in Sources */,
-				307A29951ECBA8F600262B65 /* UserAnnotation.swift in Sources */,
 				30A1F9101ED5094A00965B19 /* LifelineTableViewCell.swift in Sources */,
 				3063AEE61EC1203800DEEB5B /* AccordionMenuTableViewController.swift in Sources */,
 				303D52791EC4289500170F62 /* CoreDataTableViewController.swift in Sources */,
@@ -485,14 +477,6 @@
 				3020AE8E1EB7B8340075D849 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		307A29911ECAE0FD00262B65 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				307A29921ECAE0FD00262B65 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -21,10 +21,12 @@ class ConversationViewController: JSQMessagesViewController, FetchMessages {
     lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
     
     override func viewDidLoad() {
+        print("viewdidload conversation")
         super.viewDidLoad()
         self.senderId = UserDefaults.getUsername()
         self.senderDisplayName = UserDefaults.getFirstName()
         RemoteDatabase.m_delegate = self
+        
         RemoteDatabase.getMessages(recipientID: self.recipientID)
         FIRDatabase.database().reference().child("users/"+UserDefaults.getUsername()+"/conversations/"+self.recipientID).observe(.value, with: { (snapshot) in
             RemoteDatabase.getMessages(recipientID: self.recipientID)
