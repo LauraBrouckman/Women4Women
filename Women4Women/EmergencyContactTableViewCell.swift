@@ -19,6 +19,7 @@ class EmergencyContactTableViewCell: UITableViewCell {
         editButton.layer.cornerRadius = 6
         editButton.backgroundColor = UIColor.white
         editButton.setTitleColor(UIColor.black, for: .normal)
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -26,5 +27,10 @@ class EmergencyContactTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+//    @IBAction func updateICE(_ sender: Any) {
+// 
+//    }
+    
 
 }

@@ -13,6 +13,10 @@ import CoreData
 
 class MainMapViewController: UIViewController, MKMapViewDelegate {
     
+    @IBAction func Messages(_ sender: Any) {
+        performSegue(withIdentifier: "Messages", sender: self)
+    }
+    
     lazy var locationManager: CLLocationManager = {
         var _locationManager = CLLocationManager()
         _locationManager.delegate = self

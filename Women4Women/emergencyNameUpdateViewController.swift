@@ -13,6 +13,7 @@ class emergencyNameUpdateViewController: UIViewController {
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var updateButton: UIButton!
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         firstNameTextField.text = UserDefaults.getEmergencyContactFirstName()

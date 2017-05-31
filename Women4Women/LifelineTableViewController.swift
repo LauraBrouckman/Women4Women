@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 class LifelineTableViewController: CoreDataTableViewController {
-
+    private let MESSAGES_SEGUE = "ConversationsTableSegue"
     var managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBAction func openSettings(_ sender: UIButton) {
@@ -54,6 +54,9 @@ class LifelineTableViewController: CoreDataTableViewController {
     // MARK: - Table view data source
 
 
+
+    //for some back button? write:
+    //dismiss(animated: true, completion: nil)
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let c = tableView.dequeueReusableCell(withIdentifier: "lifelineCell", for: indexPath)
