@@ -9,7 +9,9 @@
 import UIKit
 import MapKit
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    @IBOutlet weak var profilePic: UIImageView!
+    
     
     @IBOutlet weak var firstNameButton: UIButton!
     @IBOutlet weak var lastNameLabel: UILabel!
@@ -18,7 +20,41 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var homeAddressButton: UIButton!
     @IBOutlet weak var homeAddressLabel2: UILabel!
 
+//    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+//            let imageURL = info[UIImagePickerControllerReferenceURL] as NSURL
+//            let imageName = imageURL.path!.lastPathComponent
+//            let documentDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first as String
+//            let localPath = documentDirectory.stringByAppendingPathComponent(imageName)
+//        
+//            let image = info[UIImagePickerControllerOriginalImage] as UIImage
+//            let data = UIImagePNGRepresentation(image)
+//            data.writeToFile(localPath, atomically: true)
+//        
+//            let imageData = NSData(contentsOfFile: localPath)!
+//            let photoURL = NSURL(fileURLWithPath: localPath)
+//            let imageWithData = UIImage(data: imageData)!
+//        
+//            picker.dismissViewControllerAnimated(true, completion: nil)
+//        
+//    }
     
+    
+    @IBAction func selectProfilePhoto(_ sender: Any)
+    {
+        var myPickerControllor = UIImagePickerController()
+        myPickerControllor.delegate=self
+        myPickerControllor.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        
+        self.present(myPickerControllor, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
+    {
+        
+        profilePic.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+       
+        self.dismiss(animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

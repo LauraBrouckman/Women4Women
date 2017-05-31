@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -540,6 +540,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1mL-SL-FRb">
+                                <rect key="frame" x="30" y="268" width="138" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Upload Photo">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="selectProfilePhoto:" destination="drP-xk-Z0f" eventType="touchUpInside" id="jUJ-E7-55b"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -552,6 +562,7 @@
                         <outlet property="homeAddressLabel" destination="KcG-5H-HO1" id="MWo-Mh-EEX"/>
                         <outlet property="homeAddressLabel2" destination="yjL-wB-CZ3" id="K1S-iK-90z"/>
                         <outlet property="lastNameLabel" destination="z1F-VN-Hb0" id="tqL-CH-usB"/>
+                        <outlet property="profilePic" destination="doW-bE-25N" id="JSy-Y1-2Ug"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qfa-Wg-wae" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1507,9 +1518,8 @@
         <image name="white-close.png" width="300" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dge-64-VnY"/>
-        <segue reference="HeI-w9-52l"/>
         <segue reference="qw7-W2-wIE"/>
-        <segue reference="cuy-Cb-NQq"/>
+        <segue reference="HeI-w9-52l"/>
+        <segue reference="17n-F5-oLe"/>
     </inferredMetricsTieBreakers>
 </document>
