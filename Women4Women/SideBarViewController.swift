@@ -28,6 +28,7 @@ class SideBarViewController: UIViewController {
 
     @IBAction func logoutUser(_ sender: Any) {
         UserDefaults.setLoggedIn(on: false);
+        UserDefaults.setNightOccuring(false)
     }
     /*
     // MARK: - Navigation
