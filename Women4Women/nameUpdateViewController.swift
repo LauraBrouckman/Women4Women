@@ -29,8 +29,23 @@ class nameUpdateViewController: UIViewController {
     }
     
     @IBAction func updateName(_ sender: Any) {
+        if firstNameTextField.text == "" || lastNameTextField.text == "" {
+            displayAlertMessage(alertMessage: "You must fill in the fields for first and last name")
+        }
         UserDefaults.setFirstName(firstNameTextField.text!)
         UserDefaults.setLastName(lastNameTextField.text!)
+        RemoteDatabase.updateUserName(forUser: UserDefaults.getUsername(), firstName: firstNameTextField.text!, lastName: lastNameTextField.text!)
+    }
+    
+    func displayAlertMessage(alertMessage:String) {
+        
+        let myAlert = UIAlertController(title:"Notice", message:alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+        
+        let okAction = UIAlertAction(title:"Ok", style:UIAlertActionStyle.default, handler:nil)
+        
+        myAlert.addAction(okAction)
+        
+        UIApplication.topViewController()?.present(myAlert, animated: true, completion: nil)
     }
 
     /*

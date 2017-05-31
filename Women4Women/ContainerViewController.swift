@@ -24,6 +24,7 @@ class ContainerViewController: SlideMenuController {
     }
     
     func updateControllers() {
+    
         if UserDefaults.getAppOpenedBefore() && UserDefaults.getLoggedIn() {
             if lifeline || UserDefaults.getNightOccuring() {
                 self.leftViewController = self.storyboard?.instantiateViewController(withIdentifier: "Left")
@@ -32,6 +33,9 @@ class ContainerViewController: SlideMenuController {
             else {
                 self.leftViewController = self.storyboard?.instantiateViewController(withIdentifier: "Left")
                 self.mainViewController = self.storyboard?.instantiateViewController(withIdentifier: "Main")
+                if let mainVC = self.mainViewController as? MainMapViewController {
+                    mainVC.hidePopup = false
+                }
             }
         }
         else {

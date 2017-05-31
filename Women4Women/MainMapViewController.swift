@@ -17,6 +17,8 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
         performSegue(withIdentifier: "Messages", sender: self)
     }
     
+    var hidePopup: Bool = true
+    
     lazy var locationManager: CLLocationManager = {
         var _locationManager = CLLocationManager()
         _locationManager.delegate = self
@@ -39,14 +41,11 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var popupMenuHeight: NSLayoutConstraint!
     
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configueSearchTextField()
         searchCompleter.delegate = self
         setUpMap()
-
     }
     
     //Set up the map to center around the user's current location
@@ -63,7 +62,7 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
         mapView.isScrollEnabled = true
         mapView.userTrackingMode = .follow
         
-        popupMenu.isHidden = true
+        popupMenu.isHidden = hidePopup
     }
     
     
@@ -154,10 +153,10 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
     
     func locateOnMap(address: String?, title: String?) {
         var ad = address
+        centerTitle = title
         if address == nil {
             //error no address
             ad = title
-            centerTitle = title
         }
         //Remove all the old annotations
         mapView.removeAnnotations(mapView.annotations)
@@ -222,6 +221,7 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
     }
     
     
+    // Create the view for the annotation
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as? UserAnnotation {
             if let view = mapView.dequeueReusableAnnotationView(withIdentifier: annotation.identifier){

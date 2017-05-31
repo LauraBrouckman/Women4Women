@@ -27,8 +27,21 @@ class SideBarViewController: UIViewController {
     
 
     @IBAction func logoutUser(_ sender: Any) {
-        UserDefaults.setLoggedIn(on: false);
-        UserDefaults.setNightOccuring(false)
+        
+        let logoutAlert = UIAlertController(title: "Logout", message: "Are you sure you want to logout?", preferredStyle: UIAlertControllerStyle.alert)
+        
+        logoutAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+            UserDefaults.setLoggedIn(on: false);
+            UserDefaults.setNightOccuring(false)
+            self.performSegue(withIdentifier: "logoutSegue", sender: self);
+            
+        }))
+        
+        logoutAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+            print("Cancel")
+        }))
+        
+        present(logoutAlert, animated: true, completion: nil)
     }
     /*
     // MARK: - Navigation
