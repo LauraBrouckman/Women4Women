@@ -50,7 +50,6 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
         locationManager.requestAlwaysAuthorization()
         
         if(CLLocationManager.locationServicesEnabled()) {
-            print("WILL START UPDATING LOCATION!!")
             locationManager.startUpdatingLocation()
         }
         
@@ -145,11 +144,16 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
     // Locate the given address on the map, and center the MapView around that location
     // Show a pin with restaurant info and nearby user's locations
     // When this happens, it will also bring up the bottom toolbar to set time/contact/etc.
+    
+    var centerTitle: String?
+    var mapCenter: CLLocationCoordinate2D?
+    
     func locateOnMap(address: String?, title: String?) {
         var ad = address
         if address == nil {
             //error no address
             ad = title
+            centerTitle = title
         }
         //Remove all the old annotations
         mapView.removeAnnotations(mapView.annotations)
@@ -158,10 +162,12 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
         geocoder.geocodeAddressString(ad!) {
             if let placemarks = $0 {
                 let coordinate = (placemarks[0].location?.coordinate)!
+                self.mapCenter = coordinate
                 // Update your location remotely and in local storage
                 UserDefaults.setNightOutLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-                RemoteDatabase.updateUserLocation(forUser: "current_user", locationLat: coordinate.latitude, locationLon: coordinate.longitude)
-                self.centerMap(coordinate, title: title)
+                UserDefaults.setNightOutLocationName(name: ad!)
+                RemoteDatabase.updateUserLocation(forUser: UserDefaults.getUsername(), locationLat: coordinate.latitude, locationLon: coordinate.longitude)
+                TrackUsers.updateNearbyUserList(self.centerMap)
             } else {
                 print("error \($1)")
             }
@@ -171,7 +177,9 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
     
     var numLifelines: Int = 0
     //center the map around given coordinates and drop a pin on the coordinates
-    func centerMap(_ center:CLLocationCoordinate2D, title: String?){
+    func centerMap(){
+        let center = self.mapCenter!
+        let title = self.centerTitle
         let spanX = 0.005
         let spanY = 0.005
         let mapCenter = CLLocationCoordinate2D(latitude: center.latitude - 0.0015, longitude: center.longitude)
@@ -240,7 +248,6 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
     func addAnnotation(toPoint coordinate: CLLocationCoordinate2D, withTitle title: String, withSubtitle subtitle: String?, selectPin: Bool) {
         let annotation = UserAnnotation(name: title, center: coordinate, sub: subtitle)
         mapView.addAnnotation(annotation)
-        print("PUTTING ANNOTATION ONTO MAP")
         if selectPin {
             mapView.selectAnnotation(annotation, animated: true)
         }

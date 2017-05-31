@@ -1,50 +1,43 @@
 //
-//  LifelineTableViewController.swift
+//  EditNightTableViewController.swift
 //  Women4Women
 //
-//  Created by Elizabeth Brouckman on 5/10/17.
+//  Created by Elizabeth Brouckman on 5/30/17.
 //  Copyright © 2017 cs194w. All rights reserved.
 //
 
 import UIKit
-import CoreData
 
-class LifelineTableViewController: CoreDataTableViewController {
-
-    var managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
-    @IBAction func openSettings(_ sender: UIButton) {
-        self.slideMenuController()?.openLeft()
-    }
-
+class EditNightTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateUI()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        // Add in the SOS Button
+        // Make sure this goes at the bottom
+        let customView = UIView(frame: CGRect(x: 0, y: 500, width: 200, height: 80))
+        //customView.backgroundColor = Colors.lightBlue
+        let button = UIButton(frame: CGRect(x: 100, y: 12, width: 56, height: 56))
+        button.setTitle("SOS", for: .normal)
+        button.backgroundColor = UIColor.white
+        button.setTitleColor(Colors.lightBlue, for: .normal)
+        button.layer.cornerRadius = 28
+        button.layer.borderColor = Colors.lightBlue.cgColor
+        button.layer.borderWidth = 4
+        button.addTarget(self, action: #selector(sos), for: .touchUpInside) // this should be something other than touch up inside - have to hold for 5 seconds
+        customView.addSubview(button)
+        self.tableView.tableFooterView = customView
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        updateUI()
+    func sos() {
+        print("SOS!!")
     }
-    
-    private func updateUI() {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "NearbyUser")
-        request.sortDescriptors = [NSSortDescriptor(key: "first_name", ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))]
-        fetchedResultsController = NSFetchedResultsController(
-            fetchRequest: request,
-            managedObjectContext: managedObjectContext,
-            sectionNameKeyPath: nil,
-            cacheName: nil
-        )
-    }
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -52,40 +45,26 @@ class LifelineTableViewController: CoreDataTableViewController {
     }
 
     // MARK: - Table view data source
-
-
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let c = tableView.dequeueReusableCell(withIdentifier: "lifelineCell", for: indexPath)
-        if let cell = c as? LifelineTableViewCell {
-        
-        if let user = fetchedResultsController?.object(at: indexPath) as? NearbyUser {
-            var first_name: String?
-            var last_name: String?
-            var photo_filename: String?
-            var username: String?
-            user.managedObjectContext?.performAndWait {
-                first_name = user.first_name
-                last_name = user.last_name
-                photo_filename = user.photo_filename
-                username = user.username
-            }
-            cell.lifelineNameLabel.text = first_name! + " " + last_name!
-            cell.username = username!
-            //SET THE PROFILE PICTURE IMAGE HERE!
-        }
-            return cell
-
-        }
-        return c
-    }
-    
-//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        if section == 0 {
-//            return "Lifelines"
-//        }
-//        return nil
+//
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        // #warning Incomplete implementation, return the number of sections
+//        return 0
 //    }
+//
+//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        // #warning Incomplete implementation, return the number of rows
+//        return 0
+//    }
+
+    /*
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+
+        // Configure the cell...
+
+        return cell
+    }
+    */
 
     /*
     // Override to support conditional editing of the table view.

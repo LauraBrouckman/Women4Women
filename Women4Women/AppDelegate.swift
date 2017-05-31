@@ -10,13 +10,14 @@ import UIKit
 import CoreData
 import SlideMenuControllerSwift
 import Firebase
-
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var popupOpen = false
+    let locationManager = CLLocationManager()
      
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch
@@ -26,13 +27,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         UserDefaults.setEmergencyContactFirstName("Laura")
         UserDefaults.setEmergencyContactLastName("Brouckman")
-        UserDefaults.setEmergencyContactPhoneNumber("3109779751")
+        UserDefaults.setEmergencyContactPhoneNumber("7038563725")
     
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
         
         // Listen for other users to change their latitudes and longitudes, if they do update list of nearby users accordingly
         FIRDatabase.database().reference().child("users").observe(.value, with: { (snapshot) in
             if let userDict = snapshot.value as? [String : AnyObject] {
-                TrackUsers.updateNearbyUserList(users: userDict)
+                TrackUsers.updateNearbyUserList(users: userDict, callback: nil)
             }
             else {
             }
@@ -41,6 +44,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    
+    func handleEvent(forRegion region: CLRegion!) {
+        print("GEOFENCE TRIGGERED!!!!!!!")
+        SMSMessaging.sendHomeText()
+        // Send got home SMS message
+    }
+    
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -110,5 +121,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+}
+
+
+extension AppDelegate: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        print("DID ENTER REGION")
+        if region is CLCircularRegion {
+            print("REGION IS CIRCULAR")
+            handleEvent(forRegion: region)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        if region is CLCircularRegion {
+            handleEvent(forRegion: region)
+        }
+    }
 }
 

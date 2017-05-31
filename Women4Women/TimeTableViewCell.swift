@@ -19,13 +19,10 @@ class TimeTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         if let time = UserDefaults.getHomeTime() {
-            print("Got date from user defaults")
             datePicker.date = time
         } else {
-            print("Got set new date")
             let newDate = Date(timeIntervalSinceNow: TimeInterval(7200))
             datePicker.date = Date(timeIntervalSinceNow: TimeInterval(7200))
-            print(newDate)
         }
         datePicker.backgroundColor = UIColor.white
         datePicker.layer.borderColor = UIColor.black.cgColor

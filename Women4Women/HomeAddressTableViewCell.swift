@@ -39,7 +39,6 @@ class HomeAddressTableViewCell: UITableViewCell {
                 if let placemarks = $0 {
                     let coordinate = (placemarks[0].location?.coordinate)!
                     // Update your location remotely and in local storage
-                    print(coordinate)
                     UserDefaults.setHomeLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
                     UserDefaults.getAddressNameFromCoordinates(self.callback)
                     
