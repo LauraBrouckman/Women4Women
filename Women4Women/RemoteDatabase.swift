@@ -9,13 +9,27 @@
 import Foundation
 import Firebase
 import FirebaseDatabase
+import JSQMessagesViewController
+extension Date {
+    init(ticks: UInt64) {
+        self.init(timeIntervalSince1970: Double(ticks)/10_000_000 - 62_135_596_800)
+    }
+}
+protocol FetchData: class {
+    func dataReceived(conversations: [Conversation])
+}
 
-
+protocol FetchMessages: class {
+    func messageDataReceived(messages: [JSQMessage])
+}
 
 class RemoteDatabase {
-    
+    static weak var delegate: FetchData?
+    static weak var m_delegate: FetchMessages?
+    static let LAST_MESSAGE = "last_message"
     static fileprivate var usersRef = FIRDatabase.database().reference().child("users")
     static fileprivate var restauarantsRef = FIRDatabase.database().reference().child("restaurants")
+    //var conversationsRef = usersRef.child(UserDefaults.getUsername()).child("conversations")
     
     /*
      TODO:
@@ -73,6 +87,76 @@ class RemoteDatabase {
         uploadFileToDatabase(forUser: username)
     }
     
+    static func sendMessage(to recipientID: String, messageToSend: Dictionary<String, Any>){
+        // must update your side of the database.
+        usersRef.child(UserDefaults.getUsername()).child("conversations").child(recipientID).child("last_message").setValue(messageToSend["text"])
+        usersRef.child(UserDefaults.getUsername()).child("conversations").child(recipientID).childByAutoId().setValue(messageToSend)
+        
+        let sender = messageToSend["sender_id"] as! String
+        usersRef.child(recipientID).child("conversations").child(sender).childByAutoId().setValue(messageToSend)
+        usersRef.child(recipientID).child("conversations").child(sender).child("last_message").setValue(messageToSend["text"])
+        // must update the person you just messaged.
+        //let sender = messageToSend["sender_id"] as! String
+        //if let recipientConversationsRef = usersRef.child(recipientID).child("conversations").child(sender){
+        //    recipientConversationsRef.childByAutoID().setValue(messageToSend)
+        //}
+        
+    }
+    
+    static func getMessages(recipientID: String){
+        print("here")
+        let messagesRef = usersRef.child(UserDefaults.getUsername()).child("conversations").child(recipientID)
+        messagesRef.observeSingleEvent(of: FIRDataEventType.value){
+            (snapshot: FIRDataSnapshot) in
+            var messages = [JSQMessage]()
+            print("made messages")
+            if let myMessages = snapshot.value as? NSDictionary {
+                for (key, value) in myMessages{
+                    if key as! String !=  self.LAST_MESSAGE{
+                        if let messageData = value as? NSDictionary{
+                            let id = messageData["sender_id"] as! String
+                            let name = messageData["sender_name"] as! String
+                            let t =  messageData["text"] as! String
+                            let d_str = messageData["date"] as! String
+                            let d = Date(ticks: UInt64(NSString(string: d_str).doubleValue))
+                            print(id)
+                            print(name)
+                            if let m = JSQMessage(senderId: id, senderDisplayName: name, date: d, text: t){
+                                messages.append(m)
+                            }
+                        }
+                    }
+                }
+            }
+            messages = messages.sorted(by: { $0.date < $1.date })
+            print("returning from getMessages")
+            self.m_delegate?.messageDataReceived(messages: messages)
+        }
+    }
+    
+    static func getConversations(){
+        let conversationRef = usersRef.child(UserDefaults.getUsername()).child("conversations")
+        conversationRef.observeSingleEvent(of: FIRDataEventType.value){
+            (snapshot: FIRDataSnapshot) in
+            var conversations = [Conversation]()
+            
+            if let myConversations = snapshot.value as? NSDictionary {
+                for (key, value) in myConversations{
+                    if let conversationData = value as? NSDictionary{
+                        
+                        if let lastmessage=conversationData[self.LAST_MESSAGE] as? String{
+                            let username = key as! String
+                            let newConversation = Conversation(username: username, lastmessage: lastmessage)
+                            conversations.append(newConversation)
+                        }
+                    }
+                }
+            }
+            self.delegate?.dataReceived(conversations: conversations)
+        }
+    }
+    
+
     
     
     
