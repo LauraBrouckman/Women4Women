@@ -61,9 +61,7 @@ class ICEContactViewController: UIViewController, CNContactPickerDelegate {
     func openContacts()
     {
         let contactPicker = CNContactPickerViewController.init()
-        //var delegate: CNContactPickerDelegate!
         contactPicker.delegate = self
-        //contactPicker.delegate = self as? CNContactPickerDelegate
         self.present(contactPicker, animated: true, completion: nil)
 
     }
@@ -91,14 +89,20 @@ class ICEContactViewController: UIViewController, CNContactPickerDelegate {
 
     
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print(segue.identifier)
+        if segue.identifier == "exitICE" {
+            if let vc = segue.destination as? ContainerViewController {
+                vc.showSideMenu = true
+            }
+        }
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+ 
 
 }

@@ -10,6 +10,9 @@ import UIKit
 
 class EditNightTableViewController: UITableViewController {
 
+    
+    var sosDown = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,8 +24,9 @@ class EditNightTableViewController: UITableViewController {
         
         // Add in the SOS Button
         // Make sure this goes at the bottom
+        self.view.clipsToBounds = false
+        self.view.superview?.clipsToBounds = false
         let customView = UIView(frame: CGRect(x: 0, y: 500, width: 200, height: 80))
-        //customView.backgroundColor = Colors.lightBlue
         let button = UIButton(frame: CGRect(x: 100, y: 12, width: 56, height: 56))
         button.setTitle("SOS", for: .normal)
         button.backgroundColor = UIColor.white
@@ -30,13 +34,59 @@ class EditNightTableViewController: UITableViewController {
         button.layer.cornerRadius = 28
         button.layer.borderColor = Colors.lightBlue.cgColor
         button.layer.borderWidth = 4
-        button.addTarget(self, action: #selector(sos), for: .touchUpInside) // this should be something other than touch up inside - have to hold for 5 seconds
+        button.addTarget(self, action: #selector(sosRelease), for: .touchUpInside)
+        button.addTarget(self, action: #selector(sosHold), for: .touchDown)
+    
         customView.addSubview(button)
         self.tableView.tableFooterView = customView
+        
     }
     
-    func sos() {
-        print("SOS!!")
+    fileprivate func addSOSOverlay() {
+        let screenSize: CGRect = UIScreen.main.bounds
+        print(screenSize.height)
+        let sosView = UIView(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height))
+        sosView.backgroundColor = UIColor.red
+        sosView.tag = 100
+        // Add in a label possibly a countdown
+        self.view.superview?.addSubview(sosView)
+    }
+    
+    fileprivate func removeSOSOVerlay() {
+        if let sosView = self.view.superview?.viewWithTag(100) {
+            sosView.removeFromSuperview()
+        }
+    }
+    
+    
+    fileprivate func SOS() {
+        if(sosDown) {
+            removeSOSOVerlay()
+            // hide overlay 
+            // maybe have an alert that informs them that sos was triggered
+            print("it's been 5 seconds, calling for SOS")
+            sosDown = false
+        } else {
+            print("they released the sos button not doin it")
+        }
+    }
+    
+    
+    func sosHold() {
+        // show overlay that explains what sos is
+        addSOSOverlay()
+        sosDown = true
+        print("sos down")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
+            self.SOS()
+        })
+    }
+    
+    func sosRelease() {
+        removeSOSOVerlay()
+        // hide overlay
+        sosDown = false
+        print("sos up")
     }
 
     override func didReceiveMemoryWarning() {

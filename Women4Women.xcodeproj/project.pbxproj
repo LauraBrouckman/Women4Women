@@ -70,6 +70,7 @@
 		9FED40BD1ED89E0B0074CD20 /* ICEContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FED40BC1ED89E0B0074CD20 /* ICEContactViewController.swift */; };
 		9FED40C31ED89FE30074CD20 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FED40C21ED89FE30074CD20 /* Contacts.framework */; };
 		9FED40C51ED89FE90074CD20 /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FED40C41ED89FE90074CD20 /* ContactsUI.framework */; };
+		9FED40C71EDE76130074CD20 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FED40C61EDE76130074CD20 /* ContactViewController.swift */; };
 		FFD9CC3F0125D0621F51792C /* Pods_Women4Women.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493492482635CACD8DD4C087 /* Pods_Women4Women.framework */; };
 /* End PBXBuildFile section */
 
@@ -145,6 +146,7 @@
 		9FED40BC1ED89E0B0074CD20 /* ICEContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ICEContactViewController.swift; sourceTree = "<group>"; };
 		9FED40C21ED89FE30074CD20 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		9FED40C41ED89FE90074CD20 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
+		9FED40C61EDE76130074CD20 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +192,7 @@
 				3020AE811EB7B8340075D849 /* AppDelegate.swift */,
 				3020AE8B1EB7B8340075D849 /* Assets.xcassets */,
 				9F1B51EE1EC3C68E00560294 /* Colors.swift */,
+				9FED40C61EDE76130074CD20 /* ContactViewController.swift */,
 				307D44381EBE935E007929D3 /* ContactsTableViewController.swift */,
 				3093D8CC1EBEAF040035732D /* ContainerViewController.swift */,
 				20B0522C1ECF91DF006A31E8 /* Conversation.swift */,
@@ -207,8 +210,8 @@
 				9FED40BC1ED89E0B0074CD20 /* ICEContactViewController.swift */,
 				30A1F90F1ED5094A00965B19 /* LifelineTableViewCell.swift */,
 				3072DB3C1EC40BD5006A953C /* LifelineTableViewController.swift */,
-				307A29891ECAD26600262B65 /* LoginViewController.swift */,
 				307D443C1EBE93AC007929D3 /* LoginRegisterViewController.swift */,
+				307A29891ECAD26600262B65 /* LoginViewController.swift */,
 				307D44341EBE931A007929D3 /* MainMapViewController.swift */,
 				2002ACF61ECFB534006BC10B /* MessagesHandler.swift */,
 				307A298D1ECAD28900262B65 /* nameUpdateViewController.swift */,
@@ -218,12 +221,12 @@
 				30A168131EBFDB72002F5D52 /* SearchTextField.swift */,
 				9F1B51EC1EC3BFA800560294 /* SettingsViewController.swift */,
 				9FC3B1D21ECCFC5A00814EB0 /* SideBarViewController.swift */,
-				201BEDBD1EDE6E150086C0ED /* Main.storyboard */,
 				30E2F9581ED6556000694864 /* SMSMessaging.swift */,
 				306F5C811ECD590F00644FEB /* TimeTableViewCell.swift */,
 				303D527E1EC428EE00170F62 /* TrackNearbyUsers.swift */,
 				20ECF8FB1ECCBD1E00373964 /* UserAnnotation.swift */,
 				303D52801EC428F400170F62 /* UserDefaults.swift */,
+				201BEDBD1EDE6E150086C0ED /* Main.storyboard */,
 				3020AE8D1EB7B8340075D849 /* LaunchScreen.storyboard */,
 				3020AE901EB7B8340075D849 /* Info.plist */,
 				307C901B1EC2C64F0020E535 /* GoogleService-Info.plist */,
@@ -322,7 +325,7 @@
 				TargetAttributes = {
 					3020AE7D1EB7B8340075D849 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 8HU79SG3YQ;
+						DevelopmentTeam = 557F97CTX7;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -465,6 +468,7 @@
 				303D52761EC4281B00170F62 /* NearbyUser+CoreDataClass.swift in Sources */,
 				307A298E1ECAD28900262B65 /* nameUpdateViewController.swift in Sources */,
 				30E2F9551ED5302B00694864 /* emergencyPhoneNumberUpdateViewController.swift in Sources */,
+				9FED40C71EDE76130074CD20 /* ContactViewController.swift in Sources */,
 				3072DB3D1EC40BD5006A953C /* LifelineTableViewController.swift in Sources */,
 				3020AE821EB7B8340075D849 /* AppDelegate.swift in Sources */,
 				3093D8CD1EBEAF040035732D /* ContainerViewController.swift in Sources */,
@@ -587,7 +591,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 8HU79SG3YQ;
+				DEVELOPMENT_TEAM = 557F97CTX7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
@@ -608,7 +612,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 8HU79SG3YQ;
+				DEVELOPMENT_TEAM = 557F97CTX7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",

@@ -18,7 +18,8 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
     }
     
     var hidePopup: Bool = true
-    
+    var showSideMenu = false
+
     lazy var locationManager: CLLocationManager = {
         var _locationManager = CLLocationManager()
         _locationManager.delegate = self
@@ -42,9 +43,15 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
     
     
     override func viewDidLoad() {
+        print("loaded main map view controller")
         super.viewDidLoad()
         configueSearchTextField()
         searchCompleter.delegate = self
+        
+        if showSideMenu {
+            self.slideMenuController()?.openLeft()
+        }
+        
         setUpMap()
     }
     
@@ -63,20 +70,18 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
         mapView.userTrackingMode = .follow
         
         popupMenu.isHidden = hidePopup
+        if hidePopup == false {
+            self.popupMenuHeight.constant = 300 // heightCon is the IBOutlet to the constraint
+            self.view.layoutIfNeeded()
+            centerTitle = UserDefaults.getNightOutLocationName()
+            let (lat, lon) = UserDefaults.getNightOutLocation()!
+            mapCenter = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+            self.centerMap()
+        }
     }
+
     
-    
-    // function to track movement of user
-    //func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-      //  print("MY LOCATION CHANGED!!!!")
-        
-       // let location = locations.last as! CLLocation
-       // RemoteDatabase.updateUserLocation(forUser: UserDefaults.getUsername(), locationLat: location.coordinate.latitude, locationLon: location.coordinate.longitude)
-    //}
-    
-    
- 
-    
+
     //Set up the auto-complete search field so that it will sugggest places + their addresses when user starts typing
     func configueSearchTextField() {
 
@@ -168,7 +173,7 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
                 self.mapCenter = coordinate
                 // Update your location remotely and in local storage
                 UserDefaults.setNightOutLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-                UserDefaults.setNightOutLocationName(name: ad!)
+                UserDefaults.setNightOutLocationName(name: title ?? ad!)
                 RemoteDatabase.updateUserLocation(forUser: UserDefaults.getUsername(), locationLat: coordinate.latitude, locationLon: coordinate.longitude)
                 TrackUsers.updateNearbyUserList(self.centerMap)
             } else {
@@ -189,7 +194,6 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
         let newRegion = MKCoordinateRegion(center: mapCenter, span: MKCoordinateSpanMake(spanX, spanY))
         mapView.setRegion(newRegion, animated: true)
         addAnnotations(title: title, center: center)
-        
         openPopupMenu()
     }
     

@@ -18,6 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var popupOpen = false
     let locationManager = CLLocationManager()
+    
+    func stopMonitoring() {
+        for region in locationManager.monitoredRegions {
+            let circularRegion = region as? CLCircularRegion
+            locationManager.stopMonitoring(for: circularRegion!)
+        }
+    }
      
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch
@@ -48,6 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 UserDefaults.setNightOccuring(false)
                 UserDefaults.setNightOutLocationName(name: "")
                 UserDefaults.setNightOutLocation(latitude: 0, longitude: 0)
+                stopMonitoring()
             }
         }
         
@@ -57,7 +65,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func handleEvent(forRegion region: CLRegion!) {
         print("GEOFENCE TRIGGERED!!!!!!!")
+        //change this message
         SMSMessaging.sendHomeText()
+        stopMonitoring()
         // Send got home SMS message
     }
     
