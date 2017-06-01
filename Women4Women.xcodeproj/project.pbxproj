@@ -71,7 +71,6 @@
 		9FED40C31ED89FE30074CD20 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FED40C21ED89FE30074CD20 /* Contacts.framework */; };
 		9FED40C51ED89FE90074CD20 /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FED40C41ED89FE90074CD20 /* ContactsUI.framework */; };
 		9FED40C71EDE76130074CD20 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FED40C61EDE76130074CD20 /* ContactViewController.swift */; };
-		AFC0BC2AA855429AFEA2C4C2 /* Pods_Women4Women.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC67C331923F50E1084FC9D /* Pods_Women4Women.framework */; };
 		FFD9CC3F0125D0621F51792C /* Pods_Women4Women.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493492482635CACD8DD4C087 /* Pods_Women4Women.framework */; };
 /* End PBXBuildFile section */
 
@@ -148,7 +147,6 @@
 		9FED40C21ED89FE30074CD20 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		9FED40C41ED89FE90074CD20 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
 		9FED40C61EDE76130074CD20 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
-		B315B48242589C96E63C32D0 /* Pods-Women4Women.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Women4Women.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Women4Women/Pods-Women4Women.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,13 +220,12 @@
 				30A168131EBFDB72002F5D52 /* SearchTextField.swift */,
 				9F1B51EC1EC3BFA800560294 /* SettingsViewController.swift */,
 				9FC3B1D21ECCFC5A00814EB0 /* SideBarViewController.swift */,
+				303D52801EC428F400170F62 /* UserDefaults.swift */,
 				201BEDBD1EDE6E150086C0ED /* Main.storyboard */,
 				30E2F9581ED6556000694864 /* SMSMessaging.swift */,
 				306F5C811ECD590F00644FEB /* TimeTableViewCell.swift */,
 				303D527E1EC428EE00170F62 /* TrackNearbyUsers.swift */,
 				20ECF8FB1ECCBD1E00373964 /* UserAnnotation.swift */,
-				303D52801EC428F400170F62 /* UserDefaults.swift */,
-				307A29911ECAE0FD00262B65 /* Main.storyboard */,
 				9FED40C61EDE76130074CD20 /* ContactViewController.swift */,
 				3020AE8D1EB7B8340075D849 /* LaunchScreen.storyboard */,
 				3020AE901EB7B8340075D849 /* Info.plist */,
@@ -365,7 +362,6 @@
 				3020AEA11EBE887E0075D849 /* Search-50.png in Resources */,
 				307D44331EBE910F007929D3 /* down_icon.png in Resources */,
 				3020AEA51EBE8D9F0075D849 /* message_icon.png in Resources */,
-				4E21FC021ECA7BCF00822B47 /* (null) in Resources */,
 				9F1B51EB1EC2CDF900560294 /* button_close.png in Resources */,
 				9F1B51F91EC4093B00560294 /* next-icon3.png in Resources */,
 				9F1B51FD1EC4109500560294 /* white-close.png in Resources */,

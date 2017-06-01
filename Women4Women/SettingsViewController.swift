@@ -8,6 +8,8 @@
 
 import UIKit
 import MapKit
+import Foundation
+
 
 class SettingsViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var profilePic: UIImageView!
@@ -52,7 +54,17 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     {
         
         profilePic.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-       
+        
+        //let url = info[UIImagePickerControllerReferenceURL] as! URL
+       // let assets = PHAsset.fetchAssets(withALAssetURLs: [url], options: nil)
+        //let fileName = PHAssetResource.assetResources(for: assets.firstObject!).first!.originalFilename
+        
+        if let image = profilePic.image {
+            if let imageData = UIImagePNGRepresentation(image) {
+                try? imageData.write(to: getImageUrl(imageFileName: "test"), options: [.atomic])
+            }
+        }
+        
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -76,17 +88,39 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         lastNameLabel.text = UserDefaults.getLastName()
         homeAddressLabel.text = UserDefaults.getHomeStreet()
         homeAddressLabel2.text = UserDefaults.getHomeCity()
+        
+        //profilePic.imageFromUrl(getImageUrl(imageFileName: UserDefaults.getProfilePicFilename()))
+        
+        
+        let libraryPath = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)[0]
+        let imagePath = libraryPath + "/Images"
+        let filePath = imagePath + "/" + UserDefaults.getProfilePicFilename()
+        let fileManager = FileManager.default
+//        do {
+//            try fileManager.createDirectory(atPath: imagePath, withIntermediateDirectories: false, attributes: nil)
+//        } catch let error1 as NSError {
+//            print("error" + error1.description)
+//        }
+        let myURL = URL(fileURLWithPath: filePath)
+        if let imageData = try? Data(contentsOf: myURL) {
+            profilePic.image = UIImage(data: imageData)
+        }
     }
-
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    fileprivate func getDocumentsDirectory() -> String {
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
     }
-    */
+    
+    fileprivate func getImageUrl(imageFileName: String) -> URL {
+        let docDict = getDocumentsDirectory() as NSString
+        let imagePath = docDict.appendingPathComponent(imageFileName)
+        UserDefaults.setProfilePicFilename(imageFileName)
+        print(imagePath)
+        return URL(fileURLWithPath: imagePath)
+    }
+    
+
 
 }
