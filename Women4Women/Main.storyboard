@@ -307,6 +307,7 @@
                     <connections>
                         <outlet property="logoutButton" destination="ofm-ME-tBH" id="54c-p0-uNh"/>
                         <outlet property="nameLabel" destination="JZA-8a-Wpg" id="I0f-yO-ZKf"/>
+                        <outlet property="profileThumbnail" destination="UQD-yl-vfn" id="OZF-8G-0DI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dXR-qy-ioN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1563,9 +1564,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="qw7-W2-wIE"/>
         <segue reference="HeI-w9-52l"/>
-        <segue reference="17n-F5-oLe"/>
         <segue reference="cuy-Cb-NQq"/>
-        <segue reference="oxb-gu-exH"/>
-        <segue reference="Sz2-yB-MJJ"/>
     </inferredMetricsTieBreakers>
 </document>

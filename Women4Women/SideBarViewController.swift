@@ -12,6 +12,7 @@ class SideBarViewController: UIViewController {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var logoutButton: UIButton!
+    @IBOutlet weak var profileThumbnail: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,19 @@ class SideBarViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override open func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        let libraryPath = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)[0]
+        let imagePath = libraryPath + "/Images"
+        let filePath = imagePath + "/" + UserDefaults.getProfilePicFilename()
+        
+        let myURL = URL(fileURLWithPath: filePath)
+        if let imageData = try? Data(contentsOf: myURL) {
+            profileThumbnail.image = UIImage(data: imageData)
+        }
     }
     
 
