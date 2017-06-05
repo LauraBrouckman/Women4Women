@@ -11,6 +11,8 @@ import Contacts
 import ContactsUI
 
 class ICEContactViewController: UIViewController, CNContactPickerDelegate {
+    
+    @IBOutlet weak var button: UIButton!
 
     @IBOutlet weak var firstNameLabel: UILabel!
     @IBOutlet weak var lastNameLabel: UILabel!
@@ -18,6 +20,8 @@ class ICEContactViewController: UIViewController, CNContactPickerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.lightGray.cgColor
 
         // Do any additional setup after loading the view.
     }
