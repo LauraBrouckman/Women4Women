@@ -23,6 +23,7 @@ class TimeTableViewCell: UITableViewCell {
         } else {
             let newDate = Date(timeIntervalSinceNow: TimeInterval(7200))
             datePicker.date = Date(timeIntervalSinceNow: TimeInterval(7200))
+            UserDefaults.setHomeTime(newDate)
         }
         datePicker.backgroundColor = UIColor.white
         datePicker.layer.borderColor = UIColor.black.cgColor

@@ -61,6 +61,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         
         if let image = profilePic.image {
             if let imageData = UIImagePNGRepresentation(image) {
+                print("Got image data as a uiimage")
                 try? imageData.write(to: getImageUrl(imageFileName: "test"), options: [.atomic])
             }
         }
@@ -96,6 +97,7 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         let imagePath = libraryPath + "/Images"
         let filePath = imagePath + "/" + UserDefaults.getProfilePicFilename()
         let fileManager = FileManager.default
+        
 //        do {
 //            try fileManager.createDirectory(atPath: imagePath, withIntermediateDirectories: false, attributes: nil)
 //        } catch let error1 as NSError {

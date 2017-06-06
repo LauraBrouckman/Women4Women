@@ -28,10 +28,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
      
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch
-        FIRApp.configure()
         
         
-
+        
+        // Check if the time for the outing has passed, and if it has, then remove the night out info
+        let currentTime = Date()
+        print("current time is \(currentTime)")
+        if let outingEndTime = UserDefaults.getHomeTime() {
+            print("outing time is \(outingEndTime)")
+            if outingEndTime > currentTime {
+                UserDefaults.setNightOccuring(false)
+                UserDefaults.setNightOutLocationName(name: "")
+                UserDefaults.setNightOutLocation(latitude: 0, longitude: 0)
+                stopMonitoring()
+            } else {
+                UserDefaults.setNightOccuring(true)
+            }
+        }
+        
+        
         UserDefaults.setEmergencyContactFirstName("Laura")
         UserDefaults.setEmergencyContactLastName("Brouckman")
         UserDefaults.setEmergencyContactPhoneNumber("7038563725")
@@ -39,6 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
         
+        FIRApp.configure()
         // Listen for other users to change their latitudes and longitudes, if they do update list of nearby users accordingly
         FIRDatabase.database().reference().child("users").observe(.value, with: { (snapshot) in
             if let userDict = snapshot.value as? [String : AnyObject] {
@@ -47,18 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             else {
             }
         })
-        
-        // Check if the time for the outing has passed, and if it has, then remove the night out info
-        let currentTime = Date()
-        if let outingEndTime = UserDefaults.getHomeTime() {
-            if outingEndTime > currentTime {
-                UserDefaults.setNightOccuring(false)
-                UserDefaults.setNightOutLocationName(name: "")
-                UserDefaults.setNightOutLocation(latitude: 0, longitude: 0)
-                stopMonitoring()
-            }
-        }
-        
+ 
         return true
     }
 

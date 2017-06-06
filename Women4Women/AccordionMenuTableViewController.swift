@@ -152,15 +152,15 @@ class AccordionMenuTableViewController: AccordionTableViewController {
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let id = segue.identifier {
-            if id == "showLifelines" {
-                if let destinationVC = segue.destination as? ContainerViewController {
-                    destinationVC.lifeline = true
-                }
-            }
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if let id = segue.identifier {
+//            if id == "showLifelines" {
+//                if let destinationVC = segue.destination as? ContainerViewController {
+//                    destinationVC.lifeline = true
+//                }
+//            }
+//        }
+//    }
     
     
 }

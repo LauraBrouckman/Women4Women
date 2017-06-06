@@ -19,6 +19,8 @@ class LifelineTableViewController: CoreDataTableViewController {
     
     var sosDown = false
     var showSideMenu = false
+    var counter = 5
+    var timer = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +29,9 @@ class LifelineTableViewController: CoreDataTableViewController {
             self.slideMenuController()?.openLeft()
         }
         
+   
+        
+        // Add in custom SOS view
         let customView = UIView(frame: CGRect(x: 0, y: 500, width: 200, height: 80))
         let button = UIButton(frame: CGRect(x: 100, y: 12, width: 56, height: 56))
         button.setTitle("SOS", for: .normal)
@@ -54,17 +59,35 @@ class LifelineTableViewController: CoreDataTableViewController {
     }
     
     // SOS Stuff
+    var countdownLabel: UILabel?
     fileprivate func addSOSOverlay() {
         let screenSize: CGRect = UIScreen.main.bounds
-        print(screenSize.height)
         let sosView = UIView(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height))
         sosView.backgroundColor = UIColor(colorLiteralRed: 255/255, green: 77/255, blue: 77/255, alpha: 0.9)
         sosView.tag = 100
-        let label = UILabel(frame: CGRect(x: 20, y: 20, width: 250, height: 600))
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 10
+        
+        let attrString = NSMutableAttributedString(string: "You are triggering the SOS feature. This will alert all nearby lifelines, your emergency contact, and your location that you need help.  Hold the button for 5 seconds to complete this action.")
+        attrString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
+
+        
+        let label = UILabel(frame: CGRect(x: 20, y: 0, width: screenSize.width - 40, height: 600))
         label.numberOfLines = 10
-        label.text = "You are triggering the SOS feature. This will alert all nearby lifelines, your emergency contact, and the restaurant that you need help.  Hold the button for 5 seconds to complete this action."
+        label.attributedText = attrString
+        //label.text = "You are triggering the SOS feature. This will alert all nearby lifelines, your emergency contact, and your location that you need help.  Hold the button for 5 seconds to complete this action."
         label.textColor = UIColor.white
+        label.font = label.font.withSize(20)
         sosView.addSubview(label)
+        
+        
+        countdownLabel = UILabel(frame: CGRect(x: (screenSize.width - 70) / 2, y: 50, width: 70, height: 70))
+        countdownLabel?.text = "5"
+        countdownLabel?.textColor = UIColor.white
+        countdownLabel?.font = label.font.withSize(80)
+        sosView.addSubview(countdownLabel!)
+        
         // Add in a label possibly a countdown
         self.view.superview?.addSubview(sosView)
     }
@@ -76,12 +99,17 @@ class LifelineTableViewController: CoreDataTableViewController {
     }
     
     
+    
+    
     fileprivate func SOS() {
         if(sosDown) {
             removeSOSOVerlay()
             // hide overlay
             // maybe have an alert that informs them that sos was triggered
             print("it's been 5 seconds, calling for SOS")
+            // SEND THE MESSAGES HERE
+            SMSMessaging.sendSOSText()
+            displayAlertMessage(alertMessage: "You have triggered an SOS. Your emergency contact, lifelines, and current location have been notified.")
             sosDown = false
         } else {
             print("they released the sos button not doin it")
@@ -89,11 +117,31 @@ class LifelineTableViewController: CoreDataTableViewController {
     }
     
     
+    func displayAlertMessage(alertMessage:String) {
+        let myAlert = UIAlertController(title:"Notice", message:alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+        let okAction = UIAlertAction(title:"Ok", style:UIAlertActionStyle.default, handler:nil)
+        myAlert.addAction(okAction)
+        UIApplication.topViewController()?.present(myAlert, animated: true, completion: nil)
+    }
+    
+    func timerAction() {
+        counter -= 1
+        if counter >= 0 {
+            countdownLabel?.text = "\(counter)"
+        }
+        else {
+            timer.invalidate()
+        }
+    }
+
+    
     func sosHold() {
         // show overlay that explains what sos is
+        timer.invalidate()
         addSOSOverlay()
         sosDown = true
         print("sos down")
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
             self.SOS()
         })
@@ -101,6 +149,7 @@ class LifelineTableViewController: CoreDataTableViewController {
     
     func sosRelease() {
         removeSOSOVerlay()
+        timer.invalidate()
         // hide overlay
         sosDown = false
         print("sos up")
@@ -218,14 +267,20 @@ class LifelineTableViewController: CoreDataTableViewController {
      }
      */
     
-    /*
+    
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destinationViewController.
      // Pass the selected object to the new view controller.
+        print("segueing \(segue.identifier)")
+        if segue.identifier == "cancelNight" {
+            UserDefaults.setNightOccuring(false)
+            UserDefaults.setNightOutLocationName(name: "")
+            UserDefaults.setNightOutLocation(latitude: 0, longitude: 0)
+        }
      }
-     */
+ 
     
 }

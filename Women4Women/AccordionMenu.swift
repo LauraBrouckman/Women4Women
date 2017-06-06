@@ -247,6 +247,7 @@ extension AccordionTableViewController {
                 timeToComeHome = dateFormatter.string(from: time)
             } else {
                 let time = Date(timeIntervalSinceNow: TimeInterval(7200))
+                UserDefaults.setHomeTime(time)
                 timeToComeHome = dateFormatter.string(from: time)
             }
             
