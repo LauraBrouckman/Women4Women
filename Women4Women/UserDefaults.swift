@@ -2,7 +2,7 @@
 //  UserDefaults.swift
 //  Women4Women
 //
-//  Created by Elizabeth Brouckman on 5/9/17.
+//  Created by Laura Brouckman on 5/9/17.
 //  Copyright © 2017 cs194w. All rights reserved.
 //
 
@@ -241,7 +241,7 @@ class UserDefaults{
         if let filename = Foundation.UserDefaults.standard.value(forKey: profilePicFileKey) as? String {
             return filename
         }
-        return ""
+        return "profile_pic"
     }
     
     //Get and set home city

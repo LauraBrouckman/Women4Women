@@ -23,16 +23,28 @@ class homeAddressUpdateViewController: UIViewController, UITextFieldDelegate {
         cityText.text = UserDefaults.getHomeCity()
         zipText.text = UserDefaults.getHomeZip()
         countryText.text = UserDefaults.getHomeCountry()
+        stateText.text = UserDefaults.getHomeState()
         
         streetText.delegate = self
         cityText.delegate = self
         zipText.delegate = self
         countryText.delegate = self
+        stateText.delegate = self
         
-        streetText.returnKeyType = UIReturnKeyType.done
-        cityText.returnKeyType = UIReturnKeyType.done
-        zipText.returnKeyType = UIReturnKeyType.done
+        streetText.returnKeyType = UIReturnKeyType.next
+        cityText.returnKeyType = UIReturnKeyType.next
+        zipText.returnKeyType = UIReturnKeyType.next
+        stateText.returnKeyType = UIReturnKeyType.next
         countryText.returnKeyType = UIReturnKeyType.done
+        
+        streetText.tag = 0
+        cityText.tag = 1
+        stateText.tag = 2
+        zipText.tag = 3
+        countryText.tag = 4
+        
+        self.hideKeyboardWhenTappedAround()
+
         
         let ad = UserDefaults.getHomeStreet()+", "+UserDefaults.getHomeCity() + ", " + UserDefaults.getHomeZip() + ", " + UserDefaults.getHomeCountry()
         
@@ -40,11 +52,18 @@ class homeAddressUpdateViewController: UIViewController, UITextFieldDelegate {
     }
 
     
-    func textFieldShouldReturn(_ textField: UITextField!) -> Bool {
-        textField.resignFirstResponder()
-        return true
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        // Try to find next responder
+        if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
+        } else {
+            // Not found, so remove keyboard.
+            textField.resignFirstResponder()
+        }
+        // Do not add a line break
+        return false
     }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

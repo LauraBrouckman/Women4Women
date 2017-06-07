@@ -2,7 +2,7 @@
 //  EditHomeLocationTableViewCell.swift
 //  Women4Women
 //
-//  Created by Elizabeth Brouckman on 6/2/17.
+//  Created by Laura Brouckman on 6/2/17.
 //  Copyright © 2017 cs194w. All rights reserved.
 //
 

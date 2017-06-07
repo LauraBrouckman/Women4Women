@@ -8,7 +8,7 @@
 
 import UIKit
 
-class nameUpdateViewController: UIViewController {
+class nameUpdateViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
@@ -19,8 +19,27 @@ class nameUpdateViewController: UIViewController {
         firstNameTextField.text = UserDefaults.getFirstName()
         lastNameTextField.text = UserDefaults.getLastName()
         
+        firstNameTextField.delegate = self
+        lastNameTextField.delegate = self
+        
+        firstNameTextField.tag = 0
+        lastNameTextField.tag = 1
+        
         //updateButton.
         // Do any additional setup after loading the view.
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        // Try to find next responder
+        if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
+        } else {
+            // Not found, so remove keyboard.
+            textField.resignFirstResponder()
+        }
+        // Do not add a line break
+        return false
     }
 
     override func didReceiveMemoryWarning() {

@@ -21,30 +21,12 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var homeAddressLabel: UILabel!
     @IBOutlet weak var homeAddressButton: UIButton!
     @IBOutlet weak var homeAddressLabel2: UILabel!
-
-//    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-//            let imageURL = info[UIImagePickerControllerReferenceURL] as NSURL
-//            let imageName = imageURL.path!.lastPathComponent
-//            let documentDirectory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first as String
-//            let localPath = documentDirectory.stringByAppendingPathComponent(imageName)
-//        
-//            let image = info[UIImagePickerControllerOriginalImage] as UIImage
-//            let data = UIImagePNGRepresentation(image)
-//            data.writeToFile(localPath, atomically: true)
-//        
-//            let imageData = NSData(contentsOfFile: localPath)!
-//            let photoURL = NSURL(fileURLWithPath: localPath)
-//            let imageWithData = UIImage(data: imageData)!
-//        
-//            picker.dismissViewControllerAnimated(true, completion: nil)
-//        
-//    }
     
     
     @IBAction func selectProfilePhoto(_ sender: Any)
     {
-        var myPickerControllor = UIImagePickerController()
-        myPickerControllor.delegate=self
+        let myPickerControllor = UIImagePickerController()
+        myPickerControllor.delegate = self
         myPickerControllor.sourceType = UIImagePickerControllerSourceType.photoLibrary
         
         self.present(myPickerControllor, animated: true, completion: nil)
@@ -53,19 +35,19 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
     {
         
-        profilePic.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-        
-        //let url = info[UIImagePickerControllerReferenceURL] as! URL
-       // let assets = PHAsset.fetchAssets(withALAssetURLs: [url], options: nil)
-        //let fileName = PHAssetResource.assetResources(for: assets.firstObject!).first!.originalFilename
-        
-        if let image = profilePic.image {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             if let imageData = UIImagePNGRepresentation(image) {
-                print("Got image data as a uiimage")
-                try? imageData.write(to: getImageUrl(imageFileName: "test"), options: [.atomic])
+                do {
+                    try imageData.write(to: getImageUrl(imageFileName: "test"), options: [.atomic])
+                } catch  {
+                    print("something went wrong while writing")
+            }
+               // try? imageData.write(to: getImageUrl(imageFileName: "test.png"), options: [.atomic])
             }
         }
-        
+        else {
+            print("Something went wrong")
+        }
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -75,6 +57,8 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         firstNameButton.layer.borderColor = UIColor.lightGray.cgColor
         homeAddressButton.layer.borderWidth = 1
         homeAddressButton.layer.borderColor = UIColor.lightGray.cgColor
+        profilePic.layer.cornerRadius = profilePic.frame.size.width / 2;
+        profilePic.clipsToBounds = true
         
     }
     
@@ -90,28 +74,25 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         homeAddressLabel.text = UserDefaults.getHomeStreet()
         homeAddressLabel2.text = UserDefaults.getHomeCity()
         
-        //profilePic.imageFromUrl(getImageUrl(imageFileName: UserDefaults.getProfilePicFilename()))
-        
-        
-        let libraryPath = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)[0]
-        let imagePath = libraryPath + "/Images"
-        let filePath = imagePath + "/" + UserDefaults.getProfilePicFilename()
-        let fileManager = FileManager.default
-        
-//        do {
-//            try fileManager.createDirectory(atPath: imagePath, withIntermediateDirectories: false, attributes: nil)
-//        } catch let error1 as NSError {
-//            print("error" + error1.description)
-//        }
-        let myURL = URL(fileURLWithPath: filePath)
-        if let imageData = try? Data(contentsOf: myURL) {
-            profilePic.image = UIImage(data: imageData)
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let filePath = documentsURL.appendingPathComponent("\(UserDefaults.getProfilePicFilename()).png").path
+        if FileManager.default.fileExists(atPath: filePath) {
+             profilePic.image = UIImage(contentsOfFile: filePath)
         }
     }
     
+    fileprivate func getDocumentsDirectory() -> String {
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
     
-    // MARK: - Navigation
-
+    fileprivate func getImageUrl(imageFileName: String) -> URL {
+        UserDefaults.setProfilePicFilename(imageFileName)
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let fileURL = documentsURL.appendingPathComponent("\(imageFileName).png")
+        return fileURL
+    }
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "exitSettings" {
@@ -123,18 +104,6 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         // Pass the selected object to the new view controller.
     }
     
-    fileprivate func getDocumentsDirectory() -> String {
-        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let documentsDirectory = paths[0]
-        return documentsDirectory
-    }
-    
-    fileprivate func getImageUrl(imageFileName: String) -> URL {
-        let docDict = getDocumentsDirectory() as NSString
-        let imagePath = docDict.appendingPathComponent(imageFileName)
-        UserDefaults.setProfilePicFilename(imageFileName)
-        print(imagePath)
-        return URL(fileURLWithPath: imagePath)
-    }
-    
+
+
 }

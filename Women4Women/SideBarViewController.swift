@@ -12,10 +12,13 @@ class SideBarViewController: UIViewController {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var logoutButton: UIButton!
+    @IBOutlet weak var profileThumbnail: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        nameLabel.text = UserDefaults.getFirstName()+" "+UserDefaults.getLastName()
+        nameLabel.text = UserDefaults.getFirstName()
+        profileThumbnail.layer.cornerRadius = profileThumbnail.frame.size.width / 2;
+        profileThumbnail.clipsToBounds = true
         //logoutButton.
         // Do any additional setup after loading the view.
     }
@@ -23,6 +26,16 @@ class SideBarViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override open func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let filePath = documentsURL.appendingPathComponent("\(UserDefaults.getProfilePicFilename()).png").path
+        if FileManager.default.fileExists(atPath: filePath) {
+            profileThumbnail.image = UIImage(contentsOfFile: filePath)
+        }
     }
     
 

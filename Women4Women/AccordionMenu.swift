@@ -3,7 +3,7 @@
 //  AccordionMenu
 //
 //  Created by Victor on 7/6/16.
-//  Copyright © 2016 Victor Sigler. All rights reserved.
+//  Copyright © 2016 Laura Brouckman. All rights reserved.
 //
 
 import UIKit
