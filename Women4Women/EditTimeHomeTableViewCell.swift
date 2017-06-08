@@ -23,7 +23,6 @@ class EditTimeHomeTableViewCell: UITableViewCell {
         setTimeLabel()
     
         let time = UserDefaults.getHomeTime()
-        print("USER DEFAULTS HOME TIME IS \(time)")
 
         // Initialization code
         
@@ -45,9 +44,18 @@ class EditTimeHomeTableViewCell: UITableViewCell {
         
         timeHomeLabel.text = timeString
     }
+    
+    fileprivate func ensureDateIsTomorrow(_ date: Date) -> Date{
+        let currentDay = Date()
+        var newDate = date
+        if (currentDay as NSDate).earlierDate(date) == date {
+            newDate = date.addingTimeInterval(60*60*24)
+        }
+        return newDate
+    }
 
     @IBAction func updateTime(_ sender: UIButton) {
-        UserDefaults.setHomeTime(datePicker.date)
+        UserDefaults.setHomeTime(ensureDateIsTomorrow(datePicker.date))
         setTimeLabel()
         editButton.isHidden = false
         setButton.isHidden = true

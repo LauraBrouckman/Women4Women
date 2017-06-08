@@ -16,7 +16,7 @@ class CancelNightTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Style the cancel button
         cancelButton.layer.cornerRadius = 6
-        cancelButton.layer.borderColor = UIColor.gray.cgColor
+        cancelButton.layer.borderColor = Colors.teal.cgColor
         cancelButton.layer.borderWidth = 1
         
     }

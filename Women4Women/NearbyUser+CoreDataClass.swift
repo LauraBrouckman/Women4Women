@@ -49,6 +49,16 @@ public class NearbyUser: NSManagedObject {
         }
     }
     
+    // Set the profile picture for a given user
+    static func setProfilePicture(forUser user: String, filename: String, inManagedObjectContext context: NSManagedObjectContext) {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NearbyUser")
+        fetchRequest.predicate = NSPredicate(format: "username = %@", user)
+        if let result = (try? context.fetch(fetchRequest))?.first as? NearbyUser {
+            result.photo_filename = filename
+            print("set filename to \(filename)")
+        }
+
+    }
     
     // Get the information for a single nearby user by their username
     class func getNearbyUser(withUsername username: String, inManagedObjectContext context: NSManagedObjectContext) -> NearbyUser? {

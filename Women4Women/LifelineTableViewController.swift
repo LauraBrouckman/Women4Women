@@ -23,6 +23,7 @@ class LifelineTableViewController: CoreDataTableViewController {
     var timer = Timer()
     
     override func viewDidLoad() {
+        self.hideKeyboardWhenTappedAround()
         super.viewDidLoad()
         updateUI()
         if showSideMenu {
@@ -32,16 +33,21 @@ class LifelineTableViewController: CoreDataTableViewController {
    
         
         // Add in custom SOS view
-        let customView = UIView(frame: CGRect(x: 0, y: 500, width: 200, height: 80))
-        let button = UIButton(frame: CGRect(x: 100, y: 12, width: 56, height: 56))
+        let screenSize: CGRect = UIScreen.main.bounds
+        let customView = UIView(frame: CGRect(x: 0, y: 500, width: screenSize.width, height: 100))
+        customView.backgroundColor = Colors.offWhite
+        let x = (screenSize.width - 74) / 2
+        let button = UIButton(frame: CGRect(x: x, y: 12, width: 74, height: 74))
         button.setTitle("SOS", for: .normal)
         button.backgroundColor = UIColor.white
-        button.setTitleColor(Colors.lightBlue, for: .normal)
-        button.layer.cornerRadius = 28
-        button.layer.borderColor = Colors.lightBlue.cgColor
-        button.layer.borderWidth = 4
+        button.setTitleColor(Colors.red, for: .normal)
+        button.layer.cornerRadius = 37
+        button.layer.borderColor = Colors.red.cgColor
+        button.layer.borderWidth = 10
         button.addTarget(self, action: #selector(sosRelease), for: .touchUpInside)
         button.addTarget(self, action: #selector(sosHold), for: .touchDown)
+        
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         
         customView.addSubview(button)
         self.tableView.tableFooterView = customView
@@ -200,6 +206,7 @@ class LifelineTableViewController: CoreDataTableViewController {
                     }
                     cell.lifelineNameLabel.text = first_name! + " " + last_name!
                     cell.username = username!
+                    cell.photo_filename = photo_filename
                     //SET THE PROFILE PICTURE IMAGE HERE!
                 }
                 return cell
@@ -279,6 +286,7 @@ class LifelineTableViewController: CoreDataTableViewController {
             UserDefaults.setNightOccuring(false)
             UserDefaults.setNightOutLocationName(name: "")
             UserDefaults.setNightOutLocation(latitude: 0, longitude: 0)
+            UserDefaults.setHomeTime(nil)
         }
      }
  

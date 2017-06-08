@@ -45,6 +45,7 @@ class TrackUsers {
                     "home_city": userData["home_city"] as? String ?? ""
                 ]
                 nearbyUsers.append(newUser)
+                RemoteDatabase.downloadFileToLocal(forUser: username, completionHandler: self.completion)
                 //Add user to list of nearby users
             }
         }        
@@ -60,6 +61,15 @@ class TrackUsers {
             }
         }
     
+    }
+    
+    static func completion(_: Bool) {
+        if(true) {
+            print("Successful in downloading to local!")
+        }
+        else {
+            print("unsuccessful")
+        }
     }
 
     

@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class HomeAddressTableViewCell: UITableViewCell {
+class HomeAddressTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var updateButton: UIButton!
@@ -22,7 +22,14 @@ class HomeAddressTableViewCell: UITableViewCell {
         updateButton.backgroundColor = UIColor.white
         updateButton.setTitleColor(UIColor.black, for: .normal)
         updateButton.layer.cornerRadius = 6
+        textField.delegate = self
+        textField.returnKeyType = .done
         // Initialization code
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

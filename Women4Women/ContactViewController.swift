@@ -69,8 +69,8 @@ class ContactViewController: UITableViewController  {
         if contacts == nil {
             return UITableViewCell()
         }
-        var cell = UITableViewCell()
-        var contact = contacts![indexPath.row]
+        let cell = UITableViewCell()
+        let contact = contacts![indexPath.row]
         cell.textLabel?.text = contact.givenName + " " + contact.familyName
         return cell
     }

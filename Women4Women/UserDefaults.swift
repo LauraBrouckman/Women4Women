@@ -117,7 +117,7 @@ class UserDefaults{
     }
     
     // Get and set the time that the user wants to be home by
-    static func setHomeTime(_ time: Date) {
+    static func setHomeTime(_ time: Date?) {
         Foundation.UserDefaults.standard.setValue(time, forKey: timeToBeHome)
     }
     

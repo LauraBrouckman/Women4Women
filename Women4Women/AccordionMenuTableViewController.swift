@@ -14,6 +14,8 @@ class AccordionMenuTableViewController: AccordionTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.hideKeyboardWhenTappedAround()
+        
         var timeToComeHome: String
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "hh:mm a"
@@ -34,13 +36,17 @@ class AccordionMenuTableViewController: AccordionTableViewController {
         total = dataSource.count
         
         //make custom view to go at the bottom of the table
-        let customView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
-        customView.backgroundColor = Colors.lightBlue
-        let button = UIButton(frame: CGRect(x: 50, y: 12, width: 100, height: 26))
+        let screenSize: CGRect = UIScreen.main.bounds
+        let customView = UIView(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: 90))
+        customView.backgroundColor = Colors.teal
+        let button = UIButton(frame: CGRect(x: (screenSize.width - 200) / 2, y: 25, width: 200, height: 50))
         button.setTitle("Plan Outing", for: .normal)
-        button.backgroundColor = UIColor.white
-        button.setTitleColor(Colors.lightBlue, for: .normal)
+        button.backgroundColor = Colors.offWhite
+        button.setTitleColor(Colors.teal, for: .normal)
         button.layer.cornerRadius = 6
+        button.layer.borderColor = Colors.teal.cgColor
+        button.layer.borderWidth = 1
+        button.titleLabel?.font = button.titleLabel?.font.withSize(20)
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         customView.addSubview(button)
         self.tableView.tableFooterView = customView

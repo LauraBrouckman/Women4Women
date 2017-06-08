@@ -25,6 +25,8 @@ class nameUpdateViewController: UIViewController, UITextFieldDelegate {
         firstNameTextField.tag = 0
         lastNameTextField.tag = 1
         
+        self.hideKeyboardWhenTappedAround()
+        
         //updateButton.
         // Do any additional setup after loading the view.
     }

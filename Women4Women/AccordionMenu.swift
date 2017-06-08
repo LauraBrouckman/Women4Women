@@ -240,15 +240,14 @@ extension AccordionTableViewController {
             cell.textLabel!.text = self.dataSource[parent].title
             
             //Setting the subtitle for the time cell
-            var timeToComeHome: String
+            let timeToComeHome: String
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "hh:mm a"
             if let time = UserDefaults.getHomeTime() {
                 timeToComeHome = dateFormatter.string(from: time)
             } else {
-                let time = Date(timeIntervalSinceNow: TimeInterval(7200))
-                UserDefaults.setHomeTime(time)
-                timeToComeHome = dateFormatter.string(from: time)
+                UserDefaults.setHomeTime(Date())
+                timeToComeHome = dateFormatter.string(from: Date())
             }
             
             

@@ -11,7 +11,7 @@ import CoreLocation
 import MapKit
 import CoreData
 
-class MainMapViewController: UIViewController, MKMapViewDelegate {
+class MainMapViewController: UIViewController, MKMapViewDelegate, UITextFieldDelegate {
     
     @IBAction func Messages(_ sender: Any) {
         performSegue(withIdentifier: "Messages", sender: self)
@@ -44,6 +44,8 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         print("loaded main map view controller")
+        searchTextField.delegate = self
+        searchTextField.returnKeyType = .search
         super.viewDidLoad()
         configueSearchTextField()
         searchCompleter.delegate = self
@@ -51,9 +53,17 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
         if showSideMenu {
             self.slideMenuController()?.openLeft()
         }
+        self.hideKeyboardWhenTappedAround()
+
+        UserDefaults.setHomeTime(nil)
         
         setUpMap()
     }
+    
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        textField.resignFirstResponder()
+//        return true
+//    }
     
     //Set up the map to center around the user's current location
     func setUpMap() {
@@ -71,7 +81,8 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
         
         popupMenu.isHidden = hidePopup
         if hidePopup == false {
-            self.popupMenuHeight.constant = 300 // heightCon is the IBOutlet to the constraint
+            searchTextField.text = UserDefaults.getNightOutLocationName()
+            self.popupMenuHeight.constant = 280 // heightCon is the IBOutlet to the constraint
             self.view.layoutIfNeeded()
             centerTitle = UserDefaults.getNightOutLocationName()
             let (lat, lon) = UserDefaults.getNightOutLocation()!
@@ -115,7 +126,6 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
         popupMenu.isHidden = true
     }
     
-    
 
     
     //Searches for the query string on apply maps and updates the table of search results
@@ -157,6 +167,7 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
     var mapCenter: CLLocationCoordinate2D?
     
     func locateOnMap(address: String?, title: String?) {
+        print("LOCATE ON MAP")
         var ad = address
         centerTitle = title
         if address == nil {
@@ -190,7 +201,7 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
         let title = self.centerTitle
         let spanX = 0.005
         let spanY = 0.005
-        let mapCenter = CLLocationCoordinate2D(latitude: center.latitude - 0.0015, longitude: center.longitude)
+        let mapCenter = CLLocationCoordinate2D(latitude: center.latitude - 0.0009, longitude: center.longitude)
         let newRegion = MKCoordinateRegion(center: mapCenter, span: MKCoordinateSpanMake(spanX, spanY))
         mapView.setRegion(newRegion, animated: true)
         addAnnotations(title: title, center: center)
@@ -268,7 +279,7 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
         searchTextField.resignFirstResponder()
         popupMenu.isHidden = false
         UIView.animate(withDuration: 1, animations: {
-            self.popupMenuHeight.constant = 300 // heightCon is the IBOutlet to the constraint
+            self.popupMenuHeight.constant = 280 // heightCon is the IBOutlet to the constraint
             self.view.layoutIfNeeded()
         })
     }
@@ -295,7 +306,7 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
 
 extension MainMapViewController: CLLocationManagerDelegate {
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
             
             print("MY LOCATION CHANGED!!!!")
             

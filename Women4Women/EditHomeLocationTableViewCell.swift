@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class EditHomeLocationTableViewCell: UITableViewCell {
+class EditHomeLocationTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     @IBOutlet weak var homeLocationLabel: UILabel!
     
@@ -22,6 +22,13 @@ class EditHomeLocationTableViewCell: UITableViewCell {
         // Initialization code
         setButton.isHidden = true
         textField.isHidden = true
+        textField.delegate = self
+        textField.returnKeyType = .done
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

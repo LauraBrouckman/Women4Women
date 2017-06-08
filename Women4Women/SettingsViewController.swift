@@ -39,10 +39,11 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
             if let imageData = UIImagePNGRepresentation(image) {
                 do {
                     try imageData.write(to: getImageUrl(imageFileName: "test"), options: [.atomic])
+                    // upload image to remote DB
+                    RemoteDatabase.updateProfilePicture(UserDefaults.getUsername())
                 } catch  {
                     print("something went wrong while writing")
             }
-               // try? imageData.write(to: getImageUrl(imageFileName: "test.png"), options: [.atomic])
             }
         }
         else {
@@ -81,11 +82,6 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         }
     }
     
-    fileprivate func getDocumentsDirectory() -> String {
-        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let documentsDirectory = paths[0]
-        return documentsDirectory
-    }
     
     fileprivate func getImageUrl(imageFileName: String) -> URL {
         UserDefaults.setProfilePicFilename(imageFileName)
