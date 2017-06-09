@@ -16,7 +16,6 @@ class LifelineTableViewController: CoreDataTableViewController {
     @IBAction func openSettings(_ sender: UIButton) {
         self.slideMenuController()?.openLeft()
     }
-    
     var sosDown = false
     var showSideMenu = false
     var counter = 5
@@ -35,7 +34,13 @@ class LifelineTableViewController: CoreDataTableViewController {
         
         // Add in custom SOS view
         let screenSize: CGRect = UIScreen.main.bounds
-        let customView = UIView(frame: CGRect(x: 0, y: 500, width: screenSize.width, height: 100))
+        var height: Double
+        if screenSize.height - tableView.contentSize.height > 100 {
+            height = Double(screenSize.height) - Double(tableView.contentSize.height)
+        } else {
+            height = 100
+        }
+        let customView = UIView(frame: CGRect(x: 0, y: 500, width: screenSize.width, height: CGFloat(height)))
         customView.backgroundColor = Colors.offWhite
         let x = (screenSize.width - 74) / 2
         let button = UIButton(frame: CGRect(x: x, y: 12, width: 74, height: 74))
@@ -80,7 +85,7 @@ class LifelineTableViewController: CoreDataTableViewController {
         attrString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
 
         
-        let label = UILabel(frame: CGRect(x: 20, y: 0, width: screenSize.width - 40, height: 600))
+        let label = UILabel(frame: CGRect(x: 20, y: 20, width: screenSize.width - 40, height: 600))
         label.numberOfLines = 10
         label.attributedText = attrString
         //label.text = "You are triggering the SOS feature. This will alert all nearby lifelines, your emergency contact, and your location that you need help.  Hold the button for 5 seconds to complete this action."
@@ -89,7 +94,7 @@ class LifelineTableViewController: CoreDataTableViewController {
         sosView.addSubview(label)
         
         
-        countdownLabel = UILabel(frame: CGRect(x: (screenSize.width - 70) / 2, y: 50, width: 70, height: 70))
+        countdownLabel = UILabel(frame: CGRect(x: (screenSize.width - 70) / 2, y: 70, width: 70, height: 70))
         countdownLabel?.text = "5"
         countdownLabel?.textColor = UIColor.white
         countdownLabel?.font = label.font.withSize(80)

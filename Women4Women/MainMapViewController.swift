@@ -44,7 +44,6 @@ class MainMapViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
     
     override func viewDidLoad() {
         UserDefaults.setCurrentLocation(lat: 0, lon: 0)
-        print("loaded main map view controller")
         searchTextField.delegate = self
         searchTextField.returnKeyType = .search
         super.viewDidLoad()
@@ -168,7 +167,6 @@ class MainMapViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
     var mapCenter: CLLocationCoordinate2D?
     
     func locateOnMap(address: String?, title: String?) {
-        print("LOCATE ON MAP")
         var ad = address
         centerTitle = title
         if address == nil {
@@ -263,8 +261,10 @@ class MainMapViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
                 let view = MKAnnotationView(annotation: annotation, reuseIdentifier: annotation.identifier)
                 //view.image = userPin
                 let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-                let filePath = documentsURL.appendingPathComponent("\(UserDefaults.getProfilePicFilename()).png").path
+                let filePath = documentsURL.appendingPathComponent("\(annotation.filename!)").path
+                print("Looking for image at path \(filePath)")
                 if FileManager.default.fileExists(atPath: filePath) {
+                    print("Found image there")
                     let img = UIImage(contentsOfFile: filePath)
                     view.image = img?.circularImage(size: CGSize(width: 30, height: 30))
                     view.leftCalloutAccessoryView = UIImageView(image: img?.circularImage(size: CGSize(width: 30, height: 30)))
@@ -377,9 +377,7 @@ extension MainMapViewController: CLLocationManagerDelegate {
 
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-            
-            print("MY LOCATION CHANGED!!!!")
-            
+        
             let location = locations.last
             if location != nil
             {

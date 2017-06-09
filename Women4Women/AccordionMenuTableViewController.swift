@@ -39,7 +39,7 @@ class AccordionMenuTableViewController: AccordionTableViewController {
         let screenSize: CGRect = UIScreen.main.bounds
         let customView = UIView(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: 90))
         customView.backgroundColor = Colors.teal
-        let button = UIButton(frame: CGRect(x: (screenSize.width - 200) / 2, y: 25, width: 200, height: 50))
+        let button = UIButton(frame: CGRect(x: (screenSize.width - 200) / 2, y: 18, width: 200, height: 50))
         button.setTitle("Plan Outing", for: .normal)
         button.backgroundColor = Colors.offWhite
         button.setTitleColor(Colors.teal, for: .normal)

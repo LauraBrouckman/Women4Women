@@ -214,6 +214,7 @@ class RemoteDatabase {
         
         do {
             try data?.write(to: fileURL, options: [.atomic])
+            print("Saving file to \(fileURL)")
             self.managedObjectContext.perform {
                 NearbyUser.setProfilePicture(forUser: username, filename: fileName, inManagedObjectContext: RemoteDatabase.managedObjectContext)
                 do {
