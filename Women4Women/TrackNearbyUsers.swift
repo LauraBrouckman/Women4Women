@@ -45,7 +45,12 @@ class TrackUsers {
                     "home_city": userData["home_city"] as? String ?? ""
                 ]
                 nearbyUsers.append(newUser)
-                RemoteDatabase.downloadFileToLocal(forUser: username, completionHandler: self.completion)
+                let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                let filePath = documentsURL.appendingPathComponent("\(newUser["photo_filename"]!)").path
+                if !FileManager.default.fileExists(atPath: filePath) {
+                    print("file \(filePath) does not exist, downloading it now")
+                    RemoteDatabase.downloadFileToLocal(forUser: username, completionHandler: self.completion)
+                }
                 //Add user to list of nearby users
             }
         }        
@@ -63,8 +68,8 @@ class TrackUsers {
     
     }
     
-    static func completion(_: Bool) {
-        if(true) {
+    static func completion(_ done: Bool) {
+        if(done) {
             print("Successful in downloading to local!")
         }
         else {

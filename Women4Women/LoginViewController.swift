@@ -72,7 +72,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             UserDefaults.setUsername(username)
                             UserDefaults.setFirstName(snapshotDict["first_name"] as! String)
                             UserDefaults.setLastName(snapshotDict["last_name"] as! String)
-                            UserDefaults.setProfilePicFilename(snapshotDict["photo_filename"] as! String)
+                            UserDefaults.setProfilePicFilename("test")
+                            RemoteDatabase.downloadFileToLocal(forUser: username, completionHandler: self.completion)
                             let containerViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Container")
                             UIApplication.topViewController()?.present(containerViewController, animated: true, completion: nil)                        }
                     }
@@ -81,6 +82,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    fileprivate func completion (_ done: Bool) {
+        if(done) {
+            print("worked")
+        }
+    }
     
     
     

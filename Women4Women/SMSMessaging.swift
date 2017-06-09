@@ -33,7 +33,7 @@ class SMSMessaging {
             "Body": message
         ]
         
-        Alamofire.request("http://a566092e.ngrok.io/sms", method: .post, parameters: parameters, headers: headers).response { response in
+        Alamofire.request("https://a7181727.ngrok.io/sms", method: .post, parameters: parameters, headers: headers).response { response in
             
         }
     }
@@ -50,7 +50,7 @@ class SMSMessaging {
             "Body": message
         ]
         
-        Alamofire.request("http://a566092e.ngrok.io/sms", method: .post, parameters: parameters, headers: headers).response { response in
+        Alamofire.request("https://a7181727.ngrok.io/sms", method: .post, parameters: parameters, headers: headers).response { response in
             
         }
 
@@ -68,7 +68,7 @@ class SMSMessaging {
             "Body": message
         ]
         
-        Alamofire.request("http://a566092e.ngrok.io/sms", method: .post, parameters: parameters, headers: headers).response { response in
+        Alamofire.request("https://a7181727.ngrok.io/sms", method: .post, parameters: parameters, headers: headers).response { response in
             
         }
     }

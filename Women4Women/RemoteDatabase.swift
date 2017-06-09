@@ -200,7 +200,17 @@ class RemoteDatabase {
     fileprivate static func saveToFileSystem(_ URL: Foundation.URL, fileName: String, username: String, completionHandler: @escaping(Bool) -> ()) {
         let data =  try? Data(contentsOf: URL)
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let fileURL = documentsURL.appendingPathComponent("\(fileName)")
+        var fileURL: URL
+        if username == UserDefaults.getUsername() {
+            fileURL = documentsURL.appendingPathComponent("test.png")
+            do {
+                try data?.write(to: fileURL, options: [.atomic])
+            } catch let error as NSError {
+                print(error)
+            }
+        } else {
+            fileURL = documentsURL.appendingPathComponent("\(fileName)")
+        
         
         do {
             try data?.write(to: fileURL, options: [.atomic])
@@ -215,6 +225,7 @@ class RemoteDatabase {
             }
         } catch let _ as NSError {
             print("could not save remote file to local database")
+        }
         }
     }
     
@@ -242,6 +253,9 @@ class RemoteDatabase {
             print(error)
         }
     }
+    
+    
+    // Download file for user specifically
     
     
     static fileprivate func uploadFileToDatabase(forUser username: String) {

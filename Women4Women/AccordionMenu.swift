@@ -239,6 +239,11 @@ extension AccordionTableViewController {
             
             cell.textLabel!.text = self.dataSource[parent].title
             
+            cell.textLabel?.textColor = UIColor.white
+            cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+            
+            cell.detailTextLabel?.textColor = UIColor.white
+            
             //Setting the subtitle for the time cell
             let timeToComeHome: String
             let dateFormatter = DateFormatter()
@@ -255,9 +260,20 @@ extension AccordionTableViewController {
                 case "Time":
                     cell.detailTextLabel!.text = timeToComeHome
             case "Home address":
-                cell.detailTextLabel!.text = UserDefaults.getHomeStreet() + ", " + UserDefaults.getHomeCity()
+                let street = UserDefaults.getHomeStreet()
+                if street.isEmpty {
+                    cell.detailTextLabel!.text = "Not set"
+                } else {
+                    cell.detailTextLabel!.text = street
+                }
             case "Emergency Contact":
-                cell.detailTextLabel!.text = UserDefaults.getEmergencyContactFirstName() + " " + UserDefaults.getEmergencyContactLastName()
+                let firstName = UserDefaults.getEmergencyContactFirstName()
+                let lastName = UserDefaults.getEmergencyContactLastName()
+                if firstName.isEmpty {
+                    cell.detailTextLabel!.text = "None"
+                } else {
+                    cell.detailTextLabel!.text = firstName + " " + lastName
+                }
             default:
                 ""
             }

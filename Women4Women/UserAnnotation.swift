@@ -13,9 +13,11 @@ class UserAnnotation: NSObject, MKAnnotation{
     var title: String?
     var subtitle: String?
     var coordinate: CLLocationCoordinate2D
-    init(name:String, center: CLLocationCoordinate2D, sub: String?){
+    var filename: String?
+    init(name:String, center: CLLocationCoordinate2D, sub: String?, photo_filename: String?){
         title = name
         coordinate = center
+        filename = photo_filename
         //subtitle = sub
     }
 }

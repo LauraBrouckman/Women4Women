@@ -17,7 +17,13 @@ class EmergencyContactTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        emergencyContactLabel.text = UserDefaults.getEmergencyContactFirstName() + " " + UserDefaults.getEmergencyContactLastName()
+        let firstName = UserDefaults.getEmergencyContactFirstName()
+        let lastName = UserDefaults.getEmergencyContactLastName()
+        if firstName.isEmpty {
+            emergencyContactLabel.text = "None"
+        } else {
+            emergencyContactLabel.text = firstName + " " + lastName
+        }
         editButton.layer.cornerRadius = 6
         editButton.backgroundColor = UIColor.white
         editButton.setTitleColor(UIColor.black, for: .normal)

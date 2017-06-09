@@ -18,7 +18,12 @@ class EditHomeLocationTableViewCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var textField: UITextField!
     override func awakeFromNib() {
         super.awakeFromNib()
-        homeLocationLabel.text = UserDefaults.getHomeStreet()
+        let street = UserDefaults.getHomeStreet()
+        if street.isEmpty {
+            homeLocationLabel.text = "Not set"
+        } else {
+            homeLocationLabel.text = street
+        }
         // Initialization code
         setButton.isHidden = true
         textField.isHidden = true

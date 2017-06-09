@@ -18,7 +18,13 @@ class HomeAddressTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        textField.text = UserDefaults.getHomeStreet() + " " + UserDefaults.getHomeCity()
+        let street = UserDefaults.getHomeStreet()
+        let city = UserDefaults.getHomeCity()
+        if street.isEmpty {
+            textField.text = ""
+        } else {
+            textField.text = street + " " + city
+        }
         updateButton.backgroundColor = UIColor.white
         updateButton.setTitleColor(UIColor.black, for: .normal)
         updateButton.layer.cornerRadius = 6

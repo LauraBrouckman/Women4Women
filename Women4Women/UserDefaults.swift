@@ -382,4 +382,18 @@ class UserDefaults{
         }
     }
     
+    static func setCurrentLocation(lat: Double, lon: Double) {
+         Foundation.UserDefaults.standard.setValue(lat, forKey: "currentLocationLatitude")
+        Foundation.UserDefaults.standard.setValue(lon, forKey: "currentLocationLongitude")
+    }
+    
+    static func getCurrentLocation() -> (Double, Double)? {
+        if let latitude = Foundation.UserDefaults.standard.value(forKey: "currentLocationLatitude") as? Double {
+            if let longitude = Foundation.UserDefaults.standard.value(forKey: "currentLocationLongitude") as? Double {
+                return (latitude, longitude)
+            }
+        }
+        return nil
+    }
+    
 }

@@ -21,6 +21,7 @@ class LifelineTableViewController: CoreDataTableViewController {
     var showSideMenu = false
     var counter = 5
     var timer = Timer()
+    @IBOutlet weak var lifelineLabel: UILabel!
     
     override func viewDidLoad() {
         self.hideKeyboardWhenTappedAround()
@@ -188,7 +189,9 @@ class LifelineTableViewController: CoreDataTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let numLifelines = fetchedResultsController?.fetchedObjects?.count
         let row = indexPath.row
-        
+        if numLifelines == 0{
+            lifelineLabel.text = "Oh no! There are no lifelines nearby"
+        }
         if row < numLifelines! {
             let c = tableView.dequeueReusableCell(withIdentifier: "lifelineCell", for: indexPath)
             if let cell = c as? LifelineTableViewCell {

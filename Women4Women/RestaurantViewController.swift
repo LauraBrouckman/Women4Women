@@ -1,8 +1,8 @@
 //
-//  MainMapViewController.swift
+//  RestaurantViewController.swift
 //  Women4Women
 //
-//  Created by Laura Brouckman on 5/6/17.
+//  Created by Elizabeth Brouckman on 6/8/17.
 //  Copyright © 2017 cs194w. All rights reserved.
 //
 
@@ -11,15 +11,21 @@ import CoreLocation
 import MapKit
 import CoreData
 
-class MainMapViewController: UIViewController, MKMapViewDelegate, UITextFieldDelegate {
-    
-    @IBAction func Messages(_ sender: Any) {
-        performSegue(withIdentifier: "Messages", sender: self)
-    }
-    
-    var hidePopup: Bool = true
-    var showSideMenu = false
 
+class RestaurantViewController: UIViewController, MKMapViewDelegate, UITextFieldDelegate {
+
+    @IBOutlet weak var restaurantPhoneNumberLabel: UILabel!
+    @IBOutlet weak var restaurantAddressLabel: UILabel!
+    @IBOutlet weak var restaurantNameLabel: UILabel!
+    @IBOutlet weak var protocolsLabel: UILabel!
+    @IBOutlet weak var searchTextField: SearchTextField!
+    @IBOutlet weak var updateLocationButton: UIButton!
+    @IBOutlet weak var mapView: MKMapView!
+    
+    let searchCompleter = MKLocalSearchCompleter()
+    var searchResults: [MKLocalSearchCompletion] = []
+    var hideSearchResults = false
+    
     lazy var locationManager: CLLocationManager = {
         var _locationManager = CLLocationManager()
         _locationManager.delegate = self
@@ -32,39 +38,32 @@ class MainMapViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
     }()
     
     let userPin = UIImage(named: "user pin")
+    
     let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var searchTextField: SearchTextField!
-    let searchCompleter = MKLocalSearchCompleter()
-    var searchResults: [MKLocalSearchCompletion] = []
-    var hideSearchResults = false
-    @IBOutlet weak var popupMenu: UIView!
-    @IBOutlet weak var popupMenuHeight: NSLayoutConstraint!
     
     
     override func viewDidLoad() {
-        UserDefaults.setCurrentLocation(lat: 0, lon: 0)
-        print("loaded main map view controller")
+        super.viewDidLoad()
+        updateLocationButton.isHidden = true
+        updateLocationButton.layer.cornerRadius = 6
+        updateLocationButton.layer.borderColor = Colors.teal.cgColor
+        updateLocationButton.layer.borderWidth = 1
+        
+        //Text field setup
         searchTextField.delegate = self
         searchTextField.returnKeyType = .search
-        super.viewDidLoad()
         configueSearchTextField()
         searchCompleter.delegate = self
-        
-        if showSideMenu {
-            self.slideMenuController()?.openLeft()
-        }
+
         self.hideKeyboardWhenTappedAround()
 
-        UserDefaults.setHomeTime(nil)
-        
         setUpMap()
+        
+        //fill in labels
+        restaurantNameLabel.text = UserDefaults.getNightOutLocationName()
+
+        // Do any additional setup after loading the view.
     }
-    
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        textField.resignFirstResponder()
-//        return true
-//    }
     
     //Set up the map to center around the user's current location
     func setUpMap() {
@@ -79,26 +78,13 @@ class MainMapViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
         mapView.isZoomEnabled = true
         mapView.isScrollEnabled = true
         mapView.userTrackingMode = .follow
-        
-        popupMenu.isHidden = hidePopup
-        if hidePopup == false {
-            searchTextField.text = UserDefaults.getNightOutLocationName()
-            self.popupMenuHeight.constant = 280 // heightCon is the IBOutlet to the constraint
-            self.view.layoutIfNeeded()
-            centerTitle = UserDefaults.getNightOutLocationName()
-            let (lat, lon) = UserDefaults.getNightOutLocation()!
-            mapCenter = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-            self.centerMap()
-        }
     }
-
     
-
     //Set up the auto-complete search field so that it will sugggest places + their addresses when user starts typing
     func configueSearchTextField() {
-
+        
         searchTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-
+        
         searchTextField.backgroundColor = .white
         searchTextField.borderStyle = UITextBorderStyle.roundedRect
         searchTextField.comparisonOptions = [.caseInsensitive]
@@ -121,13 +107,6 @@ class MainMapViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
             self.updateSearchResults()
         }
     }
-    
- func textFieldDidChange(_ textField: UITextField) {
-        hideSearchResults = false
-        popupMenu.isHidden = true
-    }
-    
-
     
     //Searches for the query string on apply maps and updates the table of search results
     func updateSearchResults() {
@@ -159,7 +138,7 @@ class MainMapViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
             }
         }
     }
-
+    
     // Locate the given address on the map, and center the MapView around that location
     // Show a pin with restaurant info and nearby user's locations
     // When this happens, it will also bring up the bottom toolbar to set time/contact/etc.
@@ -202,11 +181,11 @@ class MainMapViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
         let title = self.centerTitle
         let spanX = 0.005
         let spanY = 0.005
-        let mapCenter = CLLocationCoordinate2D(latitude: center.latitude - 0.0009, longitude: center.longitude)
+        let mapCenter = CLLocationCoordinate2D(latitude: center.latitude, longitude: center.longitude)
         let newRegion = MKCoordinateRegion(center: mapCenter, span: MKCoordinateSpanMake(spanX, spanY))
         mapView.setRegion(newRegion, animated: true)
         addAnnotations(title: title, center: center)
-        openPopupMenu()
+        updateLocationButton.isHidden = false
     }
     
     // Find users that are close to the "going-out" location and add annotations for them onto the map
@@ -233,26 +212,11 @@ class MainMapViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
             //Add a circle that goes around the annotation
             let circle = MKCircle(center: center, radius: 115)
             self.mapView.add(circle)
-
+            
         }
     }
     
-    
-    // Resize image for the pin
-//    func resizeImage(image: UIImage?, newWidth: CGFloat) -> UIImage? {
-//        if image == nil {
-//            return nil
-//        }
-//        let scale = newWidth / image!.size.width
-//        let newHeight = image!.size.height * scale
-//        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
-//            image!.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
-//        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-//        UIGraphicsEndImageContext()
-//        newImage.
-//        return newImage
-//    }
-    
+
     // Create the view for the annotation
     func mapView(_ mapView:
         MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -298,23 +262,23 @@ class MainMapViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
             mapView.selectAnnotation(annotation, animated: true)
         }
     }
+
     
-
-
-    //Open up the popup menu from the bottom of the screen
-    func openPopupMenu() {
-        searchTextField.resignFirstResponder()
-        popupMenu.isHidden = false
-        UIView.animate(withDuration: 1, animations: {
-            self.popupMenuHeight.constant = 280 // heightCon is the IBOutlet to the constraint
-            self.view.layoutIfNeeded()
-        })
+    func textFieldDidChange(_ textField: UITextField) {
+        hideSearchResults = false
     }
     
-    @IBAction func openSettingsDrawer(_ sender: UIButton) {
-        self.slideMenuController()?.openLeft()
+    
+    
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func updateLocation() {
+        
+    }
 
     /*
     // MARK: - Navigation
@@ -328,76 +292,23 @@ class MainMapViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
 
 }
 
-
-// MARK: - CLLocationManagerDelegate
-
-// To cut image into circle
-extension UIImage {
-    
-    func circularImage(size size: CGSize?) -> UIImage {
-        let newSize = size ?? self.size
-        
-        let minEdge = min(newSize.height, newSize.width)
-        let size = CGSize(width: minEdge, height: minEdge)
-        
-        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
-        let context = UIGraphicsGetCurrentContext()
-        
-        self.draw(in: CGRect(origin: CGPoint.zero, size: size), blendMode: .copy, alpha: 1.0)
-        
-        context!.setBlendMode(.copy)
-        context!.setFillColor(UIColor.clear.cgColor)
-        
-        let rectPath = UIBezierPath(rect: CGRect(origin: CGPoint.zero, size: size))
-        let circlePath = UIBezierPath(ovalIn: CGRect(origin: CGPoint.zero, size: size))
-        rectPath.append(circlePath)
-        rectPath.usesEvenOddFillRule = true
-        rectPath.fill()
-        
-        let result = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return result!
-    }
-    
-}
-
-
-
-
-
-extension MainMapViewController: CLLocationManagerDelegate {
-    
-    func isClose(a: CLLocationCoordinate2D, b: CLLocationCoordinate2D) -> Bool {
-        if sqrt(pow(a.latitude - b.latitude, 2) + pow(a.longitude - b.longitude, 2)) <= 0.001 {
-            return true
-        }
-        return false
-    }
-
+extension RestaurantViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-            
-            print("MY LOCATION CHANGED!!!!")
-            
-            let location = locations.last
-            if location != nil
-            {
-                let newCoord = location?.coordinate
-                var (lat, lon) = UserDefaults.getCurrentLocation() ?? (0, 0)
-                let prevCoord = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-                if !isClose(a: newCoord!, b: prevCoord) {
-                    RemoteDatabase.updateUserLocation(forUser: UserDefaults.getUsername(), locationLat: (newCoord?.latitude)!, locationLon: (newCoord?.longitude)!)
-                    UserDefaults.setCurrentLocation(lat: (newCoord?.latitude)!, lon: (newCoord?.longitude)!)
-                }
-
+        
+        print("MY LOCATION CHANGED!!!!")
+        
+        let location = locations.last
+        if location != nil
+        {
+            RemoteDatabase.updateUserLocation(forUser: UserDefaults.getUsername(), locationLat: location!.coordinate.latitude, locationLon: location!.coordinate.longitude)
         }
         
     }
     
 }
 
-extension MainMapViewController: MKLocalSearchCompleterDelegate {
+extension RestaurantViewController: MKLocalSearchCompleterDelegate {
     
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
         self.searchResults = completer.results
@@ -408,3 +319,4 @@ extension MainMapViewController: MKLocalSearchCompleterDelegate {
         // handle error
     }
 }
+
