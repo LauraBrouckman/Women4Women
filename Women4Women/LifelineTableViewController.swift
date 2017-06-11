@@ -289,7 +289,10 @@ class LifelineTableViewController: CoreDataTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //senderDisplayName = conversations[indexPath.row].username
-        performSegue(withIdentifier: CHAT_SEGUE, sender: self)
+        let numLifelines = fetchedResultsController?.fetchedObjects?.count
+        if indexPath.row < numLifelines! {
+            performSegue(withIdentifier: CHAT_SEGUE, sender: self)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
@@ -303,6 +306,7 @@ class LifelineTableViewController: CoreDataTableViewController {
                 controller.userFirstName = user.first_name
             }
         } else if segue.identifier == "cancelNight" {
+            print("Segue is canceling night")
             UserDefaults.setNightOccuring(false)
             UserDefaults.setNightOutLocationName(name: "")
             UserDefaults.setNightOutLocation(latitude: 0, longitude: 0)
