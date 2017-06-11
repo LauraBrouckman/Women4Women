@@ -1536,11 +1536,9 @@
         <image name="white-close.png" width="300" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qw7-W2-wIE"/>
-        <segue reference="dge-64-VnY"/>
-        <segue reference="oxb-gu-exH"/>
-        <segue reference="HeI-w9-52l"/>
-        <segue reference="cuy-Cb-NQq"/>
         <segue reference="zAm-71-7DG"/>
+        <segue reference="HeI-w9-52l"/>
+        <segue reference="qw7-W2-wIE"/>
+        <segue reference="cuy-Cb-NQq"/>
     </inferredMetricsTieBreakers>
 </document>
