@@ -12,6 +12,7 @@ import CoreData
 class LifelineTableViewController: CoreDataTableViewController {
     private let MESSAGES_SEGUE = "ConversationsTableSegue"
     private let CHAT_SEGUE = "ConversationSegue"
+    let SOS_MESSAGE = UserDefaults.getFirstName() + " needs your help!  This is an SOS triggered emergency.  Please call 9-1-1."
     var managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBAction func openSettings(_ sender: UIButton) {
@@ -111,7 +112,16 @@ class LifelineTableViewController: CoreDataTableViewController {
         }
     }
     
-    
+    func sendMessageToLifelines(){
+        let cells = self.tableView.visibleCells as! Array<UITableViewCell>
+        
+        for cell in cells {
+            if cell.reuseIdentifier != "nightOutCell" && cell.reuseIdentifier != "homeLocationCell" && cell.reuseIdentifier != "timePlanCell" && cell.reuseIdentifier != "cancelNightCell"{
+                MessagesHandler.Instance.sendMessage(senderID: UserDefaults.getUsername(), senderName: UserDefaults.getFirstName(), text: SOS_MESSAGE, recipientID: (cell as! LifelineTableViewCell).username!)
+                //print("send message to SOS: " + (cell as! LifelineTableViewCell).username!)
+            }
+        }
+    }
     
     
     fileprivate func SOS() {
@@ -122,6 +132,9 @@ class LifelineTableViewController: CoreDataTableViewController {
             print("it's been 5 seconds, calling for SOS")
             // SEND THE MESSAGES HERE
             SMSMessaging.sendSOSText()
+            self.sendMessageToLifelines()
+            
+            
             displayAlertMessage(alertMessage: "You have triggered an SOS. Your emergency contact, lifelines, and current location have been notified.")
             sosDown = false
         } else {
@@ -241,13 +254,13 @@ class LifelineTableViewController: CoreDataTableViewController {
         }
     }
     
-    //    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    //        if section == 0 {
-    //            return "Lifelines"
-    //        }
-    //        return nil
-    //    }
     
+//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        if section == 0 {
+//            return "Lifelines"
+//        }
+//        return nil
+//    }
     /*
      // Override to support conditional editing of the table view.
      override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -300,11 +313,13 @@ class LifelineTableViewController: CoreDataTableViewController {
             let buttonPosition = (sender as AnyObject).convert(CGPoint(), to:tableView)
             let indexPath = tableView.indexPathForRow(at: buttonPosition)
             let controller = segue.destination as! ConversationViewController
-            let cell = self.tableView.cellForRow(at: indexPath!) as! LifelineTableViewCell
+            //let cell = self.tableView.cellForRow(at: indexPath!) as! LifelineTableViewCell
             if let user = fetchedResultsController?.object(at: indexPath!) as? NearbyUser {
                 controller.recipientID = user.username
                 controller.userFirstName = user.first_name
+                controller.theirProfPic = user.photo_filename
             }
+            controller.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
         } else if segue.identifier == "cancelNight" {
             print("Segue is canceling night")
             UserDefaults.setNightOccuring(false)

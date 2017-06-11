@@ -17,6 +17,10 @@ class ConversationViewController: JSQMessagesViewController, FetchMessages {
     let PALE_BLUE_HEX = "80AEF2"
     var userFirstName: String!
     var recipientID: String!
+    var theirProfPic: String!
+    
+    var avatars = [String: JSQMessagesAvatarImage]()
+    
     private var messages = [JSQMessage]()
     var conversationRef: FIRDatabaseReference?
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
@@ -26,23 +30,40 @@ class ConversationViewController: JSQMessagesViewController, FetchMessages {
         super.viewDidLoad()
         self.senderId = UserDefaults.getUsername()
         self.senderDisplayName = UserDefaults.getFirstName()
+        addAvatar("\(UserDefaults.getProfilePicFilename()).png", user: self.senderId)
+        addAvatar(theirProfPic, user: self.recipientID)
+        addNavBar()
         RemoteDatabase.m_delegate = self
+        
         
         RemoteDatabase.getMessages(recipientID: self.recipientID)
         FIRDatabase.database().reference().child("users/"+UserDefaults.getUsername()+"/conversations/"+self.recipientID).observe(.value, with: { (snapshot) in
             RemoteDatabase.getMessages(recipientID: self.recipientID)
         })
         self.inputToolbar.contentView.leftBarButtonItem = nil
-        addNavBar()
+        
     }
+
+    func addAvatar(_ photoFileName: String, user username: String){
+        print("in create avatars with:"+photoFileName+" for: "+username)
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let filePath = documentsURL.appendingPathComponent("\(photoFileName)").path
+        print("fp:"+filePath)
+        if FileManager.default.fileExists(atPath: filePath) {
+            print("setting my prof pic")
+            let av_img = JSQMessagesAvatarImageFactory.avatarImage(with: UIImage(contentsOfFile: filePath), diameter: 30)
+            self.avatars[username] = av_img
+        }else{
+            self.avatars[username] = nil
+        }
+    }
+
     
     func addNavBar() {
         let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height:54)) // Offset by 20 pixels vertically to take the status bar into account
         navigationBar.isTranslucent = true
         navigationBar.barTintColor = hexStringToUIColor(hex: PALE_BLUE_HEX)
         navigationBar.tintColor = UIColor.black
-        
-        //navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
         
         // Create a navigation item with a title
         let navigationItem = UINavigationItem()
@@ -90,9 +111,15 @@ class ConversationViewController: JSQMessagesViewController, FetchMessages {
     }
     
     // COLLECTION VIEW FUNCTIONS
-    
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
-        return JSQMessagesAvatarImageFactory.avatarImage(with: UIImage(named: "ProfileImg"), diameter: 30)
+        let message = messages[indexPath.row]
+        if let av = avatars[message.senderId] {
+            return av
+        }else{
+            return JSQMessagesAvatarImageFactory.avatarImage(with: UIImage(named: "ProfileImg"), diameter: 30)
+        }
+        //return avatars[message.senderId]
+        //return JSQMessagesAvatarImageFactory.avatarImage(with: UIImage(named: "ProfileImg"), diameter: 30)
     }
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAt indexPath: IndexPath!) -> JSQMessageBubbleImageDataSource! {
         let message = messages[indexPath.item] // 1

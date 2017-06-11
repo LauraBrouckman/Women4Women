@@ -12,7 +12,6 @@ class EditNightTableViewController: UITableViewController {
 
     
     var sosDown = false
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -65,6 +64,7 @@ class EditNightTableViewController: UITableViewController {
             // hide overlay 
             // maybe have an alert that informs them that sos was triggered
             print("it's been 5 seconds, calling for SOS")
+            
             sosDown = false
         } else {
             print("they released the sos button not doin it")
