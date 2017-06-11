@@ -11,6 +11,7 @@ import CoreData
 
 class LifelineTableViewController: CoreDataTableViewController {
     private let MESSAGES_SEGUE = "ConversationsTableSegue"
+    private let CHAT_SEGUE = "ConversationSegue"
     var managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBAction func openSettings(_ sender: UIButton) {
@@ -284,19 +285,31 @@ class LifelineTableViewController: CoreDataTableViewController {
     
     
      // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-        print("segueing \(segue.identifier)")
-        if segue.identifier == "cancelNight" {
+    
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //senderDisplayName = conversations[indexPath.row].username
+        performSegue(withIdentifier: CHAT_SEGUE, sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+        if segue.identifier == CHAT_SEGUE{
+            let buttonPosition = (sender as AnyObject).convert(CGPoint(), to:tableView)
+            let indexPath = tableView.indexPathForRow(at: buttonPosition)
+            let controller = segue.destination as! ConversationViewController
+            let cell = self.tableView.cellForRow(at: indexPath!) as! LifelineTableViewCell
+            if let user = fetchedResultsController?.object(at: indexPath!) as? NearbyUser {
+                controller.recipientID = user.username
+                controller.userFirstName = user.first_name
+            }
+        } else if segue.identifier == "cancelNight" {
             UserDefaults.setNightOccuring(false)
             UserDefaults.setNightOutLocationName(name: "")
             UserDefaults.setNightOutLocation(latitude: 0, longitude: 0)
             UserDefaults.setHomeTime(nil)
         }
-     }
+    }
+    
  
     
 }

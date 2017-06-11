@@ -22,7 +22,7 @@ class LifelineTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        updatePhoto()
+        //updatePhoto()
     }
     
     func updatePhoto() {

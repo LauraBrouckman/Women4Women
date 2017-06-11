@@ -11,6 +11,7 @@ import Foundation
 class Conversation {
     private var _username=""
     private var _lastmessage=""
+    private var _firstname=""
     
     init(username: String, lastmessage: String){
         _lastmessage = lastmessage
@@ -24,4 +25,14 @@ class Conversation {
     var lastmessage: String{
         return _lastmessage
     }
+    
+    var firstname: String{
+        get{
+            return _firstname
+        }
+        set(value){
+            self._firstname=value
+        }
+    }
+    
 }

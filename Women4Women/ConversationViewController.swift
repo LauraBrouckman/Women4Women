@@ -14,6 +14,8 @@ import AVKit
 
 class ConversationViewController: JSQMessagesViewController, FetchMessages {
     
+    let PALE_BLUE_HEX = "80AEF2"
+    var userFirstName: String!
     var recipientID: String!
     private var messages = [JSQMessage]()
     var conversationRef: FIRDatabaseReference?
@@ -21,7 +23,6 @@ class ConversationViewController: JSQMessagesViewController, FetchMessages {
     lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
     
     override func viewDidLoad() {
-        print("viewdidload conversation")
         super.viewDidLoad()
         self.senderId = UserDefaults.getUsername()
         self.senderDisplayName = UserDefaults.getFirstName()
@@ -31,7 +32,46 @@ class ConversationViewController: JSQMessagesViewController, FetchMessages {
         FIRDatabase.database().reference().child("users/"+UserDefaults.getUsername()+"/conversations/"+self.recipientID).observe(.value, with: { (snapshot) in
             RemoteDatabase.getMessages(recipientID: self.recipientID)
         })
+        self.inputToolbar.contentView.leftBarButtonItem = nil
+        addNavBar()
+    }
+    
+    func addNavBar() {
+        let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height:54)) // Offset by 20 pixels vertically to take the status bar into account
+        navigationBar.isTranslucent = true
+        navigationBar.barTintColor = hexStringToUIColor(hex: PALE_BLUE_HEX)
+        navigationBar.tintColor = UIColor.black
         
+        //navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
+        
+        // Create a navigation item with a title
+        let navigationItem = UINavigationItem()
+        
+        // Create left and right button for navigation item
+        
+        let button: UIButton = UIButton(type: .custom)
+        //set image for button
+        button.setBackgroundImage(UIImage(named: "back_arrow.png"), for: UIControlState.normal)
+        
+        //add function for button
+        button.addTarget(self, action: #selector(backBtn(_:)), for: UIControlEvents.touchUpInside)
+        //set frame
+        button.frame = CGRect(x: 0, y: 0, width: 15, height: 20)
+        
+        let backButton = UIBarButtonItem(customView: button)
+        
+        //let backButton =  UIBarButtonItem(title: "Back", style:   .plain, target: self, action: #selector(backBtn(_:)))
+        //backButton.setImage(UIImage(named: "fb.png"), forState: UIControlState.Normal)
+        // Create two buttons for the navigation item
+        navigationItem.leftBarButtonItem = backButton
+        
+        // Assign the navigation item to the navigation bar
+        navigationBar.items = [navigationItem]
+        navigationBar.topItem?.title = userFirstName
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        
+        // Make the navigation bar a subview of the current view controller
+        self.view.addSubview(navigationBar)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -118,5 +158,27 @@ class ConversationViewController: JSQMessagesViewController, FetchMessages {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func hexStringToUIColor (hex:String) -> UIColor {
+        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+        
+        if ((cString.characters.count) != 6) {
+            return UIColor.gray
+        }
+        
+        var rgbValue:UInt32 = 0
+        Scanner(string: cString).scanHexInt32(&rgbValue)
+        
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(0.5)
+        )
+    }
 
 }

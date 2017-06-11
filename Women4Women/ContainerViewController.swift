@@ -50,6 +50,7 @@ class ContainerViewController: SlideMenuController {
         else {
             UserDefaults.setNightOccuring(false)
             self.mainViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
+            
         }
     }
     
