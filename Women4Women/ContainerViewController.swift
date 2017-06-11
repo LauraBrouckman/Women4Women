@@ -24,6 +24,7 @@ class ContainerViewController: SlideMenuController {
     }
 
     func updateControllers() {
+        UserDefaults.setNightOccuring(false)
         if lifeline || UserDefaults.getNightOccuring() {
             self.leftViewController = self.storyboard?.instantiateViewController(withIdentifier: "Left")
             self.mainViewController = self.storyboard?.instantiateViewController(withIdentifier: "Lifeline")
@@ -33,7 +34,9 @@ class ContainerViewController: SlideMenuController {
             self.mainViewController = self.storyboard?.instantiateViewController(withIdentifier: "Main")
         }
         else {
+            
             self.mainViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
+            
         }
     }
     

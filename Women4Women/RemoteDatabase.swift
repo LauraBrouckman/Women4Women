@@ -143,7 +143,7 @@ class RemoteDatabase {
             if let myConversations = snapshot.value as? NSDictionary {
                 for (key, value) in myConversations{
                     if let conversationData = value as? NSDictionary{
-                        
+
                         if let lastmessage=conversationData[self.LAST_MESSAGE] as? String{
                             let username = key as! String
                             let newConversation = Conversation(username: username, lastmessage: lastmessage)
