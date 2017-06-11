@@ -11,9 +11,10 @@
 		201BEDBE1EDE6E150086C0ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 201BEDBD1EDE6E150086C0ED /* Main.storyboard */; };
 		201BEDC01EDE765B0086C0ED /* SlideMenuControllerSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 201BEDBF1EDE765B0086C0ED /* SlideMenuControllerSwift.framework */; };
 		201BEDC21EDE76640086C0ED /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 201BEDC11EDE76640086C0ED /* GoogleToolboxForMac.framework */; };
+		2070E3C31EED3785004621C8 /* ConversationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2070E3C21EED3785004621C8 /* ConversationsTableViewController.swift */; };
+		2070E3C51EED37A9004621C8 /* ConversationsTableViewController 01-32-13-813.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2070E3C41EED37A9004621C8 /* ConversationsTableViewController 01-32-13-813.swift */; };
 		20B0522D1ECF91DF006A31E8 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B0522C1ECF91DF006A31E8 /* Conversation.swift */; };
 		20B0522F1ECFA47B006A31E8 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B0522E1ECFA47B006A31E8 /* ConversationViewController.swift */; };
-		20C08C021EE5222B00E1D7DA /* ConversationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C08C011EE5222B00E1D7DA /* ConversationsTableViewController.swift */; };
 		20D654EE1EDE68170002C3EA /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20ECF8FB1ECCBD1E00373964 /* UserAnnotation.swift */; };
 		3020AE821EB7B8340075D849 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3020AE811EB7B8340075D849 /* AppDelegate.swift */; };
 		3020AE8A1EB7B8340075D849 /* Women4Women.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3020AE881EB7B8340075D849 /* Women4Women.xcdatamodeld */; };
@@ -67,7 +68,6 @@
 		30A7032B1EE745E200A61C92 /* EditHomeLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A7032A1EE745E200A61C92 /* EditHomeLocationTableViewCell.swift */; };
 		30A7032D1EE745F300A61C92 /* EditTimeHomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A7032C1EE745F300A61C92 /* EditTimeHomeTableViewCell.swift */; };
 		30A7032F1EE7462100A61C92 /* NightOutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A7032E1EE7462100A61C92 /* NightOutTableViewCell.swift */; };
-		30CC86DF1EED2D30009E9279 /* ConversationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CC86DE1EED2D30009E9279 /* ConversationsTableViewController.swift */; };
 		30E2F9531ED5302500694864 /* emergencyNameUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E2F9521ED5302500694864 /* emergencyNameUpdateViewController.swift */; };
 		30E2F9551ED5302B00694864 /* emergencyPhoneNumberUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E2F9541ED5302B00694864 /* emergencyPhoneNumberUpdateViewController.swift */; };
 		30E2F9591ED6556000694864 /* SMSMessaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E2F9581ED6556000694864 /* SMSMessaging.swift */; };
@@ -92,9 +92,10 @@
 		201BEDBD1EDE6E150086C0ED /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		201BEDBF1EDE765B0086C0ED /* SlideMenuControllerSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SlideMenuControllerSwift.framework; path = "../../Library/Developer/Xcode/DerivedData/Women4Women-cksdwseixvxxkzfhdlxgdxpaachu/Build/Products/Debug-iphonesimulator/SlideMenuControllerSwift/SlideMenuControllerSwift.framework"; sourceTree = "<group>"; };
 		201BEDC11EDE76640086C0ED /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleToolboxForMac.framework; path = Pods/../build/Debug/GoogleToolboxForMac.framework; sourceTree = "<group>"; };
+		2070E3C21EED3785004621C8 /* ConversationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsTableViewController.swift; sourceTree = "<group>"; };
+		2070E3C41EED37A9004621C8 /* ConversationsTableViewController 01-32-13-813.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ConversationsTableViewController 01-32-13-813.swift"; sourceTree = "<group>"; };
 		20B0522C1ECF91DF006A31E8 /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		20B0522E1ECFA47B006A31E8 /* ConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
-		20C08C011EE5222B00E1D7DA /* ConversationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsTableViewController.swift; sourceTree = "<group>"; };
 		20ECF8FB1ECCBD1E00373964 /* UserAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAnnotation.swift; sourceTree = "<group>"; };
 		3020AE7E1EB7B8340075D849 /* Women4Women.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Women4Women.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3020AE811EB7B8340075D849 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -151,7 +152,6 @@
 		30A7032A1EE745E200A61C92 /* EditHomeLocationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditHomeLocationTableViewCell.swift; sourceTree = "<group>"; };
 		30A7032C1EE745F300A61C92 /* EditTimeHomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTimeHomeTableViewCell.swift; sourceTree = "<group>"; };
 		30A7032E1EE7462100A61C92 /* NightOutTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NightOutTableViewCell.swift; sourceTree = "<group>"; };
-		30CC86DE1EED2D30009E9279 /* ConversationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsTableViewController.swift; sourceTree = "<group>"; };
 		30E2F9521ED5302500694864 /* emergencyNameUpdateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = emergencyNameUpdateViewController.swift; sourceTree = "<group>"; };
 		30E2F9541ED5302B00694864 /* emergencyPhoneNumberUpdateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = emergencyPhoneNumberUpdateViewController.swift; sourceTree = "<group>"; };
 		30E2F9561ED5313E00694864 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -222,10 +222,10 @@
 				307D44381EBE935E007929D3 /* ContactsTableViewController.swift */,
 				9FED40C61EDE76130074CD20 /* ContactViewController.swift */,
 				3093D8CC1EBEAF040035732D /* ContainerViewController.swift */,
+				2070E3C41EED37A9004621C8 /* ConversationsTableViewController 01-32-13-813.swift */,
+				2070E3C21EED3785004621C8 /* ConversationsTableViewController.swift */,
 				20B0522C1ECF91DF006A31E8 /* Conversation.swift */,
-				30CC86DE1EED2D30009E9279 /* ConversationsTableViewController.swift */,
 				20B0522E1ECFA47B006A31E8 /* ConversationViewController.swift */,
-				20C08C011EE5222B00E1D7DA /* ConversationsTableViewController.swift */,
 				303D52781EC4289500170F62 /* CoreDataTableViewController.swift */,
 				30A7032A1EE745E200A61C92 /* EditHomeLocationTableViewCell.swift */,
 				302DE04E1EDE592A00412099 /* EditNightTableViewController.swift */,
@@ -438,7 +438,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		66C335A501513A91E187890F /* [CP] Embed Pods Frameworks */ = {
@@ -491,6 +491,7 @@
 				307A298A1ECAD26600262B65 /* LoginViewController.swift in Sources */,
 				9F1B51EF1EC3C68E00560294 /* Colors.swift in Sources */,
 				9FED40BD1ED89E0B0074CD20 /* ICEContactViewController.swift in Sources */,
+				2070E3C51EED37A9004621C8 /* ConversationsTableViewController 01-32-13-813.swift in Sources */,
 				303D527F1EC428EE00170F62 /* TrackNearbyUsers.swift in Sources */,
 				307C90171EC161160020E535 /* AccordionMenu.swift in Sources */,
 				307C90181EC161160020E535 /* Parent.swift in Sources */,
@@ -510,11 +511,10 @@
 				20B0522D1ECF91DF006A31E8 /* Conversation.swift in Sources */,
 				30A168141EBFDB72002F5D52 /* SearchTextField.swift in Sources */,
 				30A7032F1EE7462100A61C92 /* NightOutTableViewCell.swift in Sources */,
-				30CC86DF1EED2D30009E9279 /* ConversationsTableViewController.swift in Sources */,
+				2070E3C31EED3785004621C8 /* ConversationsTableViewController.swift in Sources */,
 				303D52811EC428F400170F62 /* UserDefaults.swift in Sources */,
 				303D52771EC4281B00170F62 /* NearbyUser+CoreDataProperties.swift in Sources */,
 				2002ACF71ECFB534006BC10B /* MessagesHandler.swift in Sources */,
-				20C08C021EE5222B00E1D7DA /* ConversationsTableViewController.swift in Sources */,
 				9FC3B1D31ECCFC5A00814EB0 /* SideBarViewController.swift in Sources */,
 				303D52761EC4281B00170F62 /* NearbyUser+CoreDataClass.swift in Sources */,
 				307A298E1ECAD28900262B65 /* nameUpdateViewController.swift in Sources */,
