@@ -8,14 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		2002ACF71ECFB534006BC10B /* MessagesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2002ACF61ECFB534006BC10B /* MessagesHandler.swift */; };
-		201BEDBE1EDE6E150086C0ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 201BEDBD1EDE6E150086C0ED /* Main.storyboard */; };
 		201BEDC01EDE765B0086C0ED /* SlideMenuControllerSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 201BEDBF1EDE765B0086C0ED /* SlideMenuControllerSwift.framework */; };
 		201BEDC21EDE76640086C0ED /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 201BEDC11EDE76640086C0ED /* GoogleToolboxForMac.framework */; };
-		2070E3C31EED3785004621C8 /* ConversationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2070E3C21EED3785004621C8 /* ConversationsTableViewController.swift */; };
-		2070E3C51EED37A9004621C8 /* ConversationsTableViewController 01-32-13-813.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2070E3C41EED37A9004621C8 /* ConversationsTableViewController 01-32-13-813.swift */; };
+		2070E3C51EED37A9004621C8 /* ConversationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2070E3C41EED37A9004621C8 /* ConversationsTableViewController.swift */; };
 		20B0522D1ECF91DF006A31E8 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B0522C1ECF91DF006A31E8 /* Conversation.swift */; };
 		20B0522F1ECFA47B006A31E8 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B0522E1ECFA47B006A31E8 /* ConversationViewController.swift */; };
 		20D654EE1EDE68170002C3EA /* UserAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20ECF8FB1ECCBD1E00373964 /* UserAnnotation.swift */; };
+		20F7A76A1EED3BBC0029BB97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 201BEDBD1EDE6E150086C0ED /* Main.storyboard */; };
 		3020AE821EB7B8340075D849 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3020AE811EB7B8340075D849 /* AppDelegate.swift */; };
 		3020AE8A1EB7B8340075D849 /* Women4Women.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3020AE881EB7B8340075D849 /* Women4Women.xcdatamodeld */; };
 		3020AE8C1EB7B8340075D849 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3020AE8B1EB7B8340075D849 /* Assets.xcassets */; };
@@ -92,8 +91,7 @@
 		201BEDBD1EDE6E150086C0ED /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		201BEDBF1EDE765B0086C0ED /* SlideMenuControllerSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SlideMenuControllerSwift.framework; path = "../../Library/Developer/Xcode/DerivedData/Women4Women-cksdwseixvxxkzfhdlxgdxpaachu/Build/Products/Debug-iphonesimulator/SlideMenuControllerSwift/SlideMenuControllerSwift.framework"; sourceTree = "<group>"; };
 		201BEDC11EDE76640086C0ED /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleToolboxForMac.framework; path = Pods/../build/Debug/GoogleToolboxForMac.framework; sourceTree = "<group>"; };
-		2070E3C21EED3785004621C8 /* ConversationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsTableViewController.swift; sourceTree = "<group>"; };
-		2070E3C41EED37A9004621C8 /* ConversationsTableViewController 01-32-13-813.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ConversationsTableViewController 01-32-13-813.swift"; sourceTree = "<group>"; };
+		2070E3C41EED37A9004621C8 /* ConversationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsTableViewController.swift; sourceTree = "<group>"; };
 		20B0522C1ECF91DF006A31E8 /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		20B0522E1ECFA47B006A31E8 /* ConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		20ECF8FB1ECCBD1E00373964 /* UserAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAnnotation.swift; sourceTree = "<group>"; };
@@ -222,8 +220,7 @@
 				307D44381EBE935E007929D3 /* ContactsTableViewController.swift */,
 				9FED40C61EDE76130074CD20 /* ContactViewController.swift */,
 				3093D8CC1EBEAF040035732D /* ContainerViewController.swift */,
-				2070E3C41EED37A9004621C8 /* ConversationsTableViewController 01-32-13-813.swift */,
-				2070E3C21EED3785004621C8 /* ConversationsTableViewController.swift */,
+				2070E3C41EED37A9004621C8 /* ConversationsTableViewController.swift */,
 				20B0522C1ECF91DF006A31E8 /* Conversation.swift */,
 				20B0522E1ECFA47B006A31E8 /* ConversationViewController.swift */,
 				303D52781EC4289500170F62 /* CoreDataTableViewController.swift */,
@@ -397,6 +394,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20F7A76A1EED3BBC0029BB97 /* Main.storyboard in Resources */,
 				3020AE971EB7BABB0075D849 /* logo.png in Resources */,
 				304FC64B1EE746CC00E8EB8D /* clock-icon-white.png in Resources */,
 				3020AEA11EBE887E0075D849 /* Search-50.png in Resources */,
@@ -417,7 +415,6 @@
 				3020AE991EB7BC480075D849 /* logo_white.png in Resources */,
 				307C901C1EC2C64F0020E535 /* GoogleService-Info.plist in Resources */,
 				9F1B51F31EC3FCCF00560294 /* next-icon2.png in Resources */,
-				201BEDBE1EDE6E150086C0ED /* Main.storyboard in Resources */,
 				9F1B51FB1EC4098900560294 /* back-arrow-icon2.png in Resources */,
 				3020AE9B1EBE834C0075D849 /* Menu-50.png in Resources */,
 			);
@@ -491,7 +488,7 @@
 				307A298A1ECAD26600262B65 /* LoginViewController.swift in Sources */,
 				9F1B51EF1EC3C68E00560294 /* Colors.swift in Sources */,
 				9FED40BD1ED89E0B0074CD20 /* ICEContactViewController.swift in Sources */,
-				2070E3C51EED37A9004621C8 /* ConversationsTableViewController 01-32-13-813.swift in Sources */,
+				2070E3C51EED37A9004621C8 /* ConversationsTableViewController.swift in Sources */,
 				303D527F1EC428EE00170F62 /* TrackNearbyUsers.swift in Sources */,
 				307C90171EC161160020E535 /* AccordionMenu.swift in Sources */,
 				307C90181EC161160020E535 /* Parent.swift in Sources */,
@@ -511,7 +508,6 @@
 				20B0522D1ECF91DF006A31E8 /* Conversation.swift in Sources */,
 				30A168141EBFDB72002F5D52 /* SearchTextField.swift in Sources */,
 				30A7032F1EE7462100A61C92 /* NightOutTableViewCell.swift in Sources */,
-				2070E3C31EED3785004621C8 /* ConversationsTableViewController.swift in Sources */,
 				303D52811EC428F400170F62 /* UserDefaults.swift in Sources */,
 				303D52771EC4281B00170F62 /* NearbyUser+CoreDataProperties.swift in Sources */,
 				2002ACF71ECFB534006BC10B /* MessagesHandler.swift in Sources */,

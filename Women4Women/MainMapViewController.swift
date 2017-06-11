@@ -12,7 +12,7 @@ import MapKit
 import CoreData
 
 class MainMapViewController: UIViewController, MKMapViewDelegate, UITextFieldDelegate {
-    
+    let CHAT_SEGUE = "Messages"
     @IBAction func Messages(_ sender: Any) {
         performSegue(withIdentifier: "Messages", sender: self)
     }
@@ -316,15 +316,19 @@ class MainMapViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == CHAT_SEGUE {
+            let controller = segue.destination as! ConversationsTableViewController
+            controller.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        }
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+ 
 
 }
 

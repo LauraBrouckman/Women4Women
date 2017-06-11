@@ -150,12 +150,16 @@ class RemoteDatabase {
 
                         if let lastmessage=conversationData[self.LAST_MESSAGE] as? String{
                             let username = key as! String
+                            print("FOUND")
+                            
+                            print(username)
                             let newConversation = Conversation(username: username, lastmessage: lastmessage)
                             conversations.append(newConversation)
                         }
                     }
                 }
             }
+            
             self.delegate?.dataReceived(conversations: conversations)
         }
     }

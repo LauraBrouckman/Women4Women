@@ -170,12 +170,12 @@
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7iI-bE-EOd">
-                                <rect key="frame" x="323" y="20" width="36" height="25"/>
+                                <rect key="frame" x="323" y="36" width="36" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="envelope"/>
                                 <connections>
                                     <action selector="Messages:" destination="sgM-CO-SHG" eventType="touchUpInside" id="8R8-JM-6sx"/>
-                                    <segue destination="GFh-iu-17M" kind="custom" identifier="Messages" customClass="SegueFromRight" customModule="Women4Women" customModuleProvider="target" id="0PY-TI-IpS"/>
+                                    <segue destination="GFh-iu-17M" kind="show" identifier="Messages" id="0PY-TI-IpS"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1001,7 +1001,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="z5A-iC-3sj" kind="custom" identifier="ChatSegue" customClass="SegueFromRight" customModule="Women4Women" customModuleProvider="target" id="zAm-71-7DG"/>
+                                            <segue destination="z5A-iC-3sj" kind="show" identifier="ChatSegue" id="zAm-71-7DG"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1037,7 +1037,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BQg-9S-y4z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4425" y="-1282"/>
+            <point key="canvasLocation" x="3383" y="-1467"/>
         </scene>
         <!--Accordion Menu Table View Controller-->
         <scene sceneID="gar-1M-WaS">
@@ -2117,12 +2117,10 @@
         <image name="white-close.png" width="300" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ffI-dV-wxf"/>
-        <segue reference="cuy-Cb-NQq"/>
-        <segue reference="HeI-w9-52l"/>
-        <segue reference="FjO-xa-4ug"/>
-        <segue reference="oxb-gu-exH"/>
-        <segue reference="zAm-71-7DG"/>
         <segue reference="qw7-W2-wIE"/>
+        <segue reference="oxb-gu-exH"/>
+        <segue reference="ffI-dV-wxf"/>
+        <segue reference="FjO-xa-4ug"/>
+        <segue reference="Jqz-iA-rSX"/>
     </inferredMetricsTieBreakers>
 </document>

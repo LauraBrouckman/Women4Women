@@ -12,6 +12,7 @@ class Conversation {
     private var _username=""
     private var _lastmessage=""
     private var _firstname=""
+    private var _photofilename=""
     
     init(username: String, lastmessage: String){
         _lastmessage = lastmessage
@@ -24,6 +25,15 @@ class Conversation {
     
     var lastmessage: String{
         return _lastmessage
+    }
+    
+    var photofilename: String{
+        get{
+            return _photofilename
+        }
+        set(value){
+            self._photofilename=value
+        }
     }
     
     var firstname: String{

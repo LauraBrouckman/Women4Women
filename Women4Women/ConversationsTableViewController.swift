@@ -49,24 +49,27 @@ class ConversationsTableViewController: UIViewController, UITableViewDelegate, U
             }else{
                 if let snapshotDict = user as? NSDictionary {
                     let firstname = snapshotDict["first_name"] as! String
+                    let filename = snapshotDict["photo_filename"] as! String
                     cell.textLabel?.text = firstname
                     self.conversations[indexPath.row].firstname = firstname
+                    self.conversations[indexPath.row].photofilename = filename
                 }
             }
         }
         return cell
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.barTintColor = UIColor.black
-        self.navigationController?.navigationBar.tintColor = UIColor.white
-
         RemoteDatabase.delegate = self
         RemoteDatabase.getConversations()
         FIRDatabase.database().reference().child("users/"+UserDefaults.getUsername()+"/conversations").observe(.value, with: { (snapshot) in
             RemoteDatabase.getConversations()
         })
+        self.navigationController?.navigationBar.barTintColor = UIColor.black
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        
+        
         addNavBar()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -101,7 +104,8 @@ class ConversationsTableViewController: UIViewController, UITableViewDelegate, U
                 let controller = segue.destination as! ConversationViewController
                 controller.recipientID = conversations[indexPath.row].username
                 controller.userFirstName = conversations[indexPath.row].firstname
-                print(conversations[indexPath.row].firstname)
+                controller.theirProfPic = conversations[indexPath.row].photofilename
+                controller.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
             }
             
         }
@@ -137,7 +141,6 @@ class ConversationsTableViewController: UIViewController, UITableViewDelegate, U
         button.frame = CGRect(x: 0, y: 0, width: 15, height: 20)
         
         let backButton = UIBarButtonItem(customView: button)
-        // Create two buttons for the navigation item
         navigationItem.leftBarButtonItem = backButton
         
         // Assign the navigation item to the navigation bar
@@ -167,7 +170,7 @@ class ConversationsTableViewController: UIViewController, UITableViewDelegate, U
             red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
             green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
             blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
-            alpha: CGFloat(0.5)
+            alpha: CGFloat(1)
         )
     }
     
