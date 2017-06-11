@@ -3,7 +3,7 @@
 //  AccordionMenu
 //
 //  Created by Victor on 7/6/16.
-//  Copyright © 2016 Victor Sigler. All rights reserved.
+//  Copyright © 2016 Laura Brouckman. All rights reserved.
 //
 
 import UIKit
@@ -239,15 +239,20 @@ extension AccordionTableViewController {
             
             cell.textLabel!.text = self.dataSource[parent].title
             
+            cell.textLabel?.textColor = UIColor.white
+            cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+            
+            cell.detailTextLabel?.textColor = UIColor.white
+            
             //Setting the subtitle for the time cell
-            var timeToComeHome: String
+            let timeToComeHome: String
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "hh:mm a"
             if let time = UserDefaults.getHomeTime() {
                 timeToComeHome = dateFormatter.string(from: time)
             } else {
-                let time = Date(timeIntervalSinceNow: TimeInterval(7200))
-                timeToComeHome = dateFormatter.string(from: time)
+                UserDefaults.setHomeTime(Date())
+                timeToComeHome = dateFormatter.string(from: Date())
             }
             
             
@@ -255,9 +260,20 @@ extension AccordionTableViewController {
                 case "Time":
                     cell.detailTextLabel!.text = timeToComeHome
             case "Home address":
-                cell.detailTextLabel!.text = UserDefaults.getHomeStreet() + ", " + UserDefaults.getHomeCity()
+                let street = UserDefaults.getHomeStreet()
+                if street.isEmpty {
+                    cell.detailTextLabel!.text = "Not set"
+                } else {
+                    cell.detailTextLabel!.text = street
+                }
             case "Emergency Contact":
-                cell.detailTextLabel!.text = UserDefaults.getEmergencyContactFirstName() + " " + UserDefaults.getEmergencyContactLastName()
+                let firstName = UserDefaults.getEmergencyContactFirstName()
+                let lastName = UserDefaults.getEmergencyContactLastName()
+                if firstName.isEmpty {
+                    cell.detailTextLabel!.text = "None"
+                } else {
+                    cell.detailTextLabel!.text = firstName + " " + lastName
+                }
             default:
                 ""
             }

@@ -2,7 +2,7 @@
 //  NearbyUser+CoreDataProperties.swift
 //  Women4Women
 //
-//  Created by Elizabeth Brouckman on 5/10/17.
+//  Created by Laura Brouckman on 5/10/17.
 //  Copyright © 2017 cs194w. All rights reserved.
 //
 

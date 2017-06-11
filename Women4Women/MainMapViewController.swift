@@ -2,7 +2,7 @@
 //  MainMapViewController.swift
 //  Women4Women
 //
-//  Created by Elizabeth Brouckman on 5/6/17.
+//  Created by Laura Brouckman on 5/6/17.
 //  Copyright © 2017 cs194w. All rights reserved.
 //
 
@@ -11,12 +11,15 @@ import CoreLocation
 import MapKit
 import CoreData
 
-class MainMapViewController: UIViewController, MKMapViewDelegate {
+class MainMapViewController: UIViewController, MKMapViewDelegate, UITextFieldDelegate {
     
     @IBAction func Messages(_ sender: Any) {
         performSegue(withIdentifier: "Messages", sender: self)
     }
     
+    var hidePopup: Bool = true
+    var showSideMenu = false
+
     lazy var locationManager: CLLocationManager = {
         var _locationManager = CLLocationManager()
         _locationManager.delegate = self
@@ -39,15 +42,28 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var popupMenuHeight: NSLayoutConstraint!
     
     
-    
-    
     override func viewDidLoad() {
+        UserDefaults.setCurrentLocation(lat: 0, lon: 0)
+        searchTextField.delegate = self
+        searchTextField.returnKeyType = .search
         super.viewDidLoad()
         configueSearchTextField()
         searchCompleter.delegate = self
-        setUpMap()
+        
+        if showSideMenu {
+            self.slideMenuController()?.openLeft()
+        }
+        self.hideKeyboardWhenTappedAround()
 
+        UserDefaults.setHomeTime(nil)
+        
+        setUpMap()
     }
+    
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        textField.resignFirstResponder()
+//        return true
+//    }
     
     //Set up the map to center around the user's current location
     func setUpMap() {
@@ -63,21 +79,20 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
         mapView.isScrollEnabled = true
         mapView.userTrackingMode = .follow
         
-        popupMenu.isHidden = true
+        popupMenu.isHidden = hidePopup
+        if hidePopup == false {
+            searchTextField.text = UserDefaults.getNightOutLocationName()
+            self.popupMenuHeight.constant = 280 // heightCon is the IBOutlet to the constraint
+            self.view.layoutIfNeeded()
+            centerTitle = UserDefaults.getNightOutLocationName()
+            let (lat, lon) = UserDefaults.getNightOutLocation()!
+            mapCenter = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+            self.centerMap()
+        }
     }
+
     
-    
-    // function to track movement of user
-    //func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-      //  print("MY LOCATION CHANGED!!!!")
-        
-       // let location = locations.last as! CLLocation
-       // RemoteDatabase.updateUserLocation(forUser: UserDefaults.getUsername(), locationLat: location.coordinate.latitude, locationLon: location.coordinate.longitude)
-    //}
-    
-    
- 
-    
+
     //Set up the auto-complete search field so that it will sugggest places + their addresses when user starts typing
     func configueSearchTextField() {
 
@@ -110,7 +125,6 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
         hideSearchResults = false
         popupMenu.isHidden = true
     }
-    
     
 
     
@@ -154,10 +168,10 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
     
     func locateOnMap(address: String?, title: String?) {
         var ad = address
+        centerTitle = title
         if address == nil {
             //error no address
             ad = title
-            centerTitle = title
         }
         //Remove all the old annotations
         mapView.removeAnnotations(mapView.annotations)
@@ -169,7 +183,7 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
                 self.mapCenter = coordinate
                 // Update your location remotely and in local storage
                 UserDefaults.setNightOutLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-                UserDefaults.setNightOutLocationName(name: ad!)
+                UserDefaults.setNightOutLocationName(name: title ?? ad!)
                 RemoteDatabase.updateUserLocation(forUser: UserDefaults.getUsername(), locationLat: coordinate.latitude, locationLon: coordinate.longitude)
                 TrackUsers.updateNearbyUserList(self.centerMap)
             } else {
@@ -186,11 +200,10 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
         let title = self.centerTitle
         let spanX = 0.005
         let spanY = 0.005
-        let mapCenter = CLLocationCoordinate2D(latitude: center.latitude - 0.0015, longitude: center.longitude)
+        let mapCenter = CLLocationCoordinate2D(latitude: center.latitude - 0.0009, longitude: center.longitude)
         let newRegion = MKCoordinateRegion(center: mapCenter, span: MKCoordinateSpanMake(spanX, spanY))
         mapView.setRegion(newRegion, animated: true)
         addAnnotations(title: title, center: center)
-        
         openPopupMenu()
     }
     
@@ -204,7 +217,8 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
                     toPoint: CLLocationCoordinate2D(latitude: result.latitude, longitude: result.longitude),
                     withTitle: result.first_name!,
                     withSubtitle: nil,
-                    selectPin: false
+                    selectPin: false,
+                    filename: result.photo_filename
                 )
             }
             //Add in the annotation for the location
@@ -222,16 +236,44 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
     }
     
     
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+    // Resize image for the pin
+//    func resizeImage(image: UIImage?, newWidth: CGFloat) -> UIImage? {
+//        if image == nil {
+//            return nil
+//        }
+//        let scale = newWidth / image!.size.width
+//        let newHeight = image!.size.height * scale
+//        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+//            image!.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+//        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+//        UIGraphicsEndImageContext()
+//        newImage.
+//        return newImage
+//    }
+    
+    // Create the view for the annotation
+    func mapView(_ mapView:
+        MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as? UserAnnotation {
             if let view = mapView.dequeueReusableAnnotationView(withIdentifier: annotation.identifier){
                 return view
             } else{
                 let view = MKAnnotationView(annotation: annotation, reuseIdentifier: annotation.identifier)
-                view.image = userPin
+                //view.image = userPin
+                let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                let filePath = documentsURL.appendingPathComponent("\(annotation.filename!)").path
+                print("Looking for image at path \(filePath)")
+                if FileManager.default.fileExists(atPath: filePath) {
+                    print("Found image there")
+                    let img = UIImage(contentsOfFile: filePath)
+                    view.image = img?.circularImage(size: CGSize(width: 30, height: 30))
+                    view.leftCalloutAccessoryView = UIImageView(image: img?.circularImage(size: CGSize(width: 30, height: 30)))
+                } else {
+                    view.image = userPin
+                    view.leftCalloutAccessoryView = UIImageView(image: userPin)
+                }
                 view.isEnabled = true
                 view.canShowCallout = true
-                view.leftCalloutAccessoryView = UIImageView(image: userPin)
                 return view
             }
         }
@@ -249,8 +291,8 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
     
     
     //Add an annotation (pin) to the map
-    func addAnnotation(toPoint coordinate: CLLocationCoordinate2D, withTitle title: String, withSubtitle subtitle: String?, selectPin: Bool) {
-        let annotation = UserAnnotation(name: title, center: coordinate, sub: subtitle)
+    func addAnnotation(toPoint coordinate: CLLocationCoordinate2D, withTitle title: String, withSubtitle subtitle: String?, selectPin: Bool, filename: String?) {
+        let annotation = UserAnnotation(name: title, center: coordinate, sub: subtitle, photo_filename: filename)
         mapView.addAnnotation(annotation)
         if selectPin {
             mapView.selectAnnotation(annotation, animated: true)
@@ -264,7 +306,7 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
         searchTextField.resignFirstResponder()
         popupMenu.isHidden = false
         UIView.animate(withDuration: 1, animations: {
-            self.popupMenuHeight.constant = 300 // heightCon is the IBOutlet to the constraint
+            self.popupMenuHeight.constant = 280 // heightCon is the IBOutlet to the constraint
             self.view.layoutIfNeeded()
         })
     }
@@ -289,16 +331,64 @@ class MainMapViewController: UIViewController, MKMapViewDelegate {
 
 // MARK: - CLLocationManagerDelegate
 
+// To cut image into circle
+extension UIImage {
+    
+    func circularImage(size size: CGSize?) -> UIImage {
+        let newSize = size ?? self.size
+        
+        let minEdge = min(newSize.height, newSize.width)
+        let size = CGSize(width: minEdge, height: minEdge)
+        
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        let context = UIGraphicsGetCurrentContext()
+        
+        self.draw(in: CGRect(origin: CGPoint.zero, size: size), blendMode: .copy, alpha: 1.0)
+        
+        context!.setBlendMode(.copy)
+        context!.setFillColor(UIColor.clear.cgColor)
+        
+        let rectPath = UIBezierPath(rect: CGRect(origin: CGPoint.zero, size: size))
+        let circlePath = UIBezierPath(ovalIn: CGRect(origin: CGPoint.zero, size: size))
+        rectPath.append(circlePath)
+        rectPath.usesEvenOddFillRule = true
+        rectPath.fill()
+        
+        let result = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return result!
+    }
+    
+}
+
+
+
+
+
 extension MainMapViewController: CLLocationManagerDelegate {
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-            
-            print("MY LOCATION CHANGED!!!!")
-            
+    func isClose(a: CLLocationCoordinate2D, b: CLLocationCoordinate2D) -> Bool {
+        if sqrt(pow(a.latitude - b.latitude, 2) + pow(a.longitude - b.longitude, 2)) <= 0.001 {
+            return true
+        }
+        return false
+    }
+
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
             let location = locations.last
             if location != nil
             {
-            RemoteDatabase.updateUserLocation(forUser: UserDefaults.getUsername(), locationLat: location!.coordinate.latitude, locationLon: location!.coordinate.longitude)
+                let newCoord = location?.coordinate
+                var (lat, lon) = UserDefaults.getCurrentLocation() ?? (0, 0)
+                let prevCoord = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+                if !isClose(a: newCoord!, b: prevCoord) {
+                    RemoteDatabase.updateUserLocation(forUser: UserDefaults.getUsername(), locationLat: (newCoord?.latitude)!, locationLon: (newCoord?.longitude)!)
+                    UserDefaults.setCurrentLocation(lat: (newCoord?.latitude)!, lon: (newCoord?.longitude)!)
+                }
+
         }
         
     }

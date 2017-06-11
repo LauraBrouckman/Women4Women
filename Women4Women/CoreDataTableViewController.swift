@@ -34,7 +34,7 @@ class CoreDataTableViewController: UITableViewController, NSFetchedResultsContro
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if let sections = fetchedResultsController?.sections, sections.count > 0 {
-            return sections[section].numberOfObjects
+            return sections[section].numberOfObjects + 4
         } else {
             return 0
         }

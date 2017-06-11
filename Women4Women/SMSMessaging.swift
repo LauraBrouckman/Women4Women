@@ -2,7 +2,7 @@
 //  SMSMessaging.swift
 //  Women4Women
 //
-//  Created by Elizabeth Brouckman on 5/24/17.
+//  Created by Laura Brouckman on 5/24/17.
 //  Copyright © 2017 cs194w. All rights reserved.
 //
 
@@ -33,9 +33,27 @@ class SMSMessaging {
             "Body": message
         ]
         
-        Alamofire.request("http://8d021d94.ngrok.io/sms", method: .post, parameters: parameters, headers: headers).response { response in
+        Alamofire.request("https://a7181727.ngrok.io/sms", method: .post, parameters: parameters, headers: headers).response { response in
             
         }
+    }
+    
+    static func sendSOSText() {
+        let headers = [
+            "Content-Type": "application/x-www-form-urlencoded"
+        ]
+        
+        let message = "Hi " + UserDefaults.getEmergencyContactFirstName() + "! " + " Your friend " + UserDefaults.getFirstName() + " has triggered an SOS.  This means that they feel very uncomfortable. People in their area have also been alerted, but please check in on your friend!"
+        
+        let parameters: Parameters = [
+            "To": UserDefaults.getEmergencyContactPhoneNumber(),
+            "Body": message
+        ]
+        
+        Alamofire.request("https://a7181727.ngrok.io/sms", method: .post, parameters: parameters, headers: headers).response { response in
+            
+        }
+
     }
     
     static func sendHomeText() {
@@ -50,7 +68,7 @@ class SMSMessaging {
             "Body": message
         ]
         
-        Alamofire.request("http://8d021d94.ngrok.io/sms", method: .post, parameters: parameters, headers: headers).response { response in
+        Alamofire.request("https://a7181727.ngrok.io/sms", method: .post, parameters: parameters, headers: headers).response { response in
             
         }
     }

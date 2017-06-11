@@ -2,7 +2,7 @@
 //  AccordionMenuTableViewController.swift
 //  Women4Women
 //
-//  Created by Elizabeth Brouckman on 5/8/17.
+//  Created by Laura Brouckman on 5/8/17.
 //  Copyright © 2017 cs194w. All rights reserved.
 //
 
@@ -10,14 +10,16 @@ import UIKit
 import MapKit
 
 class AccordionMenuTableViewController: AccordionTableViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.hideKeyboardWhenTappedAround()
         
         var timeToComeHome: String
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "hh:mm a"
-
+        
         if let time = UserDefaults.getHomeTime() {
             timeToComeHome = dateFormatter.string(from: time)
         } else {
@@ -34,13 +36,17 @@ class AccordionMenuTableViewController: AccordionTableViewController {
         total = dataSource.count
         
         //make custom view to go at the bottom of the table
-        let customView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
-        customView.backgroundColor = Colors.lightBlue
-        let button = UIButton(frame: CGRect(x: 50, y: 12, width: 100, height: 26))
+        let screenSize: CGRect = UIScreen.main.bounds
+        let customView = UIView(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: 90))
+        customView.backgroundColor = Colors.teal
+        let button = UIButton(frame: CGRect(x: (screenSize.width - 200) / 2, y: 18, width: 200, height: 50))
         button.setTitle("Plan Outing", for: .normal)
-        button.backgroundColor = UIColor.white
-        button.setTitleColor(Colors.lightBlue, for: .normal)
+        button.backgroundColor = Colors.offWhite
+        button.setTitleColor(Colors.teal, for: .normal)
         button.layer.cornerRadius = 6
+        button.layer.borderColor = Colors.teal.cgColor
+        button.layer.borderWidth = 1
+        button.titleLabel?.font = button.titleLabel?.font.withSize(20)
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         customView.addSubview(button)
         self.tableView.tableFooterView = customView
@@ -53,7 +59,7 @@ class AccordionMenuTableViewController: AccordionTableViewController {
     //Plan button pressed
     func buttonAction(_ sender: UIButton!) {
         SMSMessaging.sendSMSText()
-       // beginRegionMonitoring()
+        beginRegionMonitoring()
         UserDefaults.setNightOccuring(true)
         performSegue(withIdentifier: "showLifelines", sender: nil)
     }
@@ -65,24 +71,24 @@ class AccordionMenuTableViewController: AccordionTableViewController {
     func beginRegionMonitoring() {
         // Define the region around the users home location
         print("BEGIN MONITORING REGION")
-        let (lat, lon) = UserDefaults.getHomeLocation()!
-        let region = CLCircularRegion(center: CLLocationCoordinate2D(latitude: lat, longitude: lon), radius: 30, identifier: "home")
-        print("REGION \(region)")
-        // 2
-        region.notifyOnEntry = true
-        region.notifyOnExit = false
-        
-        if !CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
-            showAlert(withTitle:"Error", message: "Geofencing is not supported on this device!")
-            return
+        if let (lat, lon) = UserDefaults.getHomeLocation() {
+            let region = CLCircularRegion(center: CLLocationCoordinate2D(latitude: lat, longitude: lon), radius: 50, identifier: "home")
+            print("REGION \(region)")
+            // 2
+            region.notifyOnEntry = true
+            region.notifyOnExit = false
+            
+            if !CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
+                showAlert(withTitle:"Error", message: "Geofencing is not supported on this device!")
+                return
+            }
+            
+            if CLLocationManager.authorizationStatus() != .authorizedAlways {
+                showAlert(withTitle:"Warning", message: "Your geotification is saved but will only be activated once you grant Geotify permission to access the device location.")
+            }
+            
+            locationManager.startMonitoring(for: region)
         }
-        
-        if CLLocationManager.authorizationStatus() != .authorizedAlways {
-            showAlert(withTitle:"Warning", message: "Your geotification is saved but will only be activated once you grant Geotify permission to access the device location.")
-        }
-        
-        locationManager.startMonitoring(for: region)
-        
     }
     
     // Show alert
@@ -95,74 +101,74 @@ class AccordionMenuTableViewController: AccordionTableViewController {
     
     
     // Sends an SMS message to the emergency contact letting them know their friends plan
-
+    
     
     
     
     // Send text message when the plan night button is pressed
     
-
-//    override func didReceiveMemoryWarning() {
+    
+    //    override func didReceiveMemoryWarning() {
     /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
+     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+     let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+     
+     // Configure the cell...
+     
+     return cell
+     }
+     */
+    
     /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
+     // Override to support conditional editing of the table view.
+     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+     // Return false if you do not want the specified item to be editable.
+     return true
+     }
+     */
+    
     /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
+     // Override to support editing the table view.
+     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+     if editingStyle == .delete {
+     // Delete the row from the data source
+     tableView.deleteRows(at: [indexPath], with: .fade)
+     } else if editingStyle == .insert {
+     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+     }
+     }
+     */
+    
     /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
+     // Override to support rearranging the table view.
+     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+     
+     }
+     */
+    
     /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
+     // Override to support conditional rearranging of the table view.
+     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+     // Return false if you do not want the item to be re-orderable.
+     return true
+     }
+     */
+    
     
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let id = segue.identifier {
-            if id == "showLifelines" {
-                if let destinationVC = segue.destination as? ContainerViewController {
-                    destinationVC.lifeline = true
-                }
-            }
-        }
-    }
- 
-
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if let id = segue.identifier {
+//            if id == "showLifelines" {
+//                if let destinationVC = segue.destination as? ContainerViewController {
+//                    destinationVC.lifeline = true
+//                }
+//            }
+//        }
+//    }
+    
+    
 }
 
 

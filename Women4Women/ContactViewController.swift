@@ -8,83 +8,135 @@
 
 import UIKit
 import Contacts
-import ContactsUI
 
-class ContactViewController: UIViewController, CNContactPickerDelegate  {
-
+class ContactViewController: UITableViewController  {
+    
+    
+    fileprivate var contacts: [CNContact]? {
+        didSet {
+            DispatchQueue.main.async{
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let entityType = CNEntityType.contacts
-        let authStatus = CNContactStore.authorizationStatus(for: entityType)
-        
-        if authStatus == CNAuthorizationStatus.notDetermined{
-            let contactStore = CNContactStore.init()
-            contactStore.requestAccess(for: entityType, completionHandler: { (success, nil) in
-                if success {
-                    self.openContacts()
-                }
-                else {
-                    print("Not authorized")
-                }
-            })
-        }
-        else if authStatus == CNAuthorizationStatus.authorized {
-            self.openContacts()
-        }
     }
     
-
     override open func viewWillAppear(_ animated: Bool){
-  
-    }
-
-    func openContacts()
-    {
-        let contactPicker = CNContactPickerViewController.init()
-        contactPicker.delegate = self
-        self.present(contactPicker, animated: true, completion: nil)
-        
+        super.viewWillAppear(animated)
+        getContacts()
     }
     
-    func contactPickerDidCancel(_ picker: CNContactPickerViewController)
-    {
-        picker.dismiss(animated: true){
-            
+    
+    fileprivate func getContacts() {
+        let store = CNContactStore()
+        if CNContactStore.authorizationStatus(for: .contacts) == .notDetermined {
+            store.requestAccess(for: .contacts) { (authorized: Bool, error: Error?) -> Void in
+                if authorized {
+                    self.retrieveContactsWithStore(store)
+                }
+            }
+        } else if CNContactStore.authorizationStatus(for: .contacts) == .authorized {
+            self.retrieveContactsWithStore(store)
         }
     }
     
-    func contactPicker(_ picker:CNContactPickerViewController, didSelect contact: CNContact)
-    {
-        
-        UserDefaults.setEmergencyContactLastName(contact.familyName)
-        UserDefaults.setEmergencyContactFirstName(contact.givenName)
-        var phoneNo = "Not Avaliable"
-        
-        
-        let phoneString = ((((contact.phoneNumbers[0] as AnyObject).value(forKey: "labelValuePair") as AnyObject).value(forKey: "value") as AnyObject).value(forKey: "stringValue"))
-        phoneNo = phoneString! as! String
-        
-        UserDefaults.setEmergencyContactPhoneNumber(phoneNo)
-        //performSegue(withIdentifier: "showPlanNightICE", sender: nil)
-        
+    fileprivate func retrieveContactsWithStore(_ store: CNContactStore) {
+        do {
+            let keysToFetch = [CNContactFormatter.descriptorForRequiredKeys(for: .fullName), CNContactPhoneNumbersKey, CNContactImageDataKey] as [Any]
+            let containerId = CNContactStore().defaultContainerIdentifier()
+            let predicate: NSPredicate = CNContact.predicateForContactsInContainer(withIdentifier: containerId)
+            let contacts = try CNContactStore().unifiedContacts(matching: predicate, keysToFetch: keysToFetch as! [CNKeyDescriptor])
+            self.contacts = contacts
+        } catch {
+            print(error)
+        }
     }
-
-
-
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        // Should be 2
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return contacts?.count ?? 0
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if contacts == nil {
+            return UITableViewCell()
+        }
+        let cell = UITableViewCell()
+        let contact = contacts![indexPath.row]
+        cell.textLabel?.text = contact.givenName + " " + contact.familyName
+        return cell
+    }
+    
+    
+    @IBAction func cancel(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "cancelICE", sender: sender)
+    }
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
+    
+    fileprivate func extractNumber(_ phoneNumber: String) -> String {
+        var num = ""
+        for character in phoneNumber.characters {
+            let value = Int(String(character))
+            if value != nil {
+                num.append(character)
+            }
+        }
+        if num[num.startIndex] == "1" {
+            num = String(num.characters.dropFirst())
+        }
+        return num
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // Segue to the second view controller
+        self.performSegue(withIdentifier: "changeICE", sender: tableView.cellForRow(at: indexPath))
+    }
+    
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let identifier = segue.identifier {
+            print(identifier)
+            if identifier == "cancelICE" {
+                if let containerVC = segue.destination as? ContainerViewController {
+                    containerVC.hidePopup = false
+                }
+            }
+            else if identifier == "changeICE"{
+                if let cell = sender as? UITableViewCell {
+                    if let indexPath = tableView.indexPath(for: cell) {
+                        if let containerVC = segue.destination as? ContainerViewController {
+                            
+                            containerVC.hidePopup = false
+                            if contacts != nil {
+                                let contact = contacts![indexPath.row]
+                                
+                                UserDefaults.setEmergencyContactFirstName(contact.givenName)
+                                UserDefaults.setEmergencyContactLastName(contact.familyName)
+                                UserDefaults.setEmergencyContactPhoneNumber(extractNumber(contact.phoneNumbers[0].value.stringValue))
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
-    */
-
+    
 }

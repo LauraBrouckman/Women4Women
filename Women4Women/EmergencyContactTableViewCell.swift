@@ -2,7 +2,7 @@
 //  EmergencyContactTableViewCell.swift
 //  Women4Women
 //
-//  Created by Elizabeth Brouckman on 5/20/17.
+//  Created by Laura Brouckman on 5/20/17.
 //  Copyright © 2017 cs194w. All rights reserved.
 //
 
@@ -17,7 +17,13 @@ class EmergencyContactTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        emergencyContactLabel.text = UserDefaults.getEmergencyContactFirstName() + " " + UserDefaults.getEmergencyContactLastName()
+        let firstName = UserDefaults.getEmergencyContactFirstName()
+        let lastName = UserDefaults.getEmergencyContactLastName()
+        if firstName.isEmpty {
+            emergencyContactLabel.text = "None"
+        } else {
+            emergencyContactLabel.text = firstName + " " + lastName
+        }
         editButton.layer.cornerRadius = 6
         editButton.backgroundColor = UIColor.white
         editButton.setTitleColor(UIColor.black, for: .normal)

@@ -2,7 +2,7 @@
 //  TrackNearbyUsers.swift
 //  Women4Women
 //
-//  Created by Elizabeth Brouckman on 5/10/17.
+//  Created by Laura Brouckman on 5/10/17.
 //  Copyright © 2017 cs194w. All rights reserved.
 //
 
@@ -45,6 +45,12 @@ class TrackUsers {
                     "home_city": userData["home_city"] as? String ?? ""
                 ]
                 nearbyUsers.append(newUser)
+                let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                let filePath = documentsURL.appendingPathComponent("\(newUser["photo_filename"]!)").path
+                if !FileManager.default.fileExists(atPath: filePath) {
+                    print("file \(filePath) does not exist, downloading it now")
+                    RemoteDatabase.downloadFileToLocal(forUser: username, completionHandler: self.completion)
+                }
                 //Add user to list of nearby users
             }
         }        
@@ -60,6 +66,15 @@ class TrackUsers {
             }
         }
     
+    }
+    
+    static func completion(_ done: Bool) {
+        if(done) {
+            print("Successful in downloading to local!")
+        }
+        else {
+            print("unsuccessful")
+        }
     }
 
     

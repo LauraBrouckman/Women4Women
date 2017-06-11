@@ -2,7 +2,7 @@
 //  RemoteDatabase.swift
 //  Women4Women
 //
-//  Created by Elizabeth Brouckman on 5/9/17.
+//  Created by Laura Brouckman on 5/9/17.
 //  Copyright © 2017 cs194w. All rights reserved.
 //
 
@@ -10,6 +10,7 @@ import Foundation
 import Firebase
 import FirebaseDatabase
 import JSQMessagesViewController
+
 extension Date {
     init(ticks: UInt64) {
         self.init(timeIntervalSince1970: Double(ticks)/10_000_000 - 62_135_596_800)
@@ -24,6 +25,9 @@ protocol FetchMessages: class {
 }
 
 class RemoteDatabase {
+    
+    static let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     static weak var delegate: FetchData?
     static weak var m_delegate: FetchMessages?
     static let LAST_MESSAGE = "last_message"
@@ -169,11 +173,6 @@ class RemoteDatabase {
     
     
     
-    
-    
-    
-    
-    
     /*____________________________________________________________________________________________________________________________*/
     
    // Below are helper functions that are used to get from local storage a file called profile_pic.png and upload it under a random filename to the remote database
@@ -195,16 +194,78 @@ class RemoteDatabase {
         }
         return randomString
     }
+
+    
+    // Saves file locally and sets the filename in core data
+    fileprivate static func saveToFileSystem(_ URL: Foundation.URL, fileName: String, username: String, completionHandler: @escaping(Bool) -> ()) {
+        let data =  try? Data(contentsOf: URL)
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        var fileURL: URL
+        if username == UserDefaults.getUsername() {
+            fileURL = documentsURL.appendingPathComponent("test.png")
+            do {
+                try data?.write(to: fileURL, options: [.atomic])
+            } catch let error as NSError {
+                print(error)
+            }
+        } else {
+            fileURL = documentsURL.appendingPathComponent("\(fileName)")
+        
+        
+        do {
+            try data?.write(to: fileURL, options: [.atomic])
+            print("Saving file to \(fileURL)")
+            self.managedObjectContext.perform {
+                NearbyUser.setProfilePicture(forUser: username, filename: fileName, inManagedObjectContext: RemoteDatabase.managedObjectContext)
+                do {
+                    try managedObjectContext.save()
+                    completionHandler(true)
+                } catch let error {
+                    print(error)
+                }
+            }
+        } catch let _ as NSError {
+            print("could not save remote file to local database")
+        }
+        }
+    }
+    
+    
+    // Downloads file from Firebase and calls save file to save it locally
+    static func downloadFileToLocal(forUser username: String, completionHandler: @escaping (Bool) -> ()) {
+        RemoteDatabase.usersRef.child(username).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let snapshotDictionary = snapshot.value as? NSDictionary {
+                if let file = snapshotDictionary["photo_filename"] as? String , file != ""{
+                    let storage = FIRStorage.storage()
+                    let gsReference = storage.reference(forURL: "gs://women4women-75e7d.appspot.com")
+                    let mediaRef = gsReference.child(file)
+                    mediaRef.downloadURL { (URL, error) -> Void in
+                        if (error != nil) {
+                            print(error)
+                            completionHandler(false)
+                        } else {
+                            self.saveToFileSystem( URL!, fileName: file, username: username, completionHandler: completionHandler)
+                        }
+                    }
+                }
+            }
+        })
+        { (error) in
+            print(error)
+        }
+    }
+    
+    
+    // Download file for user specifically
     
     
     static fileprivate func uploadFileToDatabase(forUser username: String) {
         // The image file will be stored locally under the local directory as "profile_pic"
-        let docDict = getDocumentsDirectory() as NSString
-        let imagePath = docDict.appendingPathComponent("profile_pic.png")
-        let fileURL = URL(fileURLWithPath: imagePath)
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let fileURL = documentsURL.appendingPathComponent("test.png")
         
-        let filename = randomStringWithLength(20) as String
-
+        var filename = randomStringWithLength(20) as String
+        filename += ".png"
         let storage = FIRStorage.storage()
         let gsReference = storage.reference(forURL: "gs://women4women-75e7d.appspot.com")
         let fileRef = gsReference.child(filename)

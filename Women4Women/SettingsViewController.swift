@@ -25,8 +25,8 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     
     @IBAction func selectProfilePhoto(_ sender: Any)
     {
-        var myPickerControllor = UIImagePickerController()
-        myPickerControllor.delegate=self
+        let myPickerControllor = UIImagePickerController()
+        myPickerControllor.delegate = self
         myPickerControllor.sourceType = UIImagePickerControllerSourceType.photoLibrary
         
         self.present(myPickerControllor, animated: true, completion: nil)
@@ -36,16 +36,19 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
     {
         
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-        } else{
-            print("Something went wrong")
-        }
-        
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             if let imageData = UIImagePNGRepresentation(image) {
-                try? imageData.write(to: getImageUrl(imageFileName: "test"), options: [.atomic])
+                do {
+                    try imageData.write(to: getImageUrl(imageFileName: "test"), options: [.atomic])
+                    // upload image to remote DB
+                    RemoteDatabase.updateProfilePicture(UserDefaults.getUsername())
+                } catch  {
+                    print("something went wrong while writing")
+            }
             }
         }
-        
+        else {
+            print("Something went wrong")
+        }
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -55,6 +58,8 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         firstNameButton.layer.borderColor = UIColor.lightGray.cgColor
         homeAddressButton.layer.borderWidth = 1
         homeAddressButton.layer.borderColor = UIColor.lightGray.cgColor
+        profilePic.layer.cornerRadius = profilePic.frame.size.width / 2;
+        profilePic.clipsToBounds = true
         
     }
     
@@ -70,30 +75,31 @@ class SettingsViewController: UIViewController, UIImagePickerControllerDelegate,
         homeAddressLabel.text = UserDefaults.getHomeStreet()
         homeAddressLabel2.text = UserDefaults.getHomeCity()
         
-        
-        let libraryPath = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)[0]
-        let imagePath = libraryPath + "/Images"
-        let filePath = imagePath + "/" + UserDefaults.getProfilePicFilename()
-
-        let myURL = URL(fileURLWithPath: filePath)
-        if let imageData = try? Data(contentsOf: myURL) {
-            profilePic.image = UIImage(data: imageData)
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let filePath = documentsURL.appendingPathComponent("\(UserDefaults.getProfilePicFilename()).png").path
+        if FileManager.default.fileExists(atPath: filePath) {
+             profilePic.image = UIImage(contentsOfFile: filePath)
         }
     }
     
-    fileprivate func getDocumentsDirectory() -> String {
-        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let documentsDirectory = paths[0]
-        return documentsDirectory
-    }
     
     fileprivate func getImageUrl(imageFileName: String) -> URL {
-        let libraryPath = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)[0]
-        let imagePath = libraryPath + "/Images"
-        let filePath = imagePath + "/" + imageFileName
-
         UserDefaults.setProfilePicFilename(imageFileName)
-        return URL(fileURLWithPath: filePath)
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let fileURL = documentsURL.appendingPathComponent("\(imageFileName).png")
+        return fileURL
+    }
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("Segue is \(segue.identifier)")
+        if segue.identifier == "exitSettings" {
+            if let vc = segue.destination as? ContainerViewController {
+                print("show side menu is true")
+                vc.showSideMenu = true
+            }
+        }
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
     }
     
 

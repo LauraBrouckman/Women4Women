@@ -8,30 +8,55 @@
 
 import UIKit
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        firstName.delegate = self
+        lastName.delegate = self
+        username.delegate = self
+        password.delegate = self
+        
+        firstName.tag = 0
+        lastName.tag = 1
+        username.tag = 2
+        password.tag = 3
+        
+
+        self.hideKeyboardWhenTappedAround()
+        registerForKeyboardNotifications()
 
         // Do any additional setup after loading the view.
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        // Try to find next responder
+        if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
+        } else {
+            // Not found, so remove keyboard.
+            textField.resignFirstResponder()
+        }
+        // Do not add a line break
+        return false
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBOutlet weak var scrollView: UIScrollView!
+    var activeField: UITextField?
+    
     @IBOutlet weak var firstName: UITextField! 
     @IBOutlet weak var lastName: UITextField!
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
     
-    @IBOutlet weak var street: UITextField!
-    @IBOutlet weak var city: UITextField!
-    @IBOutlet weak var country: UITextField!
-    @IBOutlet weak var zip: UITextField!
-    @IBOutlet weak var state: UITextField!
     
     @IBAction func registerUser(_ sender: UIButton) {
         let userFirstName = firstName.text!
@@ -61,40 +86,7 @@ class RegisterViewController: UIViewController {
         }
     }
     
-    @IBAction func joinButton(_ sender: UIButton) {
-        let userStreet = street.text!;
-        let userCity = city.text!;
-        let userCountry = country.text!;
-        let userZip = zip.text!;
-        let userState = state.text!
-        self.addAddress(streetText: userStreet, cityText:userCity, countryText:userCountry, zipText: userZip, stateText: userState);
-    
-    }
-    
-    func addAddress(streetText:String, cityText:String, countryText:String, zipText:String, stateText:String){
-        
-        //Store Data
-        let ad = streetText+", "+cityText+", "+zipText+", "+countryText;
-        UserDefaults.getCoordinatesFromAddressName(address: ad,title: "");
-        UserDefaults.setHomeCity(cityText);
-        UserDefaults.setHomeStreet(streetText);
-        UserDefaults.setHomeCountry(countryText);
-        UserDefaults.setHomeZip(zipText);
-        UserDefaults.setHomeState(stateText);
 
-        
-        //Display alert message with confirmation
-        let successAlert = UIAlertController(title:"Congratulations!", message:"Registration is Successful! Welcome to W4W!", preferredStyle: UIAlertControllerStyle.alert)
-        
-        let yayAction = UIAlertAction(title:"Ok", style:UIAlertActionStyle.default){
-            action in
-            let containerViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Container")
-            UIApplication.topViewController()?.present(containerViewController, animated: true, completion: nil)
-        }
-        
-        successAlert.addAction(yayAction)
-        UIApplication.topViewController()?.present(successAlert, animated: true, completion: nil)
-    }
     
     func createUser(username: String, firstName: String, lastName: String, password: String) {
         //Store Data
@@ -122,5 +114,57 @@ class RegisterViewController: UIViewController {
         UIApplication.topViewController()?.present(myAlert, animated: true, completion: nil)
     }
     
+    
+    // Code to move the screen up when the keyboard is opened
+    func registerForKeyboardNotifications(){
+        //Adding notifies on keyboard appearing
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    func deregisterFromKeyboardNotifications(){
+        //Removing notifies on keyboard appearing
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    func keyboardWasShown(notification: NSNotification){
+        //Need to calculate keyboard exact size due to Apple suggestions
+        self.scrollView.isScrollEnabled = true
+        var info = notification.userInfo!
+        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize!.height, 0.0)
+        
+        self.scrollView.contentInset = contentInsets
+        self.scrollView.scrollIndicatorInsets = contentInsets
+        
+        var aRect : CGRect = self.view.frame
+        aRect.size.height -= keyboardSize!.height
+        if let activeField = self.activeField {
+            if (!aRect.contains(activeField.frame.origin)){
+                self.scrollView.scrollRectToVisible(activeField.frame, animated: true)
+            }
+        }
+    }
+    
+    func keyboardWillBeHidden(notification: NSNotification){
+        //Once keyboard disappears, restore original positions
+        var info = notification.userInfo!
+        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, -keyboardSize!.height, 0.0)
+        self.scrollView.contentInset = contentInsets
+        self.scrollView.scrollIndicatorInsets = contentInsets
+        self.view.endEditing(true)
+        self.scrollView.isScrollEnabled = false
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField){
+        activeField = textField
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField){
+        activeField = nil
+    }
+
 
 }

@@ -2,14 +2,14 @@
 //  HomeAddressTableViewCell.swift
 //  Women4Women
 //
-//  Created by Elizabeth Brouckman on 5/18/17.
+//  Created by Laura Brouckman on 5/18/17.
 //  Copyright © 2017 cs194w. All rights reserved.
 //
 
 import UIKit
 import MapKit
 
-class HomeAddressTableViewCell: UITableViewCell {
+class HomeAddressTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var updateButton: UIButton!
@@ -18,11 +18,24 @@ class HomeAddressTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        textField.text = UserDefaults.getHomeStreet() + " " + UserDefaults.getHomeCity()
+        let street = UserDefaults.getHomeStreet()
+        let city = UserDefaults.getHomeCity()
+        if street.isEmpty {
+            textField.text = ""
+        } else {
+            textField.text = street + " " + city
+        }
         updateButton.backgroundColor = UIColor.white
         updateButton.setTitleColor(UIColor.black, for: .normal)
         updateButton.layer.cornerRadius = 6
+        textField.delegate = self
+        textField.returnKeyType = .done
         // Initialization code
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

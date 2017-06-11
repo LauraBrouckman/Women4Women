@@ -2,7 +2,7 @@
 //  UserDefaults.swift
 //  Women4Women
 //
-//  Created by Elizabeth Brouckman on 5/9/17.
+//  Created by Laura Brouckman on 5/9/17.
 //  Copyright © 2017 cs194w. All rights reserved.
 //
 
@@ -117,7 +117,7 @@ class UserDefaults{
     }
     
     // Get and set the time that the user wants to be home by
-    static func setHomeTime(_ time: Date) {
+    static func setHomeTime(_ time: Date?) {
         Foundation.UserDefaults.standard.setValue(time, forKey: timeToBeHome)
     }
     
@@ -241,7 +241,7 @@ class UserDefaults{
         if let filename = Foundation.UserDefaults.standard.value(forKey: profilePicFileKey) as? String {
             return filename
         }
-        return ""
+        return "profile_pic"
     }
     
     //Get and set home city
@@ -380,6 +380,20 @@ class UserDefaults{
                 print("error \($1)")
             }
         }
+    }
+    
+    static func setCurrentLocation(lat: Double, lon: Double) {
+         Foundation.UserDefaults.standard.setValue(lat, forKey: "currentLocationLatitude")
+        Foundation.UserDefaults.standard.setValue(lon, forKey: "currentLocationLongitude")
+    }
+    
+    static func getCurrentLocation() -> (Double, Double)? {
+        if let latitude = Foundation.UserDefaults.standard.value(forKey: "currentLocationLatitude") as? Double {
+            if let longitude = Foundation.UserDefaults.standard.value(forKey: "currentLocationLongitude") as? Double {
+                return (latitude, longitude)
+            }
+        }
+        return nil
     }
     
 }

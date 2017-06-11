@@ -12,6 +12,7 @@ class HelpViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("HELP VIEW DID LOAD")
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -82,14 +83,19 @@ class HelpViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "exitHelp" {
+            if let containerVC = segue.destination as? ContainerViewController {
+                containerVC.showSideMenu = true
+            }
+        }
     }
-    */
+ 
 
 }
