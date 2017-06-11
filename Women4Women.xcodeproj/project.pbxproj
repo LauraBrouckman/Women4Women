@@ -42,6 +42,7 @@
 		304FC6531EE89C4900E8EB8D /* SegueFromLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304FC6521EE89C4900E8EB8D /* SegueFromLeft.swift */; };
 		304FC6551EE89D1600E8EB8D /* SegueFromRight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304FC6541EE89D1600E8EB8D /* SegueFromRight.swift */; };
 		304FC6571EE8A6CA00E8EB8D /* RegisterAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304FC6561EE8A6CA00E8EB8D /* RegisterAddressViewController.swift */; };
+		3058F56E1EEDD723005367E7 /* RestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3058F56D1EEDD723005367E7 /* RestaurantViewController.swift */; };
 		3063AEE61EC1203800DEEB5B /* AccordionMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3063AEE51EC1203800DEEB5B /* AccordionMenuTableViewController.swift */; };
 		306419371EED2AD500AA9D4D /* logo_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 306419361EED2AD500AA9D4D /* logo_large.png */; };
 		30692E271ED0DCA4007D9949 /* EmergencyContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30692E261ED0DCA4007D9949 /* EmergencyContactTableViewCell.swift */; };
@@ -123,6 +124,7 @@
 		304FC6521EE89C4900E8EB8D /* SegueFromLeft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueFromLeft.swift; sourceTree = "<group>"; };
 		304FC6541EE89D1600E8EB8D /* SegueFromRight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueFromRight.swift; sourceTree = "<group>"; };
 		304FC6561EE8A6CA00E8EB8D /* RegisterAddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterAddressViewController.swift; sourceTree = "<group>"; };
+		3058F56D1EEDD723005367E7 /* RestaurantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantViewController.swift; sourceTree = "<group>"; };
 		3063AEE51EC1203800DEEB5B /* AccordionMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccordionMenuTableViewController.swift; sourceTree = "<group>"; };
 		306419361EED2AD500AA9D4D /* logo_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_large.png; sourceTree = "<group>"; };
 		30692E261ED0DCA4007D9949 /* EmergencyContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmergencyContactTableViewCell.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				304FC6561EE8A6CA00E8EB8D /* RegisterAddressViewController.swift */,
 				307A298B1ECAD27100262B65 /* RegisterViewController.swift */,
 				303D527C1EC428E500170F62 /* RemoteDatabase.swift */,
+				3058F56D1EEDD723005367E7 /* RestaurantViewController.swift */,
 				30A168131EBFDB72002F5D52 /* SearchTextField.swift */,
 				304FC6521EE89C4900E8EB8D /* SegueFromLeft.swift */,
 				304FC6541EE89D1600E8EB8D /* SegueFromRight.swift */,
@@ -435,7 +438,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		66C335A501513A91E187890F /* [CP] Embed Pods Frameworks */ = {
@@ -484,6 +487,7 @@
 				20B0522F1ECFA47B006A31E8 /* ConversationViewController.swift in Sources */,
 				307D44351EBE931A007929D3 /* MainMapViewController.swift in Sources */,
 				304FC6551EE89D1600E8EB8D /* SegueFromRight.swift in Sources */,
+				3058F56E1EEDD723005367E7 /* RestaurantViewController.swift in Sources */,
 				307A298C1ECAD27100262B65 /* RegisterViewController.swift in Sources */,
 				307A298A1ECAD26600262B65 /* LoginViewController.swift in Sources */,
 				9F1B51EF1EC3C68E00560294 /* Colors.swift in Sources */,

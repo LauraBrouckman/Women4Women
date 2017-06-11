@@ -47,6 +47,7 @@ class TrackUsers {
                 nearbyUsers.append(newUser)
                 let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
                 let filePath = documentsURL.appendingPathComponent("\(newUser["photo_filename"]!)").path
+                print("in track users \(newUser["photo_filename"])")
                 if !FileManager.default.fileExists(atPath: filePath) {
                     print("file \(filePath) does not exist, downloading it now")
                     RemoteDatabase.downloadFileToLocal(forUser: username, completionHandler: self.completion)

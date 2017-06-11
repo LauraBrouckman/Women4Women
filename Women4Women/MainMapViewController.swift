@@ -124,6 +124,8 @@ class MainMapViewController: UIViewController, MKMapViewDelegate, UITextFieldDel
  func textFieldDidChange(_ textField: UITextField) {
         hideSearchResults = false
         popupMenu.isHidden = true
+        mapView.removeAnnotations(mapView.annotations)
+        mapView.removeOverlays(mapView.overlays)
     }
     
 

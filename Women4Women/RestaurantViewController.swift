@@ -194,6 +194,7 @@ class RestaurantViewController: UIViewController, MKMapViewDelegate, UITextField
             let results = NearbyUser.getAllNearbyUsers(inManagedObjectContext: self.managedObjectContext)
             self.numLifelines = (results?.count)!
             for result in results! {
+                print("result \(result.first_name) with photo \(result.photo_filename)")
                 self.addAnnotation(
                     toPoint: CLLocationCoordinate2D(latitude: result.latitude, longitude: result.longitude),
                     withTitle: result.first_name!,
@@ -227,8 +228,9 @@ class RestaurantViewController: UIViewController, MKMapViewDelegate, UITextField
                 let view = MKAnnotationView(annotation: annotation, reuseIdentifier: annotation.identifier)
                 //view.image = userPin
                 let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-                let filePath = documentsURL.appendingPathComponent("\(UserDefaults.getProfilePicFilename()).png").path
+                let filePath = documentsURL.appendingPathComponent("\(annotation.filename!)").path
                 if FileManager.default.fileExists(atPath: filePath) {
+                    print("file path exists")
                     let img = UIImage(contentsOfFile: filePath)
                     view.image = img?.circularImage(size: CGSize(width: 30, height: 30))
                     view.leftCalloutAccessoryView = UIImageView(image: img?.circularImage(size: CGSize(width: 30, height: 30)))
